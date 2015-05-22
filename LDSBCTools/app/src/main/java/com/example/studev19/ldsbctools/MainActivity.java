@@ -34,7 +34,7 @@ public class MainActivity extends ActionBarActivity {
     ViewPagerAdapter adapter;
     SlidingTabLayout tabs;
     CharSequence Titles[] = {"Directory", "BCSA", "Events", "Food", "Feedback"}; //Titles for the Tab Bar
-    int NumbOfTabs = 4; //This controls the number of tabs on the Tab Bar
+    int NumbOfTabs = 5; //This controls the number of tabs on the Tab Bar
     public static List<DirectoryObject> directoryArray = new ArrayList<DirectoryObject>();
 
     @Override
