@@ -10,6 +10,7 @@ public class DirectoryObject {
     String oName;
     int oPhone;
     String oDescription;
+    String oLocation;
 
     public String getName(){
         return oName;
@@ -33,6 +34,14 @@ public class DirectoryObject {
 
     public void setDescription(String description){
         this.oDescription = description;
+    }
+
+    public String getLocation(){
+        return oLocation;
+    }
+
+    public void setLocation(String location){
+        this.oDescription = location;
     }
 
 }

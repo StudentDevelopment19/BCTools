@@ -34,7 +34,7 @@ public class MainActivity extends ActionBarActivity {
     ViewPagerAdapter adapter;
     SlidingTabLayout tabs;
     CharSequence Titles[] = {"Directory", "BCSA", "Events", "Food", "Feedback"}; //Titles for the Tab Bar
-    int NumbOfTabs = 5; //This controls the number of tabs on the Tab Bar
+    int NumbOfTabs = 4; //This controls the number of tabs on the Tab Bar
     public static List<DirectoryObject> directoryArray = new ArrayList<DirectoryObject>();
 
     @Override
@@ -58,10 +58,12 @@ public class MainActivity extends ActionBarActivity {
                         String serviceName = objects.getString("serviceName");
                         int servicePhone = objects.getInt("phoneNumber");
                         String serviceDesc = objects.getString("description");
+                        String serviceLocation = objects.getString("Location");
                         DirectoryObject newObject = new DirectoryObject();
                         newObject.setName(serviceName);
                         newObject.setPhone(servicePhone);
                         newObject.setDescription(serviceDesc);
+                        newObject.setLocation(serviceLocation);
                         directoryArray.add(newObject);
                     }
                 } else {
@@ -98,6 +100,7 @@ public class MainActivity extends ActionBarActivity {
         //Setting the ViewPager for the SlidingTabsLayout
         tabs.setViewPager(pager);
 
+
     }
 
     @Override
@@ -120,6 +123,10 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onClick(View v){
+        Toast.makeText(getApplicationContext(), "Hello World", Toast.LENGTH_SHORT).show();
     }
 
 }

@@ -16,7 +16,7 @@ import java.util.List;
 public class directoryViewAdapter extends RecyclerView.Adapter<directoryViewAdapter.MyViewHolder>{
 
     private LayoutInflater inflater;
-    public static List<DirectoryObject> directoryArray = Collections.emptyList();
+    public static List<DirectoryObject> directoryArray;
 
     public directoryViewAdapter(Context context, List<DirectoryObject> directory){
         inflater = LayoutInflater.from(context);

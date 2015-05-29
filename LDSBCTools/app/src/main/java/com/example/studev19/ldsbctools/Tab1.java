@@ -16,8 +16,8 @@ import java.util.List;
  */
 public class Tab1 extends Fragment {
 
-    private RecyclerView recyclerView;
-    private directoryViewAdapter adapter;
+    private static RecyclerView recyclerView;
+    private static directoryViewAdapter adapter;
     private static List<DirectoryObject> directory;
 
 
