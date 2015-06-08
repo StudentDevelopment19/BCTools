@@ -45,8 +45,8 @@ public class directoryDetailedActivity extends ActionBarActivity {
         emailText.setText(displayedInformation.getEmail());
         TextView locationText = (TextView) findViewById(R.id.txtLocation);
         locationText.setText(displayedInformation.getLocation());
-        TextView hoursText = (TextView) findViewById(R.id.txtSchedule);
-        hoursText.setText(displayedInformation.getHours());
+        TextView scheduleText = (TextView) findViewById(R.id.txtSchedule);
+        scheduleText.setText(displayedInformation.getHours());
 
     }
 
