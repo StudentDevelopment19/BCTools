@@ -27,7 +27,7 @@ public class directoryDetailedActivity extends ActionBarActivity {
         toolbar = (Toolbar) findViewById(R.id.app_bar);
 
         //Set Title of the AppBar
-        toolbar.setTitle("Details");
+        toolbar.setTitle(displayedInformation.getName());
 
         //Applies the AppBar
         setSupportActionBar(toolbar);
@@ -47,7 +47,6 @@ public class directoryDetailedActivity extends ActionBarActivity {
         locationText.setText(displayedInformation.getLocation());
         TextView hoursText = (TextView) findViewById(R.id.txtSchedule);
         hoursText.setText(displayedInformation.getHours());
-
 
     }
 
