@@ -19,8 +19,14 @@ public class directoryDetailedActivity extends ActionBarActivity {
 
         //Creating the Toolbar and setting it as the Toolbar for the Activity
         toolbar = (Toolbar) findViewById(R.id.app_bar);
+
+        //Set Title of the AppBar
+        toolbar.setTitle("Details");
+
+        //Applies the AppBar
         setSupportActionBar(toolbar);
 
+        //Set the Navigation Up button and enables is
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -45,6 +51,7 @@ public class directoryDetailedActivity extends ActionBarActivity {
             return true;
         }
 
+        //Navigates up to MainActivity
         if (id == android.R.id.home){
             NavUtils.navigateUpFromSameTask(this);
         }
