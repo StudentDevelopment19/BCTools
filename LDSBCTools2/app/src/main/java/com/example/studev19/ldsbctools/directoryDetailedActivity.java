@@ -36,6 +36,7 @@ public class directoryDetailedActivity extends ActionBarActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        //This section fills the information of the detailed view
         TextView descText = (TextView) findViewById(R.id.txtDescription);
         descText.setText(displayedInformation.getDescription());
         TextView phoneText = (TextView) findViewById(R.id.txtPhone);
@@ -46,6 +47,7 @@ public class directoryDetailedActivity extends ActionBarActivity {
         locationText.setText(displayedInformation.getLocation());
         TextView hoursText = (TextView) findViewById(R.id.txtSchedule);
         hoursText.setText(displayedInformation.getHours());
+
 
     }
 
