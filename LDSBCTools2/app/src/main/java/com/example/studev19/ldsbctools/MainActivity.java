@@ -18,6 +18,7 @@ import android.support.v4.view.ViewPager;
 import com.example.studev19.ldsbctools.tabs.SlidingTabLayout;
 import android.content.Intent;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -27,7 +28,7 @@ public class MainActivity extends ActionBarActivity {
     SlidingTabLayout tabs;
     CharSequence Titles[] = {"Directory", "BCSA", "Events", "Food", "Feedback"}; //Titles for the Tab Bar
     int NumbOfTabs = 4; //This controls the number of tabs on the Tab Bar
-    List<DirectoryObject> directoryArray = new ArrayList<DirectoryObject>();
+    public List<DirectoryObject> directoryArray = new ArrayList<DirectoryObject>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,12 +108,11 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void directoryClick (View v){
+    /*public void directoryClick (View v){
         //Start intent to open the Detailed View
         Intent intent = new Intent(this, directoryDetailedActivity.class);
-
         startActivity(intent);
-    }
+    }*/
 
 }
 

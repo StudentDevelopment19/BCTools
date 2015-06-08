@@ -1,11 +1,14 @@
 package com.example.studev19.ldsbctools;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.List;
 
 /**
@@ -15,10 +18,12 @@ public class directoryViewAdapter extends RecyclerView.Adapter<directoryViewAdap
 
     private LayoutInflater inflater;
     public static List<DirectoryObject> directoryArray;
+    private Context context;
 
     public directoryViewAdapter(Context context, List<DirectoryObject> directory){
+        this.context = context;
         inflater = LayoutInflater.from(context);
-        this.directoryArray = directory;
+        directoryArray = directory;
     }
 
     @Override
@@ -40,11 +45,18 @@ public class directoryViewAdapter extends RecyclerView.Adapter<directoryViewAdap
         return directoryArray.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
+    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView title;
         public MyViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             title = (TextView) itemView.findViewById(R.id.listNameText);
+        }
+
+        @Override
+        public void onClick(View v) {
+            directoryDetailedActivity.setServiceInfo(directoryArray.get(getPosition()));
+            context.startActivity(new Intent(context, directoryDetailedActivity.class));
         }
     }
 

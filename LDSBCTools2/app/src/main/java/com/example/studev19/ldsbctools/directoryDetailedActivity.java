@@ -7,10 +7,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
+import android.view.View;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.zip.Inflater;
 
 
 public class directoryDetailedActivity extends ActionBarActivity {
     Toolbar toolbar;
+    private static DirectoryObject displayedInformation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +35,17 @@ public class directoryDetailedActivity extends ActionBarActivity {
         //Set the Navigation Up button and enables is
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        TextView descText = (TextView) findViewById(R.id.txtDescription);
+        descText.setText(displayedInformation.getDescription());
+        TextView phoneText = (TextView) findViewById(R.id.txtPhone);
+        phoneText.setText(displayedInformation.getPhone());
+        TextView emailText = (TextView) findViewById(R.id.txtEmail);
+        emailText.setText(displayedInformation.getEmail());
+        TextView locationText = (TextView) findViewById(R.id.txtLocation);
+        locationText.setText(displayedInformation.getLocation());
+        TextView hoursText = (TextView) findViewById(R.id.txtSchedule);
+        hoursText.setText(displayedInformation.getHours());
 
     }
 
@@ -58,4 +75,9 @@ public class directoryDetailedActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public static void setServiceInfo(DirectoryObject directoryObject) {
+        displayedInformation = directoryObject;
+    }
+
 }
