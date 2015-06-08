@@ -1,0 +1,133 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.studev19.ldsbctools.directoryDetailedActivity">
+
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/app_bar">
+
+        <TextView
+            android:id="@+id/txtDescription"
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="72dp"
+            android:hint="Service Description"
+            android:textSize="16sp"
+            android:layout_marginRight="16dp"
+            android:paddingTop="16dp"
+            android:fontFamily="Roboto Regular" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/icoPhone"
+            android:layout_below="@+id/txtDescription"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="16dp"
+            android:src="@drawable/ic_phone_custom"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:id="@+id/txtPhone"
+            android:paddingTop="16dp"
+            android:textSize="16sp"
+            android:layout_below="@+id/txtDescription"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="72dp"
+            android:layout_marginRight="16dp"
+            android:phoneNumber="true"
+            android:hint="Phone Number"
+            android:fontFamily="Roboto Regular" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/icoEmail"
+            android:layout_below="@+id/txtPhone"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_mail_custom"/>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:id="@+id/txtEmail"
+            android:paddingTop="16dp"
+            android:textSize="16sp"
+            android:phoneNumber="false"
+            android:hint="Email"
+            android:layout_below="@+id/txtPhone"
+            android:layout_alignLeft="@+id/txtPhone"
+            android:layout_alignStart="@+id/txtPhone"
+            android:fontFamily="Roboto Regular"
+            android:layout_marginRight="16dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/icoLocation"
+            android:src="@drawable/ic_location_custom"
+            android:layout_alignTop="@+id/txtLocation"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:id="@+id/txtLocation"
+            android:paddingTop="16dp"
+            android:textSize="16sp"
+            android:phoneNumber="false"
+            android:hint="Location"
+            android:layout_below="@+id/txtEmail"
+            android:layout_alignLeft="@+id/txtEmail"
+            android:layout_alignStart="@+id/txtEmail"
+            android:fontFamily="Roboto Regular"
+            android:layout_marginRight="16dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/icoSchedule"
+            android:src="@drawable/ic_schedule_custom"
+            android:layout_below="@+id/txtLocation"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:id="@+id/txtSchedule"
+            android:paddingTop="16dp"
+            android:textSize="16sp"
+            android:phoneNumber="false"
+            android:hint="Schedule"
+            android:fontFamily="Roboto Regular"
+            android:layout_below="@+id/txtLocation"
+            android:layout_alignLeft="@+id/txtLocation"
+            android:layout_alignStart="@+id/txtLocation"
+            android:layout_marginRight="16dp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
