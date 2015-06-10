@@ -41,9 +41,19 @@ public class MainActivity extends ActionBarActivity {
         //Parse.initialize(this, "y4mrxs1MVgSv9qv5L79fui8d4ElGs7iQH6mJOWha", "9Y6aanyHQdDjxzpx6QYsBYxgMUb8tfFsB95caB3c");
 
         String[][] contactInfo = {
-                {"Academic Advising", "Description Ac. Adv.", "801-524-8152", "Email Ac. Adv.", "Location Ac. Adv.", "Hours Ac. Adv."},
-                {"Campus Visits", "Description Cam Vis", "801-524-8159", "Email Cam Vis", "Location Cam Vis", "Hours Cam Vis"},
-                {"Student Development", "Description Stu Dev", "801-524-8151", "Email Stu Dev", "Location Stu Dev", "Hours Stu Dev"}
+                {"Academic Advising", "Receive help with academic planning and scheduling.", "801-524-8152", "There is no Email Address for this service.", "Room 905", "Monday-Friday 9am-5pm"},
+                {"Admissions", "Ask about applying or for more information.", "801-524-8145", "admiss@ldsbc.edu", "Second Floor", "Monday-Friday 9am-5pm"},
+                {"Bookstore", "Pre-order textbooks.", "801-524-8130", "book@ldsbc.edu", "First Floor", "Monday-Friday 9am-5pm"},
+                {"Campus Visits", "Schedule a campus visit.", "801-524-8159", "campusvisit@ldsbc.edu", "Second Floor", "Monday-Friday 9am-5pm"},
+                {"Career Management", "Find a part-time or full-time job.", "801-524-8159", "career@ldsbc.edu", "Room 406", "Monday-Friday 9am-5pm"},
+                {"Cashiers Office", "Questions about tuition and insurance.", "801-524-8153", "cashier@ldsbc.edu", "Second Floor", "Monday-Friday 9am-5pm"},
+                {"Financial Aid", "Ask about financial aid, loans, and grants.", "801-524-8111", "fa@ldsbc.edu", "Second Floor", "Monday-Friday 9am-5pm"},
+                {"Helpdesk", "For help and support with user accounts and College Computers.", "801-524-8119", "helpdesk@ldsbc.edu", "Second Floor", "Monday-Friday 9am-5pm"},
+                {"Honor Code", "For questions or concerns regarding the Honor Code.", "801-524-8157", "hc@ldsbc.edu", "Room 905", "Monday-Friday 9am-5pm"},
+                {"Housing", "Find a place to live.", "801-524-8180", "house@ldsbc.edu", "Room 905", "Monday-Friday 9am-5pm"},
+                {"Registration", "Ask about registration, transcripts, and class schedules.", "801-524-8140", "reg@ldsbc.edu", "Second Floor", "Monday-Friday 9am-5pm"},
+                {"Scholarships", "Learn how to qualify for scholarships.", "801-524-8111", "sch@ldsbc.edu", "Second Floor", "Monday-Friday 9am-5pm"},
+                {"Student Development Center", "Find out about campus activities and events.", "801-524-8151", "sdc@ldsbc.edu", "Room 905", "Monday-Friday 9am-5pm"}
         };
 
         for (String[] i : contactInfo){

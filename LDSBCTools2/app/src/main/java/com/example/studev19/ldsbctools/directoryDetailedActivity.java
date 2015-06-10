@@ -1,9 +1,13 @@
 package com.example.studev19.ldsbctools;
 
+import android.content.ActivityNotFoundException;
+import android.net.Uri;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.telephony.PhoneNumberUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
@@ -37,12 +41,38 @@ public class directoryDetailedActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //This section fills the information of the detailed view
-        TextView descText = (TextView) findViewById(R.id.txtDescription);
-        descText.setText(displayedInformation.getDescription());
-        TextView phoneText = (TextView) findViewById(R.id.txtPhone);
-        phoneText.setText(displayedInformation.getPhone());
-        TextView emailText = (TextView) findViewById(R.id.txtEmail);
-        emailText.setText(displayedInformation.getEmail());
+        TextView descText = (TextView) findViewById(R.id.txtDescription);   //Find view for Description
+        descText.setText(displayedInformation.getDescription());            //Sets Value for description from array
+        TextView phoneText = (TextView) findViewById(R.id.txtPhone);        //Find view for Phone Number
+        phoneText.setOnClickListener(new View.OnClickListener(){            //Set onClick listener
+            @Override
+            public void onClick(View view) {
+                try{
+                    Intent callIntent = new Intent(Intent.ACTION_CALL);
+                    callIntent.setData(Uri.parse("tel:"+displayedInformation.getPhone()));
+                    startActivity(callIntent);
+                }
+                catch(ActivityNotFoundException activityException){
+                    Log.e("BC Tools", "Call failed", activityException);
+                }
+            }
+        });
+        phoneText.setText(displayedInformation.getPhone());                 //Sets value for phone number from array
+        TextView emailText = (TextView) findViewById(R.id.txtEmail);        //Find view for Email
+        emailText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try{
+                    Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+                    emailIntent.setData(Uri.parse("mailto:"+displayedInformation.getEmail()));
+                    startActivity(emailIntent);
+                }
+                catch(ActivityNotFoundException activityException){
+                    Log.e("BC Tools", "Email failed", activityException);
+                }
+            }
+        });
+        emailText.setText(displayedInformation.getEmail());                 //Sets value for Email address from Array
         TextView locationText = (TextView) findViewById(R.id.txtLocation);
         locationText.setText(displayedInformation.getLocation());
         TextView scheduleText = (TextView) findViewById(R.id.txtSchedule);

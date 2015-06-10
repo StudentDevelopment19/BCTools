@@ -51,7 +51,9 @@
             android:layout_marginRight="16dp"
             android:phoneNumber="true"
             android:hint="Phone Number"
-            android:fontFamily="Roboto Regular" />
+            android:fontFamily="Roboto Regular"
+            android:inputType="phone"
+            />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -70,13 +72,13 @@
             android:id="@+id/txtEmail"
             android:paddingTop="16dp"
             android:textSize="16sp"
-            android:phoneNumber="false"
             android:hint="Email"
             android:layout_below="@+id/txtPhone"
             android:layout_alignLeft="@+id/txtPhone"
             android:layout_alignStart="@+id/txtPhone"
             android:fontFamily="Roboto Regular"
-            android:layout_marginRight="16dp" />
+            android:layout_marginRight="16dp"
+            android:inputType="textEmailAddress" />
 
         <ImageView
             android:layout_width="wrap_content"
