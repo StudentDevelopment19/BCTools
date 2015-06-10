@@ -44,7 +44,7 @@ public class directoryDetailedActivity extends ActionBarActivity {
         TextView descText = (TextView) findViewById(R.id.txtDescription);   //Find view for Description
         descText.setText(displayedInformation.getDescription());            //Sets Value for description from array
         TextView phoneText = (TextView) findViewById(R.id.txtPhone);        //Find view for Phone Number
-        phoneText.setOnClickListener(new View.OnClickListener(){            //Set onClick listener
+        phoneText.setOnClickListener(new View.OnClickListener(){            //Sets onClick listener for Phone Call
             @Override
             public void onClick(View view) {
                 try{
@@ -59,7 +59,7 @@ public class directoryDetailedActivity extends ActionBarActivity {
         });
         phoneText.setText(displayedInformation.getPhone());                 //Sets value for phone number from array
         TextView emailText = (TextView) findViewById(R.id.txtEmail);        //Find view for Email
-        emailText.setOnClickListener(new View.OnClickListener() {
+        emailText.setOnClickListener(new View.OnClickListener() {           //Sets onClick listener for Email
             @Override
             public void onClick(View view) {
                 try{
@@ -73,7 +73,7 @@ public class directoryDetailedActivity extends ActionBarActivity {
             }
         });
         emailText.setText(displayedInformation.getEmail());                 //Sets value for Email address from Array
-        TextView locationText = (TextView) findViewById(R.id.txtLocation);
+        TextView locationText = (TextView) findViewById(R.id.txtLocation);  //Find view for Location
         locationText.setText(displayedInformation.getLocation());
         TextView scheduleText = (TextView) findViewById(R.id.txtSchedule);
         scheduleText.setText(displayedInformation.getHours());
