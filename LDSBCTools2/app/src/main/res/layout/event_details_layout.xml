@@ -17,10 +17,10 @@
         android:layout_below="@id/app_bar">
 
         <TextView
-            android:id="@+id/txtDescription"
+            android:id="@+id/txtEventDescription"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="Service Description"
+            android:hint="Event Description"
             android:textSize="16sp"
             android:paddingTop="16dp"
             android:fontFamily="Roboto Regular"
@@ -32,8 +32,8 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:id="@+id/icoSchedule"
-            android:layout_below="@+id/txtDescription"
+            android:id="@+id/icoEventSchedule"
+            android:layout_below="@+id/txtEventDescription"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:src="@drawable/ic_schedule_custom"
@@ -42,9 +42,9 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="48dp"
-            android:id="@+id/txtSchedule"
+            android:id="@+id/txtEventSchedule"
             android:paddingTop="12dp"
-            android:layout_alignTop="@+id/icoSchedule"
+            android:layout_alignTop="@+id/icoEventSchedule"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_marginLeft="72dp"
@@ -56,8 +56,8 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:id="@+id/icoLocation"
-            android:layout_below="@+id/icoSchedule"
+            android:id="@+id/icoEventLocation"
+            android:layout_below="@+id/icoEventSchedule"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_marginLeft="16dp"
@@ -66,8 +66,8 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="48dp"
-            android:id="@+id/txtLocation"
-            android:layout_alignBottom="@+id/icoLocation"
+            android:id="@+id/txtEventLocation"
+            android:layout_alignBottom="@+id/icoEventLocation"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_marginRight="16dp"
@@ -76,56 +76,6 @@
             android:hint="Location"
             android:textSize="16sp"
             android:fontFamily="Roboto Regular" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:id="@+id/icoPhone"
-            android:layout_below="@+id/icoLocation"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="16dp"
-            android:src="@drawable/ic_phone_custom" />
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="48dp"
-            android:id="@+id/txtPhone"
-            android:layout_alignBottom="@+id/icoPhone"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginRight="16dp"
-            android:layout_marginLeft="72dp"
-            android:hint="Phone Number"
-            android:phoneNumber="true"
-            android:fontFamily="Roboto Regular"
-            android:textSize="16sp"
-            android:paddingTop="12dp" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:id="@+id/icoEmail"
-            android:layout_below="@+id/icoPhone"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="16dp"
-            android:src="@drawable/ic_mail_custom" />
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="48dp"
-            android:id="@+id/txtEmail"
-            android:layout_alignBottom="@+id/icoEmail"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginRight="16dp"
-            android:layout_marginLeft="72dp"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:fontFamily="Roboto Regular"
-            android:textSize="16sp"
-            android:paddingTop="12dp" />
 
     </RelativeLayout>
 
