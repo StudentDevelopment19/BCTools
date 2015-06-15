@@ -4,12 +4,12 @@ package com.example.studev19.ldsbctools;
  * Created by studev19 on 6/1/2015.
  */
 public class DirectoryObject {
-    String name;
-    String phone;
-    String description;
-    String location;
-    String email;
-    String hours;
+    private String name;
+    private String phone;
+    private String description;
+    private String location;
+    private String email;
+    private String hours;
 
     public String getName(){
         return name;

@@ -1,23 +1,25 @@
 package com.example.studev19.ldsbctools;
 
-import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
-import com.parse.Parse;
+import com.parse.FindCallback;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import android.support.v4.view.ViewPager;
 import com.example.studev19.ldsbctools.tabs.SlidingTabLayout;
-import android.content.Intent;
-import android.widget.EditText;
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
 import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity {
@@ -29,6 +31,7 @@ public class MainActivity extends ActionBarActivity {
     CharSequence Titles[] = {"Directory", "BCSA", "Events", "Food", "Feedback"}; //Titles for the Tab Bar
     int NumbOfTabs = 5; //This controls the number of tabs on the Tab Bar
     public List<DirectoryObject> directoryArray = new ArrayList<DirectoryObject>();
+    ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,47 +116,4 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /*public void directoryClick (View v){
-        //Start intent to open the Detailed View
-        Intent intent = new Intent(this, directoryDetailedActivity.class);
-        startActivity(intent);
-    }*/
-
 }
-
-//PARSE QUERY//
-        /*ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("serviceDirectory");
-        query.addAscendingOrder("serviceName");
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> list, ParseException e) {
-                if (e != null) {
-                    Toast.makeText(getApplicationContext(), "An error has occurred " + e, Toast.LENGTH_LONG).show();
-                } else {
-                    for (ParseObject objects : list) {
-                        //Get data from Parse.com table
-                        String serviceName = objects.getString("serviceName");
-                        String servicePhone = objects.getString("phoneNumber");
-                        String serviceDesc = objects.getString("description");
-                        String serviceLocation = objects.getString("Location");
-                        String serviceHours = objects.getString("hours");
-                        String serviceEmail = objects.getString("email");
-
-                        //Assign data to a DirectoryObject
-                        DirectoryObject newObject = new DirectoryObject();
-                        newObject.setName(serviceName);
-                        newObject.setPhone(servicePhone);
-                        newObject.setDescription(serviceDesc);
-                        newObject.setLocation(serviceLocation);
-                        newObject.setHours(serviceHours);
-                        newObject.setEmail(serviceEmail);
-
-                        //Add object to array
-                        directoryArray.add(newObject);
-                    }
-                }
-
-                //
-
-            }
-        });*/

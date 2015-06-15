@@ -19,8 +19,6 @@ public class Tab1 extends Fragment {
     private static directoryViewAdapter adapter;
     private static List<DirectoryObject> directory;
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
 
