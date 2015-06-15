@@ -54,7 +54,7 @@ public class parseApplicationSetup extends Application{
                     newObject.setStartDate(eventStartDate);
                     newObject.setEndDate(eventEndDate);
 
-                    //Add object to array
+                    //Add object to eventArray
                     eventArray.add(newObject);
 
                 }
