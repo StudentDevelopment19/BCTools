@@ -28,7 +28,7 @@ public class MainActivity extends ActionBarActivity {
     ViewPager pager;
     ViewPagerAdapter adapter;
     SlidingTabLayout tabs;
-    CharSequence Titles[] = {"Directory", "BCSA", "Events", "Food", "Feedback"}; //Titles for the Tab Bar
+    CharSequence Titles[] = {"Directory", "Events", "BCSA", "Food", "Feedback"}; //Titles for the Tab Bar
     int NumbOfTabs = 5; //This controls the number of tabs on the Tab Bar
     public List<DirectoryObject> directoryArray = new ArrayList<DirectoryObject>();
     ProgressDialog mProgressDialog;
@@ -38,6 +38,7 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //ARRAY WITH SERVICES INFORMATION.
         String[][] contactInfo = {
                 {"Academic Advising",           "Receive help with academic planning and scheduling.",              "801-524-8152", "advising@ldsbc.edu*",      "Room 905",     "Monday-Friday 9am-5pm"},
                 {"Admissions",                  "Ask about applying or for more information.",                      "801-524-8145", "admiss@ldsbc.edu",         "Second Floor", "Monday-Friday 9am-5pm"},
@@ -54,6 +55,7 @@ public class MainActivity extends ActionBarActivity {
                 {"Student Development Center",  "Find out about campus activities and events.",                     "801-524-8151", "sdc@ldsbc.edu",            "Room 905",     "Monday-Friday 9am-5pm"}
         };
 
+        //pASSES THE INFORMATION FROM contactInfo ARRAY TO directoryArray
         for (String[] i : contactInfo){
             DirectoryObject newObject = new DirectoryObject();
             newObject.setName(i[0]);
@@ -65,6 +67,7 @@ public class MainActivity extends ActionBarActivity {
             directoryArray.add(newObject);
         }
 
+        //SENDS INFORMATION TO INFLATER
         Tab1.setData(directoryArray);
 
         //Creating the Toolbar and setting it as the Toolbar for the Activity

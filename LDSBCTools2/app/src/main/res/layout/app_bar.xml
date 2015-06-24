@@ -4,7 +4,7 @@
     android:layout_height="56dp"
     android:layout_width="match_parent"
     android:background="@color/primaryColor"
-    android:elevation="2dp"
+    android:elevation="3dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:theme="@style/ThemeOverlay.AppCompat.Dark"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light">

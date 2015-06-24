@@ -5,4 +5,7 @@
     <string name="parseClientID">9Y6aanyHQdDjxzpx6QYsBYxgMUb8tfFsB95caB3c</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_directory_detailed">directoryDetailedActivity</string>
+    <string name="title_activity_event_detailed">eventDetailedActivity</string>
+
+    <string name="hello_world">Hello world!</string>
 </resources>

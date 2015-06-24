@@ -36,7 +36,7 @@ public class directoryDetailedActivity extends ActionBarActivity {
         //Applies the AppBar
         setSupportActionBar(toolbar);
 
-        //Set the Navigation Up button and enables is
+        //Set the Navigation Up button and enables it
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

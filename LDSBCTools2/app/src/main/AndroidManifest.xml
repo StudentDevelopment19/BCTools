@@ -9,11 +9,11 @@
     <application
         android:name=".parseApplicationSetup"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_lion"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.studev19.ldsbctools.MainActivity"
+            android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_main" >
             <intent-filter>
@@ -25,10 +25,18 @@
         <activity
             android:name=".directoryDetailedActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_directory_detailed">
+            android:label="@string/title_activity_directory_detailed" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studev19.ldsbctools.MainActivity" />
+        </activity>
+        <activity
+            android:name=".eventDetailedActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_event_detailed" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.studev19.ldsbctools.MainActivity"/>
         </activity>
     </application>
 

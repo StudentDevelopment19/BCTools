@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Events"
+        android:text="BCSA"
         android:id="@+id/lblEvents"
         android:textColor="@color/primaryColorDark"
         android:layout_centerVertical="true"

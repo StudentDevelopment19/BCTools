@@ -11,9 +11,11 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 /**
  * Created by studev19 on 6/12/2015.
@@ -30,7 +32,7 @@ public class parseApplicationSetup extends Application{
 
         //PARSE QUERY//
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("events");
-        query.addAscendingOrder("eventDate");
+        query.addAscendingOrder("startDate");
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
@@ -41,8 +43,7 @@ public class parseApplicationSetup extends Application{
                     String eventName = objects.getString("eventName");
                     String eventDesc = objects.getString("description");
                     String eventLocation = objects.getString("location");
-                    String eventDisplayTime = objects.getString("dateTime");
-                    Date eventStartDate = objects.getDate("eventDate");
+                    Date eventStartDate = objects.getDate("startDate");
                     Date eventEndDate = objects.getDate("endDate");
 
                     //Assign data to a DirectoryObject
@@ -50,7 +51,6 @@ public class parseApplicationSetup extends Application{
                     newObject.setName(eventName);
                     newObject.setDescription(eventDesc);
                     newObject.setLocation(eventLocation);
-                    newObject.setHours(eventDisplayTime);
                     newObject.setStartDate(eventStartDate);
                     newObject.setEndDate(eventEndDate);
 

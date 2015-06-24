@@ -1,5 +1,6 @@
 package com.example.studev19.ldsbctools;
 
+import java.text.DateFormat;
 import java.util.Date;
 
 /**
@@ -36,14 +37,6 @@ public class EventDetails {
 
     public void setLocation(String location){
         this.location = location;
-    }
-
-    public String getHours(){
-        return displayTime;
-    }
-
-    public void setHours(String hours){
-        this.displayTime = hours;
     }
 
     public Date getStartDate(){
