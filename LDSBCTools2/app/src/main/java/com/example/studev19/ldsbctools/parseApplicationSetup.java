@@ -13,6 +13,7 @@ import com.parse.ParseUser;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
@@ -23,12 +24,21 @@ import java.util.TimeZone;
 public class parseApplicationSetup extends Application{
 
     public List<EventDetails> eventArray = new ArrayList<EventDetails>();
+    private static Date today;
 
     @Override
     public void onCreate(){
 
         super.onCreate();
         Parse.initialize(this, getString(R.string.parseAppID), getString(R.string.parseClientID));
+
+        //Set Date for current day (today)
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.HOUR, 0);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+
+        today = c.getTime();
 
         //PARSE QUERY//
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("events");
@@ -46,16 +56,19 @@ public class parseApplicationSetup extends Application{
                     Date eventStartDate = objects.getDate("startDate");
                     Date eventEndDate = objects.getDate("endDate");
 
-                    //Assign data to a DirectoryObject
-                    EventDetails newObject = new EventDetails();
-                    newObject.setName(eventName);
-                    newObject.setDescription(eventDesc);
-                    newObject.setLocation(eventLocation);
-                    newObject.setStartDate(eventStartDate);
-                    newObject.setEndDate(eventEndDate);
+                    //ADD ONLY THE UPCOMING EVENTS
+                    if ( eventStartDate.before(today) == false){
+                        //Assign data to a DirectoryObject
+                        EventDetails newObject = new EventDetails();
+                        newObject.setName(eventName);
+                        newObject.setDescription(eventDesc);
+                        newObject.setLocation(eventLocation);
+                        newObject.setStartDate(eventStartDate);
+                        newObject.setEndDate(eventEndDate);
 
-                    //Add object to eventArray
-                    eventArray.add(newObject);
+                        //Add object to eventArray
+                        eventArray.add(newObject);
+                    }
 
                 }
 

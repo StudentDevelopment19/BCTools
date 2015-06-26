@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.text.DateFormat;
 import java.util.TimeZone;
 
 /**
@@ -21,6 +21,7 @@ public class eventViewAdapter extends RecyclerView.Adapter<eventViewAdapter.MyVi
 
     private LayoutInflater inflater;
     public static List<EventDetails> eventArray;
+    public static  List<EventDetails> tempInfo;
     private Context context;
 
     public eventViewAdapter(Context context, List<EventDetails> eventList){
@@ -35,16 +36,16 @@ public class eventViewAdapter extends RecyclerView.Adapter<eventViewAdapter.MyVi
         View view = inflater.inflate(R.layout.event_custom_row, parent, false);
         MyViewHolder holder = new MyViewHolder(view);
         return holder;
+
     }
 
     @Override
     public void onBindViewHolder(eventViewAdapter.MyViewHolder holder, int position) {
         EventDetails currentInfo = eventArray.get(position);
-        SimpleDateFormat df = new SimpleDateFormat("MMM,dd hh:mm a");;
+        SimpleDateFormat df = new SimpleDateFormat("MMM, dd hh:mm a");
         df.setTimeZone(TimeZone.getTimeZone("MST"));
         holder.eventName.setText(currentInfo.getName());
-        holder.eventDate.setText(df.format(currentInfo.getStartDate()));
-
+        holder.eventDate.setText(df.format(currentInfo.getStartDateOnMST()));
     }
 
     @Override
@@ -68,4 +69,5 @@ public class eventViewAdapter extends RecyclerView.Adapter<eventViewAdapter.MyVi
             context.startActivity(new Intent(context, eventDetailedActivity.class));
         }
     }
+
 }

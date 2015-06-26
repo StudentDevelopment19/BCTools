@@ -1,6 +1,7 @@
 package com.example.studev19.ldsbctools;
 
 import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -43,11 +44,27 @@ public class EventDetails {
         return startDate;
     }
 
+    public Date getStartDateOnMST(){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(this.startDate);
+        calendar.add(Calendar.HOUR, 7);
+        this.startDate = calendar.getTime();
+        return startDate;
+    }
+
     public void setStartDate(Date myDate){
         this.startDate = myDate;
     }
 
     public Date getEndDate(){
+        return endDate;
+    }
+
+    public Date getEndDateOnMST(){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(this.endDate);
+        calendar.add(Calendar.HOUR, 7);
+        this.endDate = calendar.getTime();
         return endDate;
     }
 

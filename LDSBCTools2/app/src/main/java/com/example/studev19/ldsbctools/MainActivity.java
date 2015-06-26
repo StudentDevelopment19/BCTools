@@ -31,7 +31,6 @@ public class MainActivity extends ActionBarActivity {
     CharSequence Titles[] = {"Directory", "Events", "BCSA", "Food", "Feedback"}; //Titles for the Tab Bar
     int NumbOfTabs = 5; //This controls the number of tabs on the Tab Bar
     public List<DirectoryObject> directoryArray = new ArrayList<DirectoryObject>();
-    ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +112,7 @@ public class MainActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Toast.makeText(getApplicationContext(), "This option is not available for now", Toast.LENGTH_SHORT).show();
             return true;
         }
 

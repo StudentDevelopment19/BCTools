@@ -1,5 +1,6 @@
 package com.example.studev19.ldsbctools;
 
+import android.app.Application;
 import android.content.ActivityNotFoundException;
 import android.net.Uri;
 import android.support.v4.app.NavUtils;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.zip.Inflater;
@@ -47,12 +49,13 @@ public class directoryDetailedActivity extends ActionBarActivity {
         phoneText.setOnClickListener(new View.OnClickListener(){            //Sets onClick listener for Phone Call
             @Override
             public void onClick(View view) {
-                try{
+                try{                                                        //Start Call Activity
                     Intent callIntent = new Intent(Intent.ACTION_CALL);
                     callIntent.setData(Uri.parse("tel:"+displayedInformation.getPhone()));
                     startActivity(callIntent);
                 }
                 catch(ActivityNotFoundException activityException){
+                    Toast.makeText(getApplicationContext(), "Application has stopped, failed to make a call to the " + displayedInformation.getName(), Toast.LENGTH_SHORT).show();
                     Log.e("BC Tools", "Call failed", activityException);
                 }
             }
@@ -62,12 +65,13 @@ public class directoryDetailedActivity extends ActionBarActivity {
         emailText.setOnClickListener(new View.OnClickListener() {           //Sets onClick listener for Email
             @Override
             public void onClick(View view) {
-                try{
+                try{                                                        //Start Email Activity
                     Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
                     emailIntent.setData(Uri.parse("mailto:"+displayedInformation.getEmail()));
                     startActivity(emailIntent);
                 }
                 catch(ActivityNotFoundException activityException){
+                    Toast.makeText(getApplicationContext(), "Application has stopped, failed to send an email to the " + displayedInformation.getName(), Toast.LENGTH_SHORT).show();
                     Log.e("BC Tools", "Email failed", activityException);
                 }
             }
@@ -96,6 +100,7 @@ public class directoryDetailedActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Toast.makeText(getApplicationContext(), "This option is not available for now", Toast.LENGTH_SHORT).show();
             return true;
         }
 
