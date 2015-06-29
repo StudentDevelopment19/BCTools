@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,7 +45,11 @@ public class eventDetailedActivity extends ActionBarActivity {
         eventDescText.setText(displayedInformation.getDescription());                   //Set value for description
         TextView eventStartDate = (TextView) findViewById(R.id.txtEventSchedule);       //Find view for Event Start Date
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMM, dd hh:mm a");              //Format Date
-        eventStartDate.setOnClickListener(new View.OnClickListener() {                  //Set onClickListener event for Start Date
+        eventStartDate.setText(dateFormat.format(displayedInformation.getStartDate())); //Set value for Start Date
+        TextView eventLocation = (TextView) findViewById(R.id.txtEventLocation);        //Find view for Event Location
+        eventLocation.setText(displayedInformation.getLocation());                      //Set value for Event Location
+        Button addEventButton = (Button) findViewById(R.id.btnAddEvent);
+    addEventButton.setOnClickListener(new View.OnClickListener() {                      //Set onClickListener event for AddEventButton
             @Override
             public void onClick(View v) {
                 try{                                                                    //Start Calendar Activity
@@ -62,9 +67,6 @@ public class eventDetailedActivity extends ActionBarActivity {
                 }
             }
         });
-        eventStartDate.setText(dateFormat.format(displayedInformation.getStartDate())); //Set value for Start Date
-        TextView eventLocation = (TextView) findViewById(R.id.txtEventLocation);        //Find view for Event Location
-        eventLocation.setText(displayedInformation.getLocation());                      //Set value for Event Location
 
     }
 

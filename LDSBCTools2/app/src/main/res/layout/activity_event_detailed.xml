@@ -85,6 +85,21 @@
             android:textSize="16sp"
             android:fontFamily="Roboto Regular" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:id="@+id/btnAddEvent"
+            android:layout_below="@+id/icoEventLocation"
+            android:background="@color/primaryColor"
+            android:textColor="@color/iconsColor"
+            android:fontFamily="Roboto Medium"
+            android:textSize="14sp"
+            android:layout_centerHorizontal="true"
+            android:text="Add event to calendar"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:elevation="2dp"/>
+
     </RelativeLayout>
 
 </RelativeLayout>
