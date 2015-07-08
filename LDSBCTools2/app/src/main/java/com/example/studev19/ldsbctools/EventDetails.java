@@ -12,7 +12,6 @@ public class EventDetails {
     private String eventName;
     private String description;
     private String location;
-    private String displayTime;
     private Date startDate;
     private Date endDate;
 

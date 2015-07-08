@@ -25,7 +25,7 @@ import android.widget.VideoView;
 /**
  * Created by studev19 on 5/18/2015.
  */
-public class Tab3 extends Fragment implements MediaPlayer.OnCompletionListener, MediaPlayer.OnPreparedListener, MediaPlayer.OnErrorListener{
+public class Tab3 extends Fragment {
 
     private Context context;
     private TextView hyperlinkBCMessenger;
@@ -49,7 +49,7 @@ public class Tab3 extends Fragment implements MediaPlayer.OnCompletionListener, 
         View v = inflater.inflate(R.layout.tab_3, container, false);
 
         videoURL = "http://bcmessenger.com/wp-content/uploads/2014/09/Student_Involvement_condesnsed_02.mp4?_=1";
-       //videoView = (VideoView) v.findViewById(R.id.videoView);
+        //videoView = (VideoView) v.findViewById(R.id.videoView);
 
         //SET HYPERLINK TO VIDEO
         hyperlinkVideo = (ImageView) v.findViewById(R.id.videoView);
@@ -68,8 +68,8 @@ public class Tab3 extends Fragment implements MediaPlayer.OnCompletionListener, 
         hyperlinkBCMessenger = (TextView) v.findViewById(R.id.txtBCMessengerLink);
         hyperlinkBCMessenger.setClickable(true);
         hyperlinkBCMessenger.setMovementMethod(LinkMovementMethod.getInstance());
-            String BCMessengerText = "<a href='http://bcmessenger.com/'>BC Messenger</a>";
-        hyperlinkMentor.setText(Html.fromHtml(BCMessengerText));
+        String BCMessengerText = "<a href='http://www.bcmessenger.com/'>BC Messenger</a>";
+        hyperlinkBCMessenger.setText(Html.fromHtml(BCMessengerText));
 
         //SET HYPERLINK TO MENTOR APPLICATION
         hyperlinkMentor = (TextView) v.findViewById(R.id.txtMentorLink);
@@ -116,70 +116,5 @@ public class Tab3 extends Fragment implements MediaPlayer.OnCompletionListener, 
         return v;
     }
 
-    @Override
-    public void onPause(){
-        super.onPause();
 
-        //Pause video if it is playing
-        if (videoView.isPlaying()){
-            videoView.pause();
-        }
-
-        //Save the current video position
-        vPosition = videoView.getCurrentPosition();
-    }
-
-    @Override
-    public void onResume(){
-        super.onResume();
-
-        videoView.setOnCompletionListener(this);
-        videoView.setOnPreparedListener(this);
-        videoView.setOnErrorListener(this);
-        videoView.setKeepScreenOn(true);
-
-        //Initialize the media controller
-        MediaController mediaController = new MediaController(getActivity());
-        mediaController.setMediaPlayer(videoView);
-
-        //Set-up the video view
-        videoView.setMediaController(mediaController);
-        videoView.requestFocus();
-        videoView.setVideoPath(videoURL);
-
-        if (videoView !=null){
-            //Restore the video position
-            videoView.seekTo(vPosition);
-            videoView.requestFocus();
-        }
-    }
-
-    @Override
-    public void onDestroy(){
-        super.onDestroy();
-
-        //Clean-up
-        if (videoView != null){
-            videoView.stopPlayback();
-            videoView = null;
-        }
-    }
-
-    @Override
-    public void onCompletion(MediaPlayer mp) {
-        Log.e("VIDEO PLAY", "end video play");
-    }
-
-    @Override
-    public boolean onError(MediaPlayer mp, int what, int extra) {
-        Log.e("VIDEO PLAY", "error: " + what);
-        return true;
-    }
-
-    @Override
-    public void onPrepared(MediaPlayer mp) {
-        //Start the video view
-        mp.start();
-        Log.e("VIDEO PLAY", "video ready for playback");
-    }
 }

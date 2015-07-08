@@ -26,15 +26,6 @@
             android:layout_marginTop="8dp"
             android:layout_below="@id/imgBCSA"/>
 
-        <!--<VideoView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:id="@+id/videoView"
-            android:layout_below="@id/txtBCSAHeadline"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            />-->
-
         <ImageView
             android:layout_width="fill_parent"
             android:layout_height="200dp"

@@ -28,7 +28,7 @@ public class MainActivity extends ActionBarActivity {
     ViewPager pager;
     ViewPagerAdapter adapter;
     SlidingTabLayout tabs;
-    CharSequence Titles[] = {"Directory", "Events", "BCSA", "Food", "Feedback"}; //Titles for the Tab Bar
+    CharSequence Titles[] = {"Directory", "Events", "BCSA", "Deals", "Feedback"}; //Titles for the Tab Bar
     int NumbOfTabs = 5; //This controls the number of tabs on the Tab Bar
     public List<DirectoryObject> directoryArray = new ArrayList<DirectoryObject>();
 
@@ -54,7 +54,7 @@ public class MainActivity extends ActionBarActivity {
                 {"Student Development Center",  "Find out about campus activities and events.",                     "801-524-8151", "sdc@ldsbc.edu",            "Room 905",     "Monday-Friday 9am-5pm"}
         };
 
-        //pASSES THE INFORMATION FROM contactInfo ARRAY TO directoryArray
+        //PASSES THE INFORMATION FROM contactInfo ARRAY TO directoryArray
         for (String[] i : contactInfo){
             DirectoryObject newObject = new DirectoryObject();
             newObject.setName(i[0]);

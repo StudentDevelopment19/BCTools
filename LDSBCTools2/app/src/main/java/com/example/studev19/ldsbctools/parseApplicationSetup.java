@@ -1,12 +1,14 @@
 package com.example.studev19.ldsbctools;
 
 import android.app.Application;
+import android.graphics.Bitmap;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.Parse;
 import com.parse.ParseACL;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -24,6 +26,7 @@ import java.util.TimeZone;
 public class parseApplicationSetup extends Application{
 
     public List<EventDetails> eventArray = new ArrayList<EventDetails>();
+    public List<DealObject> dealArray = new ArrayList<DealObject>();
     private static Date today;
 
     @Override
@@ -57,7 +60,7 @@ public class parseApplicationSetup extends Application{
                     Date eventEndDate = objects.getDate("endDate");
 
                     //ADD ONLY THE UPCOMING EVENTS
-                    if ( eventStartDate.before(today) == false){
+                    if (eventStartDate.before(today) == false) {
                         //Assign data to a DirectoryObject
                         EventDetails newObject = new EventDetails();
                         newObject.setName(eventName);
@@ -76,6 +79,43 @@ public class parseApplicationSetup extends Application{
         });
 
         Tab2.setData(eventArray);
+
+        ParseQuery<ParseObject> query2 = new ParseQuery<ParseObject>("Deals");
+        query2.addAscendingOrder("StartDate");
+        query2.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e != null) {
+                    Toast.makeText(getApplicationContext(), "An error has occurred " + e, Toast.LENGTH_LONG).show();
+                } else for (ParseObject objects : list) {
+                    //Get data from Parse.com table
+                    String dealTitle = objects.getString("Title");
+                    String dealDesc = objects.getString("Description");
+                    String dealCompany = objects.getString("Location");
+                    Date dealStartDate = objects.getDate("StartDate");
+                    Date dealEndDate = objects.getDate("EndDate");
+                    ParseFile dealImage = objects.getParseFile("Image");
+
+                    //ADD ONLY THE UPCOMING EVENTS
+                    if (dealStartDate.before(today) == false) {
+                        //Assign data to a DirectoryObject
+                        DealObject newObject = new DealObject();
+                        newObject.setDealTitle(dealTitle);
+                        newObject.setDealDesciption(dealDesc);
+                        newObject.setDealCompany(dealCompany);
+                        newObject.setDealStartDate(dealStartDate);
+                        newObject.setDealEndDate(dealEndDate);
+                        newObject.setDealImage(dealImage);
+
+                        //Add object to eventArray
+                        dealArray.add(newObject);
+                    }
+
+                }
+            }
+        });
+
+        Tab4.setData(dealArray);
 
         ParseUser.enableAutomaticUser();
         ParseACL defaultACL = new ParseACL();
