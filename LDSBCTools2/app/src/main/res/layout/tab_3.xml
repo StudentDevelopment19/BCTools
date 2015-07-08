@@ -8,7 +8,7 @@
 
         <ImageView
             android:layout_width="fill_parent"
-            android:layout_height="200dp"
+            android:layout_height="175dp"
             android:src="@drawable/bc_messenger"
             android:id="@+id/imgBCSA" />
 
@@ -26,11 +26,30 @@
             android:layout_marginTop="8dp"
             android:layout_below="@id/imgBCSA"/>
 
+        <!--<VideoView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/videoView"
+            android:layout_below="@id/txtBCSAHeadline"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            />-->
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="200dp"
+            android:id="@+id/videoView"
+            android:src="@drawable/bcsa10"
+            android:layout_below="@+id/txtBCSAHeadline"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            />
+
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:id="@+id/divider1"
-            android:layout_below="@id/txtBCSAHeadline"
+            android:layout_below="@id/videoView"
             android:background="@color/dividerColor"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"/>
@@ -78,13 +97,27 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/txtMentorLink"
+            android:id="@+id/txtBCMessengerLink"
             android:textSize="16sp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:layout_below="@id/txtLinksHeader"
+            android:hint="Hyperlink to BC Messenger"
+            android:textColorLink="@color/accentColor"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtMentorLink"
+            android:textSize="16sp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_below="@id/txtBCMessengerLink"
             android:hint="Hyperlink to Mentor Application"
             android:textColorLink="@color/accentColor"
             />
