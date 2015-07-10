@@ -19,7 +19,6 @@ public class eventViewAdapter extends RecyclerView.Adapter<eventViewAdapter.MyVi
 
     private LayoutInflater inflater;
     public static List<EventDetails> eventArray;
-    public static  List<EventDetails> tempInfo;
     private Context context;
 
     public eventViewAdapter(Context context, List<EventDetails> eventList){

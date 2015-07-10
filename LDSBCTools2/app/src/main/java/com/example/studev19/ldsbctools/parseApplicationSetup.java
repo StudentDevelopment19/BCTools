@@ -80,7 +80,7 @@ public class parseApplicationSetup extends Application{
 
         Tab2.setData(eventArray);
 
-        ParseQuery<ParseObject> query2 = new ParseQuery<ParseObject>("Deals");
+        ParseQuery<ParseObject> query2 = new ParseQuery<ParseObject>("deals");
         query2.addAscendingOrder("StartDate");
         query2.findInBackground(new FindCallback<ParseObject>() {
             @Override
@@ -89,12 +89,13 @@ public class parseApplicationSetup extends Application{
                     Toast.makeText(getApplicationContext(), "An error has occurred " + e, Toast.LENGTH_LONG).show();
                 } else for (ParseObject objects : list) {
                     //Get data from Parse.com table
-                    String dealTitle = objects.getString("Title");
-                    String dealDesc = objects.getString("Description");
-                    String dealCompany = objects.getString("Location");
-                    Date dealStartDate = objects.getDate("StartDate");
-                    Date dealEndDate = objects.getDate("EndDate");
-                    ParseFile dealImage = objects.getParseFile("Image");
+                    String dealTitle = objects.getString("title");
+                    String dealDesc = objects.getString("description");
+                    String dealAddress = objects.getString("address");
+                    String dealCompany = objects.getString("company");
+                    Date dealStartDate = objects.getDate("startDate");
+                    Date dealEndDate = objects.getDate("endDate");
+                    ParseFile dealImage = objects.getParseFile("image");
 
                     //ADD ONLY THE UPCOMING EVENTS
                     if (dealStartDate.before(today) == false) {
@@ -102,6 +103,7 @@ public class parseApplicationSetup extends Application{
                         DealObject newObject = new DealObject();
                         newObject.setDealTitle(dealTitle);
                         newObject.setDealDesciption(dealDesc);
+                        newObject.setDealAddress(dealAddress);
                         newObject.setDealCompany(dealCompany);
                         newObject.setDealStartDate(dealStartDate);
                         newObject.setDealEndDate(dealEndDate);

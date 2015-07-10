@@ -45,7 +45,7 @@ public class eventDetailedActivity extends ActionBarActivity {
         eventDescText.setText(displayedInformation.getDescription());                   //Set value for description
         TextView eventStartDate = (TextView) findViewById(R.id.txtEventSchedule);       //Find view for Event Start Date
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMM, dd hh:mm a");              //Format Date
-        eventStartDate.setText(dateFormat.format(displayedInformation.getStartDate())); //Set value for Start Date
+        eventStartDate.setText(dateFormat.format(displayedInformation.getStartDateOnMST())); //Set value for Start Date
         TextView eventLocation = (TextView) findViewById(R.id.txtEventLocation);        //Find view for Event Location
         eventLocation.setText(displayedInformation.getLocation());                      //Set value for Event Location
         Button addEventButton = (Button) findViewById(R.id.btnAddEvent);

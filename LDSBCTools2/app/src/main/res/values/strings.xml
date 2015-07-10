@@ -8,4 +8,5 @@
     <string name="title_activity_event_detailed">eventDetailedActivity</string>
 
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_deal_detailed">dealDetailedActivity</string>
 </resources>

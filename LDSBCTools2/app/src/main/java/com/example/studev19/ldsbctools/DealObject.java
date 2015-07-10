@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 
 import com.parse.ParseFile;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -54,11 +55,27 @@ public class DealObject {
         return dealStartDate;
     }
 
+    public Date getDealStartDateOnMST(){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(this.dealStartDate);
+        calendar.add(Calendar.HOUR, 7);
+        this.dealStartDate = calendar.getTime();
+        return dealStartDate;
+    }
+
     public void setDealStartDate(Date startDate){
         this.dealStartDate = startDate;
     }
 
     public Date getDealEndDate(){
+        return dealEndDate;
+    }
+
+    public Date getEndDateOnMTS(){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(this.dealEndDate);
+        calendar.add(Calendar.HOUR, 7);
+        this.dealEndDate = calendar.getTime();
         return dealEndDate;
     }
 

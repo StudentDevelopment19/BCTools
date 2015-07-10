@@ -1,0 +1,113 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.studev19.ldsbctools.dealDetailedActivity">
+
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/app_bar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/app_bar"
+            android:orientation="vertical">
+
+            <com.parse.ParseImageView
+                android:layout_width="fill_parent"
+                android:layout_height="200dp"
+                android:id="@+id/imgDealImage"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"/>
+
+            <TextView
+                android:id="@+id/txtDealName"
+                android:layout_below="@+id/imgDealImage"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="Roboto Regular"
+                android:hint="Deal Title"
+                android:paddingBottom="16dp"
+                android:paddingTop="16dp"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/txtDealDescription"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtDealName"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="Roboto Regular"
+                android:hint="Deal Description"
+                android:paddingBottom="16dp"
+                android:paddingTop="16dp"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/txtDealCompany"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtDealDescription"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="Roboto Regular"
+                android:hint="Deal Title"
+                android:paddingBottom="16dp"
+                android:paddingTop="16dp"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/txtDealAddress"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtDealCompany"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="Roboto Regular"
+                android:hint="Deal Address"
+                android:paddingBottom="16dp"
+                android:paddingTop="16dp"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/txtDealStartDate"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtDealAddress"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="Roboto Regular"
+                android:hint="Deal Start Date"
+                android:paddingBottom="16dp"
+                android:paddingTop="16dp"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/txtDealEndDate"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtDealStartDate"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="Roboto Regular"
+                android:hint="Deal End Date"
+                android:paddingBottom="16dp"
+                android:paddingTop="16dp"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
