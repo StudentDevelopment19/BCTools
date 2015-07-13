@@ -98,7 +98,9 @@ public class dealDetailedActivity extends ActionBarActivity {
 
         //Navigates up to MainActivity
         if (id == android.R.id.home){
-            NavUtils.navigateUpFromSameTask(this);
+            //NavUtils.navigateUpFromSameTask(this);
+            this.finish();
+            return true;
         }
 
         return super.onOptionsItemSelected(item);

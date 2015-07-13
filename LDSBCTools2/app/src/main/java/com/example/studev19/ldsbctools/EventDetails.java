@@ -13,7 +13,9 @@ public class EventDetails {
     private String description;
     private String location;
     private Date startDate;
+    private Date startDateCalendar;
     private Date endDate;
+    private Date endDateCalendar;
 
     public String getName(){
         return eventName;
@@ -43,32 +45,44 @@ public class EventDetails {
         return startDate;
     }
 
-    public Date getStartDateOnMST(){
+    public void setStartDate(Date myDate){
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(this.startDate);
+        calendar.setTime(myDate);
         calendar.add(Calendar.HOUR, 7);
         this.startDate = calendar.getTime();
-        return startDate;
     }
 
-    public void setStartDate(Date myDate){
-        this.startDate = myDate;
+    public Date getStartDateCalendar(){
+        return startDateCalendar;
+    }
+
+    public void setStartDateCalendar(Date myDate){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(myDate);
+        calendar.add(Calendar.HOUR, 6);
+        this.startDateCalendar = calendar.getTime();
     }
 
     public Date getEndDate(){
         return endDate;
     }
 
-    public Date getEndDateOnMST(){
+    public void setEndDate(Date myDate){
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(this.endDate);
+        calendar.setTime(myDate);
         calendar.add(Calendar.HOUR, 7);
         this.endDate = calendar.getTime();
-        return endDate;
     }
 
-    public void setEndDate(Date myDate){
-        this.endDate = myDate;
+    public Date getEndDateCalendar(){
+        return endDateCalendar;
+    }
+
+    public void setEndDateCalendar(Date myDate){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(myDate);
+        calendar.add(Calendar.HOUR, 6);
+        this.endDateCalendar = calendar.getTime();
     }
 
 }

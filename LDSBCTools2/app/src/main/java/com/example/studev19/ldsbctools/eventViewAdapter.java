@@ -42,7 +42,7 @@ public class eventViewAdapter extends RecyclerView.Adapter<eventViewAdapter.MyVi
         SimpleDateFormat df = new SimpleDateFormat("MMM, dd hh:mm a");
         df.setTimeZone(TimeZone.getTimeZone("MST"));
         holder.eventName.setText(currentInfo.getName());
-        holder.eventDate.setText(df.format(currentInfo.getStartDateOnMST()));
+        holder.eventDate.setText(df.format(currentInfo.getStartDate()));
     }
 
     @Override

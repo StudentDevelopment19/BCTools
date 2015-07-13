@@ -8,9 +8,10 @@
 
         <ImageView
             android:layout_width="fill_parent"
-            android:layout_height="175dp"
-            android:src="@drawable/bc_messenger"
-            android:id="@+id/imgBCSA" />
+            android:layout_height="200dp"
+            android:src="@drawable/bcsa_final"
+            android:id="@+id/imgBCSA"
+            android:background="@color/iconsColor"/>
 
         <TextView
             android:layout_width="wrap_content"

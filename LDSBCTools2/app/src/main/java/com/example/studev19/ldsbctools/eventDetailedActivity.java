@@ -16,11 +16,16 @@ import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 
 public class eventDetailedActivity extends ActionBarActivity {
     Toolbar toolbar;
     private static EventDetails displayedInformation;
+    Calendar calStartDate;
+    Calendar calEndDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,26 +45,44 @@ public class eventDetailedActivity extends ActionBarActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        //Initialize Calendars
+        calStartDate = Calendar.getInstance();
+        calStartDate.setTime(displayedInformation.getStartDate());
+        calEndDate = Calendar.getInstance();
+        calEndDate.setTime(displayedInformation.getEndDate());
+
         //This section fills the information of the detailed view
-        TextView eventDescText = (TextView) findViewById(R.id.txtEventDescription);     //Find view for Event Description
-        eventDescText.setText(displayedInformation.getDescription());                   //Set value for description
-        TextView eventStartDate = (TextView) findViewById(R.id.txtEventSchedule);       //Find view for Event Start Date
+        TextView eventDescText = (TextView) findViewById(R.id.txtEventDescription);         //Find view for Event Description
+        eventDescText.setText(displayedInformation.getDescription());                       //Set value for description
+        TextView eventStartDate = (TextView) findViewById(R.id.txtEventSchedule);           //Find view for Event Start Date
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMM, dd hh:mm a");              //Format Date
-        eventStartDate.setText(dateFormat.format(displayedInformation.getStartDateOnMST())); //Set value for Start Date
-        TextView eventLocation = (TextView) findViewById(R.id.txtEventLocation);        //Find view for Event Location
-        eventLocation.setText(displayedInformation.getLocation());                      //Set value for Event Location
+        dateFormat.setTimeZone(TimeZone.getTimeZone("MST"));
+        eventStartDate.setText(dateFormat.format(displayedInformation.getStartDate()));     //Set value for Start Date
+        TextView eventLocation = (TextView) findViewById(R.id.txtEventLocation);            //Find view for Event Location
+        eventLocation.setText(displayedInformation.getLocation());                          //Set value for Event Location
         Button addEventButton = (Button) findViewById(R.id.btnAddEvent);
-    addEventButton.setOnClickListener(new View.OnClickListener() {                      //Set onClickListener event for AddEventButton
+
+        //Initialize Calendars
+        calStartDate = Calendar.getInstance();
+        calEndDate = Calendar.getInstance();
+        TimeZone tz = TimeZone.getDefault();
+        calStartDate.setTimeZone(tz);
+        calEndDate.setTimeZone(tz);
+        calStartDate.setTime(displayedInformation.getStartDateCalendar());
+        calEndDate.setTime(displayedInformation.getEndDateCalendar());
+
+        addEventButton.setOnClickListener(new View.OnClickListener() {                      //Set onClickListener event for AddEventButton
+
             @Override
             public void onClick(View v) {
                 try{                                                                    //Start Calendar Activity
                     Intent calendarIntent = new Intent(Intent.ACTION_INSERT);
                     calendarIntent.setType("vnd.android.cursor.item/event");
-                    calendarIntent.putExtra(CalendarContract.Events.TITLE, displayedInformation.getName());                         //Set event name for calendar
-                    calendarIntent.putExtra(CalendarContract.Events.EVENT_LOCATION, displayedInformation.getLocation());            //Set event location for calendar
-                    calendarIntent.putExtra(CalendarContract.Events.DESCRIPTION, displayedInformation.getDescription());            //Set event description for calendar
-                    calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, displayedInformation.getStartDateOnMST());     //Set event start date for calendar
-                    calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, displayedInformation.getEndDateOnMST());         //Set event end date for calendar
+                    calendarIntent.putExtra(CalendarContract.Events.TITLE, displayedInformation.getName());                 //Set event name for calendar
+                    calendarIntent.putExtra(CalendarContract.Events.EVENT_LOCATION, displayedInformation.getLocation());    //Set event location for calendar
+                    calendarIntent.putExtra(CalendarContract.Events.DESCRIPTION, displayedInformation.getDescription());    //Set event description for calendar
+                    calendarIntent.putExtra("beginTime", calStartDate.getTimeInMillis());                                   //Set event start date for calendar
+                    calendarIntent.putExtra("endTime", calEndDate.getTimeInMillis());                                       //Set event end date for calendar
                     startActivity(calendarIntent);
                 }
                 catch (ActivityNotFoundException activityException){

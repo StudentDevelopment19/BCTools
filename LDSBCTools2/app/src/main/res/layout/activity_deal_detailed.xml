@@ -26,52 +26,64 @@
                 android:layout_height="200dp"
                 android:id="@+id/imgDealImage"
                 android:adjustViewBounds="true"
-                android:scaleType="fitCenter"/>
+                android:scaleType="centerCrop"
+                />
 
-            <TextView
-                android:id="@+id/txtDealName"
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/infoBox"
                 android:layout_below="@+id/imgDealImage"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:fontFamily="Roboto Regular"
-                android:hint="Deal Title"
-                android:paddingBottom="16dp"
-                android:paddingTop="16dp"
-                android:textSize="16sp" />
+                android:background="@color/primaryColor">
 
-            <TextView
-                android:id="@+id/txtDealDescription"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/txtDealName"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:fontFamily="Roboto Regular"
-                android:hint="Deal Description"
-                android:paddingBottom="16dp"
-                android:paddingTop="16dp"
-                android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/txtDealName"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:fontFamily="Roboto Regular"
+                    android:textSize="24sp"
+                    android:textColor="@color/iconsColor"
+                    android:hint="Deal Title"
+                    android:paddingBottom="4dp"
+                    android:paddingTop="16dp"/>
 
-            <TextView
-                android:id="@+id/txtDealCompany"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/txtDealDescription"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:fontFamily="Roboto Regular"
-                android:hint="Deal Title"
-                android:paddingBottom="16dp"
-                android:paddingTop="16dp"
-                android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/txtDealDescription"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtDealName"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:fontFamily="Roboto Regular"
+                    android:textColor="@color/iconsColor"
+                    android:hint="Deal Description"
+                    android:paddingBottom="4dp"
+                    android:paddingTop="4dp"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/txtDealCompany"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtDealDescription"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:fontFamily="Roboto Regular"
+                    android:textColor="@color/iconsColor"
+                    android:hint="Deal Company"
+                    android:paddingBottom="16dp"
+                    android:paddingTop="4dp"
+                    android:textSize="17sp" />
+
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/txtDealAddress"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txtDealCompany"
+                android:layout_below="@+id/infoBox"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="Roboto Regular"
