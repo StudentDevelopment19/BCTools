@@ -60,7 +60,7 @@ public class parseApplicationSetup extends Application{
                     Date eventEndDate = objects.getDate("endDate");
 
                     //ADD ONLY THE UPCOMING EVENTS
-                    if (eventStartDate.before(today) == false) {
+                    if (eventEndDate.before(today) == false) {
                         //Assign data to a DirectoryObject
                         EventDetails newObject = new EventDetails();
                         newObject.setName(eventName);
@@ -83,7 +83,7 @@ public class parseApplicationSetup extends Application{
         Tab2.setData(eventArray);
 
         ParseQuery<ParseObject> query2 = new ParseQuery<ParseObject>("deals");
-        query2.addAscendingOrder("StartDate");
+        query2.addAscendingOrder("startDate");
         query2.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
@@ -100,7 +100,7 @@ public class parseApplicationSetup extends Application{
                     ParseFile dealImage = objects.getParseFile("image");
 
                     //ADD ONLY THE UPCOMING EVENTS
-                    if (dealStartDate.before(today) == false) {
+                    if (dealEndDate.before(today) == false) {
                         //Assign data to a DirectoryObject
                         DealObject newObject = new DealObject();
                         newObject.setDealTitle(dealTitle);

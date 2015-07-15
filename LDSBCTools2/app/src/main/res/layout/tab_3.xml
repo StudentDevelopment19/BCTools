@@ -1,188 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <ImageView
-            android:layout_width="fill_parent"
-            android:layout_height="200dp"
-            android:src="@drawable/bcsa_final"
             android:id="@+id/imgBCSA"
-            android:background="@color/iconsColor"/>
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:background="@color/iconsColor"
+            android:src="@drawable/bcsa_final" />
 
         <TextView
+            android:id="@+id/txtBCSAHeadline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/txtBCSAHeadline"
+            android:layout_below="@id/imgBCSA"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="Roboto Regular"
             android:text="LDS Business College Student Associations (BCSA)"
             android:textColor="@color/primaryTextColor"
-            android:textSize="24sp"
-            android:fontFamily="Roboto Regular"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_below="@id/imgBCSA"/>
+            android:textSize="24sp" />
 
         <ImageView
-            android:layout_width="fill_parent"
-            android:layout_height="200dp"
             android:id="@+id/videoView"
-            android:src="@drawable/bcsa10"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
             android:layout_below="@+id/txtBCSAHeadline"
-            android:paddingTop="8dp"
             android:paddingBottom="8dp"
-            />
+            android:paddingTop="8dp"
+            android:src="@drawable/bcsa_final" />
 
         <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
             android:id="@+id/divider1"
-            android:layout_below="@id/videoView"
-            android:background="@color/dividerColor"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtBCSADesc"
-            android:layout_below="@+id/divider1"
-            android:textSize="16sp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:fontFamily="Roboto Regular"
-            android:textColor="@color/primaryTextColor"
-            android:text="There are many opportunities to connect, develop, and contribute at LDS Business College through BCSA and its up to you to make the most of your college experience through getting involved. Please refer to the resources below to take your involvement to the next level!"
-            />
-
-        <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:id="@+id/divider2"
-            android:layout_below="@id/txtBCSADesc"
-            android:background="@color/dividerColor"
+            android:layout_below="@id/videoView"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            />
+            android:background="@color/dividerColor" />
 
         <TextView
+            android:id="@+id/txtBCSADesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/txtLinksHeader"
-            android:layout_below="@+id/divider2"
-            android:textColor="@color/primaryTextColor"
+            android:layout_below="@+id/divider1"
+            android:layout_marginBottom="8dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="8dp"
+            android:fontFamily="Roboto Regular"
+            android:text="There are many opportunities to connect, develop, and contribute at LDS Business College through BCSA and its up to you to make the most of your college experience through getting involved. Please refer to the resources below to take your involvement to the next level!"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/txtBCSADesc"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@color/dividerColor" />
+
+        <TextView
+            android:id="@+id/txtLinksHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/divider2"
             android:layout_marginBottom="8dp"
-            android:textSize="24sp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="Roboto Regular"
             android:text="Links for getting involved!"
-            />
+            android:textColor="@color/primaryTextColor"
+            android:textSize="24sp" />
 
         <TextView
+            android:id="@+id/txtBCMessengerLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/txtBCMessengerLink"
-            android:textSize="16sp"
+            android:layout_below="@id/txtLinksHeader"
+            android:layout_marginBottom="8dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_below="@id/txtLinksHeader"
             android:hint="Hyperlink to BC Messenger"
             android:textColorLink="@color/accentColor"
-            />
+            android:textSize="16sp" />
 
         <TextView
+            android:id="@+id/txtMentorLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/txtMentorLink"
-            android:textSize="16sp"
+            android:layout_below="@id/txtBCMessengerLink"
+            android:layout_marginBottom="8dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_below="@id/txtBCMessengerLink"
             android:hint="Hyperlink to Mentor Application"
             android:textColorLink="@color/accentColor"
-            />
+            android:textSize="16sp" />
 
         <TextView
+            android:id="@+id/txtBCSAFacebook"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/txtBCSAFacebook"
-            android:textSize="16sp"
+            android:layout_below="@id/txtMentorLink"
+            android:layout_marginBottom="8dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_below="@id/txtMentorLink"
             android:hint="Hyperlink to BCSA Facebook page"
             android:textColorLink="@color/accentColor"
-            />
+            android:textSize="16sp" />
 
         <TextView
+            android:id="@+id/txtClubLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/txtClubLink"
-            android:textSize="16sp"
+            android:layout_below="@id/txtBCSAFacebook"
+            android:layout_marginBottom="8dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_below="@id/txtBCSAFacebook"
             android:hint="Hyperlink to Club Application"
             android:textColorLink="@color/accentColor"
-            />
+            android:textSize="16sp" />
 
         <TextView
+            android:id="@+id/txtActivityLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/txtActivityLink"
-            android:textSize="16sp"
+            android:layout_below="@id/txtClubLink"
+            android:layout_marginBottom="8dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_below="@id/txtClubLink"
             android:hint="Hyperlink to Activity Application"
             android:textColorLink="@color/accentColor"
-            />
+            android:textSize="16sp" />
 
         <TextView
+            android:id="@+id/txtMarketingLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/txtMarketingLink"
-            android:textSize="16sp"
+            android:layout_below="@id/txtActivityLink"
+            android:layout_marginBottom="8dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_below="@id/txtActivityLink"
             android:hint="Hyperlink to Marketing Application"
             android:textColorLink="@color/accentColor"
-            />
+            android:textSize="16sp" />
 
         <TextView
+            android:id="@+id/txtFeedbackLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/txtFeedbackLink"
-            android:textSize="16sp"
+            android:layout_below="@id/txtMarketingLink"
+            android:layout_marginBottom="8dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_below="@id/txtMarketingLink"
             android:hint="Hyperlink to Feedback"
             android:textColorLink="@color/accentColor"
-            />
+            android:textSize="16sp" />
 
     </RelativeLayout>
 </ScrollView>

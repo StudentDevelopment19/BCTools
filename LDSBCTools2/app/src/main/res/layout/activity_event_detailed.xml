@@ -8,97 +8,98 @@
         android:id="@+id/app_bar"
         layout="@layout/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
     <RelativeLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/app_bar">
+        android:layout_below="@id/app_bar"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/txtEventDescription"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Event Description"
-            android:textSize="16sp"
-            android:paddingTop="16dp"
             android:fontFamily="Roboto Regular"
-            android:textColor="@color/secondaryTextColor"
+            android:hint="Event Description"
+            android:paddingBottom="16dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:paddingBottom="16dp" />
+            android:paddingTop="16dp"
+            android:textColor="@color/secondaryTextColor"
+            android:textSize="16sp" />
+
         <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
             android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
             android:layout_below="@id/txtEventDescription"
-            android:background="@color/dividerColor"
             android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"/>
+            android:layout_marginRight="16dp"
+            android:background="@color/dividerColor" />
 
         <ImageView
+            android:id="@+id/icoEventSchedule"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:id="@+id/icoEventSchedule"
-            android:layout_below="@+id/divider"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:src="@drawable/ic_schedule_custom"
-            android:layout_marginLeft="16dp" />
+            android:layout_below="@+id/divider"
+            android:layout_marginLeft="16dp"
+            android:src="@drawable/ic_schedule_custom" />
 
         <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="48dp"
             android:id="@+id/txtEventSchedule"
-            android:paddingTop="12dp"
-            android:layout_alignTop="@+id/icoEventSchedule"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/icoEventSchedule"
             android:layout_marginLeft="72dp"
             android:layout_marginRight="16dp"
-            android:hint="Hours"
             android:fontFamily="Roboto Regular"
+            android:hint="Hours"
+            android:paddingTop="12dp"
             android:textSize="16sp" />
 
         <ImageView
+            android:id="@+id/icoEventLocation"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:id="@+id/icoEventLocation"
-            android:layout_below="@+id/icoEventSchedule"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
+            android:layout_below="@+id/icoEventSchedule"
             android:layout_marginLeft="16dp"
             android:src="@drawable/ic_location_custom" />
 
         <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="48dp"
             android:id="@+id/txtEventLocation"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
             android:layout_alignBottom="@+id/icoEventLocation"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginRight="16dp"
             android:layout_marginLeft="72dp"
-            android:paddingTop="12dp"
+            android:layout_marginRight="16dp"
+            android:fontFamily="Roboto Regular"
             android:hint="Location"
-            android:textSize="16sp"
-            android:fontFamily="Roboto Regular" />
+            android:paddingTop="12dp"
+            android:textSize="16sp" />
 
         <Button
+            android:id="@+id/btnAddEvent"
             android:layout_width="wrap_content"
             android:layout_height="36dp"
-            android:id="@+id/btnAddEvent"
             android:layout_below="@+id/icoEventLocation"
-            android:background="@color/primaryColor"
-            android:textColor="@color/iconsColor"
-            android:fontFamily="Roboto Medium"
-            android:textSize="14sp"
             android:layout_centerHorizontal="true"
-            android:text="Add event to calendar"
+            android:background="@color/primaryColor"
+            android:elevation="2dp"
+            android:fontFamily="Roboto Medium"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:elevation="2dp"/>
+            android:text="Add event to calendar"
+            android:textColor="@color/iconsColor"
+            android:textSize="14sp" />
 
     </RelativeLayout>
 

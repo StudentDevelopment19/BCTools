@@ -20,6 +20,7 @@ import com.parse.ParseImageView;
 import com.parse.ParseObject;
 
 import java.text.SimpleDateFormat;
+import java.util.TimeZone;
 
 
 public class dealDetailedActivity extends ActionBarActivity {
@@ -36,7 +37,7 @@ public class dealDetailedActivity extends ActionBarActivity {
         toolbar = (Toolbar) findViewById(R.id.app_bar);
 
         //Set Title of the AppBar
-        toolbar.setTitle(displayedInformation.getDealTitle());
+        toolbar.setTitle("");
 
         //Applies the AppBar
         setSupportActionBar(toolbar);
@@ -68,11 +69,10 @@ public class dealDetailedActivity extends ActionBarActivity {
         dealCompanyText.setText(displayedInformation.getDealCompany());
         TextView dealAddressText = (TextView) findViewById(R.id.txtDealAddress);
         dealAddressText.setText(displayedInformation.getDealAddress());
-        TextView dealStDateText = (TextView) findViewById(R.id.txtDealStartDate);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM, dd hh:mm a");
-        dealStDateText.setText(dateFormat.format(displayedInformation.getDealStartDateOnMST()));
-        TextView dealEndDate = (TextView) findViewById(R.id.txtDealEndDate);
-        dealEndDate.setText(dateFormat.format(displayedInformation.getEndDateOnMTS()));
+        TextView dealStDateText = (TextView) findViewById(R.id.txtDealDates);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM, dd");
+        dateFormat.setTimeZone(TimeZone.getTimeZone("MST"));
+        dealStDateText.setText(dateFormat.format(displayedInformation.getDealStartDateOnMST()) + " to " + dateFormat.format(displayedInformation.getEndDateOnMTS()));
 
     }
 

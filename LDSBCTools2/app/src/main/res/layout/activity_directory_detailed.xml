@@ -8,134 +8,146 @@
         android:id="@+id/app_bar"
         layout="@layout/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
-    <RelativeLayout
-        android:orientation="vertical"
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/app_bar">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/app_bar"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:elevation="1dp"
+        card_view:cardCornerRadius="4dp">
 
-        <TextView
-            android:id="@+id/txtDescription"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:hint="Service Description"
-            android:textSize="16sp"
-            android:paddingTop="16dp"
-            android:fontFamily="Roboto Regular"
-            android:textColor="@color/secondaryTextColor"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:paddingBottom="16dp"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/app_bar"
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:id="@+id/divider1"
-            android:layout_below="@id/txtDescription"
-            android:background="@color/dividerColor"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"/>
+            <TextView
+                android:id="@+id/txtDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="Roboto Regular"
+                android:hint="Service Description"
+                android:paddingBottom="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="16dp"
+                android:textColor="@color/secondaryTextColor"
+                android:textSize="16sp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:id="@+id/icoSchedule"
-            android:layout_below="@+id/divider1"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:src="@drawable/ic_schedule_custom"
-            android:layout_marginLeft="16dp" />
+            <TextView
+                android:id="@+id/divider1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/txtDescription"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@color/dividerColor" />
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="48dp"
-            android:id="@+id/txtSchedule"
-            android:paddingTop="12dp"
-            android:layout_alignTop="@+id/icoSchedule"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="72dp"
-            android:layout_marginRight="16dp"
-            android:hint="Hours"
-            android:fontFamily="Roboto Regular"
-            android:textSize="16sp" />
+            <ImageView
+                android:id="@+id/icoSchedule"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/divider1"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/ic_schedule_custom" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:id="@+id/icoLocation"
-            android:layout_below="@+id/txtSchedule"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="16dp"
-            android:src="@drawable/ic_location_custom" />
+            <TextView
+                android:id="@+id/txtSchedule"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignTop="@+id/icoSchedule"
+                android:layout_marginLeft="72dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="Roboto Regular"
+                android:hint="Hours"
+                android:paddingTop="12dp"
+                android:textSize="16sp" />
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="48dp"
-            android:id="@+id/txtLocation"
-            android:layout_alignBottom="@+id/icoLocation"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginRight="16dp"
-            android:layout_marginLeft="72dp"
-            android:paddingTop="12dp"
-            android:hint="Location"
-            android:textSize="16sp"
-            android:fontFamily="Roboto Regular" />
+            <ImageView
+                android:id="@+id/icoLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/txtSchedule"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/ic_location_custom" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:id="@+id/icoPhone"
-            android:layout_below="@+id/txtLocation"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="16dp"
-            android:src="@drawable/ic_phone_custom" />
+            <TextView
+                android:id="@+id/txtLocation"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_alignBottom="@+id/icoLocation"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="72dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="Roboto Regular"
+                android:hint="Location"
+                android:paddingTop="12dp"
+                android:textSize="16sp" />
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="48dp"
-            android:id="@+id/txtPhone"
-            android:layout_alignBottom="@+id/icoPhone"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginRight="16dp"
-            android:layout_marginLeft="72dp"
-            android:hint="Phone Number"
-            android:phoneNumber="true"
-            android:fontFamily="Roboto Regular"
-            android:textSize="16sp"
-            android:paddingTop="12dp" />
+            <ImageView
+                android:id="@+id/icoPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/txtLocation"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/ic_phone_custom" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:id="@+id/icoEmail"
-            android:layout_below="@+id/txtPhone"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="16dp"
-            android:src="@drawable/ic_mail_custom" />
+            <TextView
+                android:id="@+id/txtPhone"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_alignBottom="@+id/icoPhone"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="72dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="Roboto Regular"
+                android:hint="Phone Number"
+                android:paddingTop="12dp"
+                android:phoneNumber="true"
+                android:textSize="16sp" />
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="48dp"
-            android:id="@+id/txtEmail"
-            android:layout_alignBottom="@+id/icoEmail"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginRight="16dp"
-            android:layout_marginLeft="72dp"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:fontFamily="Roboto Regular"
-            android:textSize="16sp"
-            android:paddingTop="12dp" />
+            <ImageView
+                android:id="@+id/icoEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/txtPhone"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/ic_mail_custom" />
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/txtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_alignBottom="@+id/icoEmail"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="72dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="Roboto Regular"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:paddingTop="12dp"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
 
 </RelativeLayout>

@@ -6,14 +6,13 @@
 
     <include
         android:id="@+id/app_bar"
-        layout="@layout/app_bar"
+        layout="@layout/app_bar_transparent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/app_bar">
+        android:layout_height="wrap_content">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -22,69 +21,81 @@
             android:orientation="vertical">
 
             <com.parse.ParseImageView
-                android:layout_width="fill_parent"
-                android:layout_height="200dp"
                 android:id="@+id/imgDealImage"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
                 android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                />
+                android:elevation="3dp"
+                android:scaleType="centerCrop" />
 
             <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
                 android:id="@+id/infoBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/imgDealImage"
-                android:background="@color/primaryColor">
+                android:background="@color/primaryColor"
+                android:elevation="3dp">
 
                 <TextView
                     android:id="@+id/txtDealName"
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:fontFamily="Roboto Regular"
-                    android:textSize="24sp"
-                    android:textColor="@color/iconsColor"
                     android:hint="Deal Title"
                     android:paddingBottom="4dp"
-                    android:paddingTop="16dp"/>
+                    android:paddingTop="16dp"
+                    android:textColor="@color/iconsColor"
+                    android:textSize="24sp" />
 
                 <TextView
                     android:id="@+id/txtDealDescription"
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/txtDealName"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:fontFamily="Roboto Regular"
-                    android:textColor="@color/iconsColor"
                     android:hint="Deal Description"
                     android:paddingBottom="4dp"
                     android:paddingTop="4dp"
+                    android:textColor="@color/iconsColor"
                     android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/txtDealCompany"
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/txtDealDescription"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:fontFamily="Roboto Regular"
-                    android:textColor="@color/iconsColor"
                     android:hint="Deal Company"
                     android:paddingBottom="16dp"
                     android:paddingTop="4dp"
+                    android:textColor="@color/iconsColor"
                     android:textSize="17sp" />
 
             </RelativeLayout>
 
-            <TextView
-                android:id="@+id/txtDealAddress"
-                android:layout_width="fill_parent"
+            <ImageView
+                android:id="@+id/icoDealLocation"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_below="@+id/infoBox"
                 android:layout_marginLeft="16dp"
+                android:paddingTop="8dp"
+                android:src="@drawable/ic_location_custom" />
+
+            <TextView
+                android:id="@+id/txtDealAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/infoBox"
+                android:layout_marginLeft="72dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="Roboto Regular"
                 android:hint="Deal Address"
@@ -92,28 +103,25 @@
                 android:paddingTop="16dp"
                 android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/txtDealStartDate"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/icoEventSchedule"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_below="@+id/txtDealAddress"
                 android:layout_marginLeft="16dp"
+                android:src="@drawable/ic_schedule_custom" />
+
+            <TextView
+                android:id="@+id/txtDealDates"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtDealAddress"
+                android:layout_marginLeft="72dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="Roboto Regular"
                 android:hint="Deal Start Date"
-                android:paddingBottom="16dp"
-                android:paddingTop="16dp"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/txtDealEndDate"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/txtDealStartDate"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:fontFamily="Roboto Regular"
-                android:hint="Deal End Date"
                 android:paddingBottom="16dp"
                 android:paddingTop="16dp"
                 android:textSize="16sp" />

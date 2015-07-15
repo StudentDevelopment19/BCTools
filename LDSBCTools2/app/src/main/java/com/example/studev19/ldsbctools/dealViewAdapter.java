@@ -14,7 +14,9 @@ import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseImageView;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.TimeZone;
 
 /**
  * Created by studev19 on 7/8/2015.
@@ -41,10 +43,16 @@ public class dealViewAdapter extends RecyclerView.Adapter<dealViewAdapter.MyView
 
     @Override
     public void onBindViewHolder(final dealViewAdapter.MyViewHolder holder, int position) {
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM, dd");
+        dateFormat.setTimeZone(TimeZone.getTimeZone("MST"));
+
         DealObject currentInfo = dealArray.get(position);
-        holder.dealTitle.setText(currentInfo.getDealTitle());
-        holder.dealDesc.setText(currentInfo.getDealDesciption());
-        holder.dealComp.setText(currentInfo.getDealCompany());
+        //holder.dealTitle.setText(currentInfo.getDealTitle());
+        //holder.dealDesc.setText(currentInfo.getDealDesciption());
+        //holder.dealComp.setText(currentInfo.getDealCompany());
+        holder.dealDesc1.setText(currentInfo.getDealDesciption() + " @ " + currentInfo.getDealCompany());
+        holder.dealDesc2.setText("Valid through " + dateFormat.format(currentInfo.getDealStartDate()) + " to " + dateFormat.format(currentInfo.getDealEndDate()));
         ParseFile imageFile = currentInfo.getDealImage();
         holder.parseImageView.setParseFile(imageFile);
         holder.parseImageView.loadInBackground(new GetDataCallback() {
@@ -65,16 +73,19 @@ public class dealViewAdapter extends RecyclerView.Adapter<dealViewAdapter.MyView
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        TextView dealTitle;
-        TextView dealDesc;
-        TextView dealComp;
+        //TextView dealTitle;
+        //TextView dealDesc;
+        //TextView dealComp;
+        TextView dealDesc1, dealDesc2;
         ParseImageView parseImageView;
         public MyViewHolder(View itemView){
             super(itemView);
             itemView.setOnClickListener(this);
-            dealTitle = (TextView) itemView.findViewById(R.id.txtDealRowTitle);
-            dealDesc = (TextView) itemView.findViewById(R.id.txtDealRowDesc);
-            dealComp = (TextView) itemView.findViewById(R.id.txtDealRowComp);
+            //dealTitle = (TextView) itemView.findViewById(R.id.txtDealRowTitle);
+            //dealDesc = (TextView) itemView.findViewById(R.id.txtDealRowDesc);
+            //dealComp = (TextView) itemView.findViewById(R.id.txtDealRowComp);
+            dealDesc1 = (TextView) itemView.findViewById(R.id.txtDealRowDesc1);
+            dealDesc2 = (TextView) itemView.findViewById(R.id.txtDealRowDesc2);
             parseImageView = (ParseImageView) itemView.findViewById(R.id.imgDealRowImage);
         }
         @Override
