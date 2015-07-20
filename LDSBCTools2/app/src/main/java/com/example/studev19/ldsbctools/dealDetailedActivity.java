@@ -1,9 +1,12 @@
 package com.example.studev19.ldsbctools;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.media.Image;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -27,6 +30,7 @@ public class dealDetailedActivity extends ActionBarActivity {
 
     Toolbar toolbar;
     private static DealObject displayedInformation;
+    private static final int DIALOG_ALERT = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,12 +96,13 @@ public class dealDetailedActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Toast.makeText(getApplicationContext(), "This option is not available for now", Toast.LENGTH_SHORT).show();
+            showDialog(DIALOG_ALERT);
+            //Toast.makeText(getApplicationContext(), "This option is not available for now", Toast.LENGTH_SHORT).show();
             return true;
         }
 
         //Navigates up to MainActivity
-        if (id == android.R.id.home){
+        if (id == android.R.id.home) {
             //NavUtils.navigateUpFromSameTask(this);
             this.finish();
             return true;
@@ -107,8 +112,33 @@ public class dealDetailedActivity extends ActionBarActivity {
 
     }
 
-    public static void setDealInfo(DealObject dealObject){
+    public static void setDealInfo(DealObject dealObject) {
         displayedInformation = dealObject;
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        switch (id) {
+            case DIALOG_ALERT:
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("About this App");
+                builder.setMessage("Version 1.0" + "\n\u00a92015 LDS Business College");
+                builder.setCancelable(true);
+                builder.setPositiveButton("OK", new OkOnClickListener());
+                AlertDialog dialog = builder.create();
+                dialog.show();
+        }
+
+        return super.onCreateDialog(id);
+
+    }
+
+    private final class OkOnClickListener implements DialogInterface.OnClickListener {
+
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+
+        }
     }
 
 }

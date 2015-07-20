@@ -1,11 +1,14 @@
 package com.example.studev19.ldsbctools;
 
 import android.app.Application;
+import android.app.Dialog;
 import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.telephony.PhoneNumberUtils;
 import android.util.Log;
@@ -23,6 +26,7 @@ import java.util.zip.Inflater;
 public class directoryDetailedActivity extends ActionBarActivity {
     Toolbar toolbar;
     private static DirectoryObject displayedInformation;
+    private static final int DIALOG_ALERT = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,15 +50,14 @@ public class directoryDetailedActivity extends ActionBarActivity {
         TextView descText = (TextView) findViewById(R.id.txtDescription);   //Find view for Description
         descText.setText(displayedInformation.getDescription());            //Sets Value for description from array
         TextView phoneText = (TextView) findViewById(R.id.txtPhone);        //Find view for Phone Number
-        phoneText.setOnClickListener(new View.OnClickListener(){            //Sets onClick listener for Phone Call
+        phoneText.setOnClickListener(new View.OnClickListener() {            //Sets onClick listener for Phone Call
             @Override
             public void onClick(View view) {
-                try{                                                        //Start Call Activity
+                try {                                                        //Start Call Activity
                     Intent callIntent = new Intent(Intent.ACTION_CALL);
-                    callIntent.setData(Uri.parse("tel:"+displayedInformation.getPhone()));
+                    callIntent.setData(Uri.parse("tel:" + displayedInformation.getPhone()));
                     startActivity(callIntent);
-                }
-                catch(ActivityNotFoundException activityException){
+                } catch (ActivityNotFoundException activityException) {
                     Toast.makeText(getApplicationContext(), "Application has stopped, failed to make a call to the " + displayedInformation.getName(), Toast.LENGTH_SHORT).show();
                     Log.e("BC Tools", "Call failed", activityException);
                 }
@@ -65,12 +68,11 @@ public class directoryDetailedActivity extends ActionBarActivity {
         emailText.setOnClickListener(new View.OnClickListener() {           //Sets onClick listener for Email
             @Override
             public void onClick(View view) {
-                try{                                                        //Start Email Activity
+                try {                                                        //Start Email Activity
                     Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
-                    emailIntent.setData(Uri.parse("mailto:"+displayedInformation.getEmail()));
+                    emailIntent.setData(Uri.parse("mailto:" + displayedInformation.getEmail()));
                     startActivity(emailIntent);
-                }
-                catch(ActivityNotFoundException activityException){
+                } catch (ActivityNotFoundException activityException) {
                     Toast.makeText(getApplicationContext(), "Application has stopped, failed to send an email to the " + displayedInformation.getName(), Toast.LENGTH_SHORT).show();
                     Log.e("BC Tools", "Email failed", activityException);
                 }
@@ -100,12 +102,13 @@ public class directoryDetailedActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Toast.makeText(getApplicationContext(), "This option is not available for now", Toast.LENGTH_SHORT).show();
+            showDialog(DIALOG_ALERT);
+            //Toast.makeText(getApplicationContext(), "This option is not available for now", Toast.LENGTH_SHORT).show();
             return true;
         }
 
         //Navigates up to MainActivity
-        if (id == android.R.id.home){
+        if (id == android.R.id.home) {
             NavUtils.navigateUpFromSameTask(this);
         }
 
@@ -114,6 +117,31 @@ public class directoryDetailedActivity extends ActionBarActivity {
 
     public static void setServiceInfo(DirectoryObject directoryObject) {
         displayedInformation = directoryObject;
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        switch (id) {
+            case DIALOG_ALERT:
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("About this App");
+                builder.setMessage("Version 1.0" + "\n\u00a92015 LDS Business College");
+                builder.setCancelable(true);
+                builder.setPositiveButton("OK", new OkOnClickListener());
+                AlertDialog dialog = builder.create();
+                dialog.show();
+        }
+
+        return super.onCreateDialog(id);
+
+    }
+
+    private final class OkOnClickListener implements DialogInterface.OnClickListener {
+
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+
+        }
     }
 
 }

@@ -1,11 +1,14 @@
 package com.example.studev19.ldsbctools;
 
+import android.app.Dialog;
 import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.provider.CalendarContract;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,6 +29,7 @@ public class eventDetailedActivity extends ActionBarActivity {
     private static EventDetails displayedInformation;
     Calendar calStartDate;
     Calendar calEndDate;
+    private static final int DIALOG_ALERT = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +79,7 @@ public class eventDetailedActivity extends ActionBarActivity {
 
             @Override
             public void onClick(View v) {
-                try{                                                                    //Start Calendar Activity
+                try {                                                                    //Start Calendar Activity
                     Intent calendarIntent = new Intent(Intent.ACTION_INSERT);
                     calendarIntent.setType("vnd.android.cursor.item/event");
                     calendarIntent.putExtra(CalendarContract.Events.TITLE, displayedInformation.getName());                 //Set event name for calendar
@@ -84,8 +88,7 @@ public class eventDetailedActivity extends ActionBarActivity {
                     calendarIntent.putExtra("beginTime", calStartDate.getTimeInMillis());                                   //Set event start date for calendar
                     calendarIntent.putExtra("endTime", calEndDate.getTimeInMillis());                                       //Set event end date for calendar
                     startActivity(calendarIntent);
-                }
-                catch (ActivityNotFoundException activityException){
+                } catch (ActivityNotFoundException activityException) {
                     Toast.makeText(getApplicationContext(), "An error occurred during the event creation process", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -109,12 +112,13 @@ public class eventDetailedActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Toast.makeText(getApplicationContext(), "This option is not available for now", Toast.LENGTH_SHORT).show();
+            showDialog(DIALOG_ALERT);
+            //Toast.makeText(getApplicationContext(), "This option is not available for now", Toast.LENGTH_SHORT).show();
             return true;
         }
 
         //Navigates up to MainActivity
-        if (id == android.R.id.home){
+        if (id == android.R.id.home) {
             //NavUtils.navigateUpFromSameTask(this);
             this.finish();
             return true;
@@ -123,8 +127,33 @@ public class eventDetailedActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static  void setEventInfo(EventDetails eventDetails){
+    public static void setEventInfo(EventDetails eventDetails) {
         displayedInformation = eventDetails;
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        switch (id) {
+            case DIALOG_ALERT:
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("About this App");
+                builder.setMessage("Version 1.0" + "\n\u00a92015 LDS Business College");
+                builder.setCancelable(true);
+                builder.setPositiveButton("OK", new OkOnClickListener());
+                AlertDialog dialog = builder.create();
+                dialog.show();
+        }
+
+        return super.onCreateDialog(id);
+
+    }
+
+    private final class OkOnClickListener implements DialogInterface.OnClickListener {
+
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+
+        }
     }
 
 }

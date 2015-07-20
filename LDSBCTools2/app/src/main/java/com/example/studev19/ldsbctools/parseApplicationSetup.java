@@ -1,7 +1,11 @@
 package com.example.studev19.ldsbctools;
 
 import android.app.Application;
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.support.design.widget.Snackbar;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -28,6 +32,7 @@ public class parseApplicationSetup extends Application{
     public List<EventDetails> eventArray = new ArrayList<EventDetails>();
     public List<DealObject> dealArray = new ArrayList<DealObject>();
     private static Date today;
+    private boolean connection;
 
     @Override
     public void onCreate(){
@@ -40,90 +45,112 @@ public class parseApplicationSetup extends Application{
         c.set(Calendar.HOUR, 0);
         c.set(Calendar.MINUTE, 0);
         c.set(Calendar.SECOND, 0);
-
         today = c.getTime();
 
-        //PARSE QUERY//
-        ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("events");
-        query.addAscendingOrder("startDate");
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> list, ParseException e) {
-                if (e != null) {
-                    Toast.makeText(getApplicationContext(), "An error has occurred " + e, Toast.LENGTH_LONG).show();
-                } else for (ParseObject objects : list) {
-                    //Get data from Parse.com table
-                    String eventName = objects.getString("eventName");
-                    String eventDesc = objects.getString("description");
-                    String eventLocation = objects.getString("location");
-                    Date eventStartDate = objects.getDate("startDate");
-                    Date eventEndDate = objects.getDate("endDate");
+        connection = internetConnection();
 
-                    //ADD ONLY THE UPCOMING EVENTS
-                    if (eventEndDate.before(today) == false) {
-                        //Assign data to a DirectoryObject
-                        EventDetails newObject = new EventDetails();
-                        newObject.setName(eventName);
-                        newObject.setDescription(eventDesc);
-                        newObject.setLocation(eventLocation);
-                        newObject.setStartDate(eventStartDate);
-                        newObject.setStartDateCalendar(eventStartDate);
-                        newObject.setEndDate(eventEndDate);
-                        newObject.setEndDateCalendar(eventEndDate);
+        Tab2.setConnectionStatus(connection);
+        Tab4.setConnectionStatus(connection);
+        Tab5.setConnectionStatus(connection);
 
-                        //Add object to eventArray
-                        eventArray.add(newObject);
+        if (connection == true) {
+
+            //PARSE QUERY//
+            ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("events");
+            query.addAscendingOrder("startDate");
+            query.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> list, ParseException e) {
+                    if (e != null) {
+                        Toast.makeText(getApplicationContext(), "An error has occurred ", Toast.LENGTH_LONG).show();
+                    } else for (ParseObject objects : list) {
+                        //Get data from Parse.com table
+                        String eventName = objects.getString("eventName");
+                        String eventDesc = objects.getString("description");
+                        String eventLocation = objects.getString("location");
+                        Date eventStartDate = objects.getDate("startDate");
+                        Date eventEndDate = objects.getDate("endDate");
+
+                        //ADD ONLY THE UPCOMING EVENTS
+                        if (eventEndDate.before(today) == false) {
+                            //Assign data to a DirectoryObject
+                            EventDetails newObject = new EventDetails();
+                            newObject.setName(eventName);
+                            newObject.setDescription(eventDesc);
+                            newObject.setLocation(eventLocation);
+                            newObject.setStartDate(eventStartDate);
+                            newObject.setStartDateCalendar(eventStartDate);
+                            newObject.setEndDate(eventEndDate);
+                            newObject.setEndDateCalendar(eventEndDate);
+
+                            //Add object to eventArray
+                            eventArray.add(newObject);
+                        }
+
                     }
 
                 }
+            });
 
-            }
-        });
+            Tab2.setData(eventArray);
 
-        Tab2.setData(eventArray);
+            ParseQuery<ParseObject> query2 = new ParseQuery<ParseObject>("deals");
+            query2.addAscendingOrder("startDate");
+            query2.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> list, ParseException e) {
+                    if (e != null) {
+                        Toast.makeText(getApplicationContext(), "An error has occurred " + e, Toast.LENGTH_LONG).show();
+                    } else for (ParseObject objects : list) {
+                        //Get data from Parse.com table
+                        String dealTitle = objects.getString("title");
+                        String dealDesc = objects.getString("description");
+                        String dealAddress = objects.getString("address");
+                        String dealCompany = objects.getString("company");
+                        Date dealStartDate = objects.getDate("startDate");
+                        Date dealEndDate = objects.getDate("endDate");
+                        ParseFile dealImage = objects.getParseFile("image");
 
-        ParseQuery<ParseObject> query2 = new ParseQuery<ParseObject>("deals");
-        query2.addAscendingOrder("startDate");
-        query2.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> list, ParseException e) {
-                if (e != null) {
-                    Toast.makeText(getApplicationContext(), "An error has occurred " + e, Toast.LENGTH_LONG).show();
-                } else for (ParseObject objects : list) {
-                    //Get data from Parse.com table
-                    String dealTitle = objects.getString("title");
-                    String dealDesc = objects.getString("description");
-                    String dealAddress = objects.getString("address");
-                    String dealCompany = objects.getString("company");
-                    Date dealStartDate = objects.getDate("startDate");
-                    Date dealEndDate = objects.getDate("endDate");
-                    ParseFile dealImage = objects.getParseFile("image");
+                        //ADD ONLY THE UPCOMING EVENTS
+                        if (dealEndDate.before(today) == false) {
+                            //Assign data to a DirectoryObject
+                            DealObject newObject = new DealObject();
+                            newObject.setDealTitle(dealTitle);
+                            newObject.setDealDesciption(dealDesc);
+                            newObject.setDealAddress(dealAddress);
+                            newObject.setDealCompany(dealCompany);
+                            newObject.setDealStartDate(dealStartDate);
+                            newObject.setDealEndDate(dealEndDate);
+                            newObject.setDealImage(dealImage);
 
-                    //ADD ONLY THE UPCOMING EVENTS
-                    if (dealEndDate.before(today) == false) {
-                        //Assign data to a DirectoryObject
-                        DealObject newObject = new DealObject();
-                        newObject.setDealTitle(dealTitle);
-                        newObject.setDealDesciption(dealDesc);
-                        newObject.setDealAddress(dealAddress);
-                        newObject.setDealCompany(dealCompany);
-                        newObject.setDealStartDate(dealStartDate);
-                        newObject.setDealEndDate(dealEndDate);
-                        newObject.setDealImage(dealImage);
+                            //Add object to eventArray
+                            dealArray.add(newObject);
+                        }
 
-                        //Add object to eventArray
-                        dealArray.add(newObject);
                     }
-
                 }
-            }
-        });
+            });
 
-        Tab4.setData(dealArray);
+            Tab4.setData(dealArray);
+
+        }
+
+        else{
+            //Toast.makeText(getApplicationContext(), "You are not connected to the internet", Toast.LENGTH_LONG).show();
+            Tab2.setData(eventArray);
+            Tab4.setData(dealArray);
+        }
 
         ParseUser.enableAutomaticUser();
         ParseACL defaultACL = new ParseACL();
         ParseACL.setDefaultACL(defaultACL, true);
 
     }
+
+    public boolean internetConnection(){
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+        return networkInfo != null && networkInfo.isConnectedOrConnecting();
+    }
+
 }

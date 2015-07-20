@@ -2,6 +2,8 @@ package com.example.studev19.ldsbctools;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -39,6 +41,7 @@ public class dealViewAdapter extends RecyclerView.Adapter<dealViewAdapter.MyView
         View view = inflater.inflate(R.layout.deal_custom_row, parent, false);
         MyViewHolder holder = new MyViewHolder(view);
         return holder;
+
     }
 
     @Override
@@ -48,9 +51,6 @@ public class dealViewAdapter extends RecyclerView.Adapter<dealViewAdapter.MyView
         dateFormat.setTimeZone(TimeZone.getTimeZone("MST"));
 
         DealObject currentInfo = dealArray.get(position);
-        //holder.dealTitle.setText(currentInfo.getDealTitle());
-        //holder.dealDesc.setText(currentInfo.getDealDesciption());
-        //holder.dealComp.setText(currentInfo.getDealCompany());
         holder.dealDesc1.setText(currentInfo.getDealDesciption() + " @ " + currentInfo.getDealCompany());
         holder.dealDesc2.setText("Valid through " + dateFormat.format(currentInfo.getDealStartDate()) + " to " + dateFormat.format(currentInfo.getDealEndDate()));
         ParseFile imageFile = currentInfo.getDealImage();
@@ -73,17 +73,11 @@ public class dealViewAdapter extends RecyclerView.Adapter<dealViewAdapter.MyView
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        //TextView dealTitle;
-        //TextView dealDesc;
-        //TextView dealComp;
         TextView dealDesc1, dealDesc2;
         ParseImageView parseImageView;
         public MyViewHolder(View itemView){
             super(itemView);
             itemView.setOnClickListener(this);
-            //dealTitle = (TextView) itemView.findViewById(R.id.txtDealRowTitle);
-            //dealDesc = (TextView) itemView.findViewById(R.id.txtDealRowDesc);
-            //dealComp = (TextView) itemView.findViewById(R.id.txtDealRowComp);
             dealDesc1 = (TextView) itemView.findViewById(R.id.txtDealRowDesc1);
             dealDesc2 = (TextView) itemView.findViewById(R.id.txtDealRowDesc2);
             parseImageView = (ParseImageView) itemView.findViewById(R.id.imgDealRowImage);
@@ -94,4 +88,5 @@ public class dealViewAdapter extends RecyclerView.Adapter<dealViewAdapter.MyView
             context.startActivity(new Intent(context, dealDetailedActivity.class));
         }
     }
+
 }
