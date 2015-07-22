@@ -63,21 +63,31 @@
                     android:textColor="@color/iconsColor"
                     android:textSize="17sp" />
 
-                <TextView
-                    android:id="@+id/txtDealCompany"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtDealDescription"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:fontFamily="Roboto Regular"
-                    android:hint="Deal Company"
-                    android:paddingBottom="16dp"
-                    android:paddingTop="4dp"
-                    android:textColor="@color/iconsColor"
-                    android:textSize="17sp" />
-
             </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/icoDealCompany"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/infoBox"
+                android:layout_marginLeft="16dp"
+                android:paddingTop="8dp"
+                android:src="@drawable/ic_company" />
+
+            <TextView
+                android:id="@+id/txtDealCompany"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/infoBox"
+                android:layout_marginLeft="72dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="Roboto Regular"
+                android:hint="Deal Company"
+                android:paddingBottom="16dp"
+                android:paddingTop="16dp"
+                android:textSize="16sp" />
 
             <ImageView
                 android:id="@+id/icoDealLocation"
@@ -85,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/infoBox"
+                android:layout_below="@+id/txtDealCompany"
                 android:layout_marginLeft="16dp"
                 android:paddingTop="8dp"
                 android:src="@drawable/ic_location_custom" />
@@ -94,7 +104,7 @@
                 android:id="@+id/txtDealAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/infoBox"
+                android:layout_below="@+id/txtDealCompany"
                 android:layout_marginLeft="72dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="Roboto Regular"
@@ -125,6 +135,7 @@
                 android:paddingBottom="16dp"
                 android:paddingTop="16dp"
                 android:textSize="16sp" />
+
 
         </RelativeLayout>
 

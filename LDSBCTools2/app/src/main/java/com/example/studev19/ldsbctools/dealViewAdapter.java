@@ -33,6 +33,7 @@ public class dealViewAdapter extends RecyclerView.Adapter<dealViewAdapter.MyView
         this.context = context;
         inflater = LayoutInflater.from(context);
         dealArray = dealList;
+        Log.v("Deals Received", "dealViewAdapter " + dealArray.size());
     }
 
     @Override
@@ -69,6 +70,7 @@ public class dealViewAdapter extends RecyclerView.Adapter<dealViewAdapter.MyView
 
     @Override
     public int getItemCount() {
+        Log.v("Deals Counted", "dealViewAdapter " + dealArray.size());
         return dealArray.size();
     }
 

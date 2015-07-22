@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,9 +35,10 @@ public class Tab4 extends Fragment {
         noData = (TextView) v.findViewById(R.id.txtDataNotFoundForDeals);
         recyclerView = (RecyclerView) v.findViewById(R.id.dealList);
         adapter = new dealViewAdapter(getActivity(), getData());
+        Log.v("Deals Received", "Tab4 " + getData().size());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        if (dealArray.isEmpty() == true){
+        /*if (dealArray.isEmpty() == true){
             recyclerView.setVisibility(View.GONE);
             if (connectionStatus == true){
                 noData.setText("There are no deals to show right now. Try again latter by refreshing the view");
@@ -44,7 +46,7 @@ public class Tab4 extends Fragment {
         }
         else {
             noData.setVisibility(View.GONE);
-        }
+        }*/
         return v;
     }
 

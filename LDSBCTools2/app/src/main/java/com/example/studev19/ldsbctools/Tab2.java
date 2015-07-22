@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,10 +31,11 @@ public class Tab2 extends Fragment {
         noData = (TextView) v.findViewById(R.id.txtDataNotFoundForEvents);
         recyclerView = (RecyclerView) v.findViewById(R.id.eventList);
         adapter = new eventViewAdapter(getActivity(), getData());
+        Log.v("Events Received", "Tab2 " + getData().size());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        if (this.getConnectionStatus() == false){
+        /*if (this.getConnectionStatus() == false){
             recyclerView.setVisibility(View.GONE);
         }
 
@@ -43,7 +45,7 @@ public class Tab2 extends Fragment {
         }
         else if (this.getConnectionStatus() == true && eventArray.isEmpty() == false){
             noData.setVisibility(View.GONE);
-        }
+        }*/
         return v;
     }
 

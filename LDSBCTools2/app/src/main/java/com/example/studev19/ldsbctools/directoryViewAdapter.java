@@ -3,6 +3,7 @@ package com.example.studev19.ldsbctools;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ public class directoryViewAdapter extends RecyclerView.Adapter<directoryViewAdap
         this.context = context;
         inflater = LayoutInflater.from(context);
         directoryArray = directory;
+        Log.v("Directory Received", "directoryViewAdapter " + directoryArray.size());
     }
 
     @Override
@@ -37,11 +39,13 @@ public class directoryViewAdapter extends RecyclerView.Adapter<directoryViewAdap
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         DirectoryObject currentInfo = directoryArray.get(position);
+
         holder.title.setText(currentInfo.getName());
     }
 
     @Override
     public int getItemCount() {
+        Log.v("Directory Counted", "directoryViewAdapter " + directoryArray.size());
         return directoryArray.size();
     }
 

@@ -22,7 +22,7 @@ public class Tab5 extends Fragment {
         myWebView.getSettings().setJavaScriptEnabled(true);
 
         if (connectionStatus == false){
-            String html = "<html><body><h1>You must be connected to the internet to display this tab correctly.</h1></body></html>";
+            String html = "<html><body><p>You must be connected to the internet to display this tab correctly.</p></body></html>";
             String mime = "text/html";
             String encoding = "utf-8";
 

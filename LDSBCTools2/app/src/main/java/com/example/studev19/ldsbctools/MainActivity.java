@@ -43,7 +43,6 @@ public class MainActivity extends ActionBarActivity {
     SlidingTabLayout tabs;
     CharSequence Titles[] = {"Directory", "Events", "BCSA", "Deals", "Feedback"}; //Titles for the Tab Bar
     int NumbOfTabs = 5; //This controls the number of tabs on the Tab Bar
-    public List<DirectoryObject> directoryArray = new ArrayList<DirectoryObject>();
     private static final int DIALOG_ALERT = 10;
     private static final int NO_INTERNET_DIALOG = 5;
     private boolean connection;
@@ -53,102 +52,6 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         connection = internetConnection();
-
-        //ARRAY WITH SERVICES INFORMATION.
-        String[][] contactInfo = {
-                {"Academic Advising",
-                        "Meet with an academic advisor for academic guidance in planning, scheduling, and readiness to graduate.",
-                        "801-524-8152",
-                        "advising@ldsbc.edu*",
-                        "Room 905",
-                        "Monday-Friday 9am-5pm"},
-                {"Admissions",
-                        "Ask about applying or for more information.",
-                        "801-524-8145",
-                        "admiss@ldsbc.edu",
-                        "Second Floor",
-                        "Monday-Friday 9am-5pm"},
-                {"Bookstore",
-                        "Pre-order textbooks.",
-                        "801-524-8130",
-                        "book@ldsbc.edu",
-                        "First Floor",
-                        "Monday-Friday 9am-5pm"},
-                {"Campus Visits",
-                        "Discover if the LDS Business College experience is right for you. Let us share with you opportunities and resources that have been designed for your success.",
-                        "801-524-8159",
-                        "campusvisit@ldsbc.edu",
-                        "Second Floor",
-                        "Monday-Friday 9am-5pm"},
-                {"Career Management",
-                        "Find a part-time or full-time job.",
-                        "801-524-8159",
-                        "career@ldsbc.edu",
-                        "Room 406",
-                        "Monday-Friday 9am-5pm"},
-                {"Cashiers Office",
-                        "Questions about tuition and insurance.",
-                        "801-524-8153",
-                        "cashier@ldsbc.edu",
-                        "Second Floor",
-                        "Monday-Friday 9am-5pm"},
-                {"Financial Aid",
-                        "Ask about financial aid, loans, and grants.",
-                        "801-524-8111",
-                        "fa@ldsbc.edu",
-                        "Second Floor",
-                        "Monday-Friday 9am-5pm"},
-                {"Helpdesk",
-                        "For help and support with user accounts and College Computers.",
-                        "801-524-8119", "helpdesk@ldsbc.edu",
-                        "Second Floor",
-                        "Monday-Friday 9am-5pm"},
-                {"Honor Code",
-                        "Contact the Honor Code Office for inquiries or reporting concerns about conduct, Honor Code policies, and ecclesiastical endorsements.",
-                        "801-524-8157",
-                        "hc@ldsbc.edu",
-                        "Room 905",
-                        "Monday-Friday 9am-5pm"},
-                {"Housing",
-                        "Learn how and where to find housing close to campus.",
-                        "801-524-8180",
-                        "house@ldsbc.edu",
-                        "Room 905",
-                        "Monday-Friday 9am-5pm"},
-                {"Registration",
-                        "Ask about registration, transcripts, and class schedules.",
-                        "801-524-8140",
-                        "reg@ldsbc.edu",
-                        "Second Floor",
-                        "Monday-Friday 9am-5pm"},
-                {"Scholarships",
-                        "Learn how to qualify for scholarships.",
-                        "801-524-8111",
-                        "sch@ldsbc.edu",
-                        "Second Floor",
-                        "Monday-Friday 9am-5pm"},
-                {"Student Development Center",
-                        "Find out about campus activities and events.",
-                        "801-524-8151",
-                        "sdc@ldsbc.edu",
-                        "Room 905",
-                        "Monday-Friday 9am-5pm"}
-        };
-
-        //PASSES THE INFORMATION FROM contactInfo ARRAY TO directoryArray
-        for (String[] i : contactInfo) {
-            DirectoryObject newObject = new DirectoryObject();
-            newObject.setName(i[0]);
-            newObject.setDescription(i[1]);
-            newObject.setPhone(i[2]);
-            newObject.setEmail(i[3]);
-            newObject.setLocation(i[4]);
-            newObject.setHours(i[5]);
-            directoryArray.add(newObject);
-        }
-
-        //SENDS INFORMATION TO INFLATER
-        Tab1.setData(directoryArray);
 
         //Creating the Toolbar and setting it as the Toolbar for the Activity
         toolbar = (Toolbar) findViewById(R.id.app_bar);

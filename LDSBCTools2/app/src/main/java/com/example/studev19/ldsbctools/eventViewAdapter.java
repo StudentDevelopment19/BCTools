@@ -3,6 +3,7 @@ package com.example.studev19.ldsbctools;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ public class eventViewAdapter extends RecyclerView.Adapter<eventViewAdapter.MyVi
         this.context = context;
         inflater = LayoutInflater.from(context);
         eventArray = eventList;
+        Log.v("Events Received", "eventViewAdapter " + eventArray.size());
     }
 
     @Override
@@ -39,7 +41,7 @@ public class eventViewAdapter extends RecyclerView.Adapter<eventViewAdapter.MyVi
     @Override
     public void onBindViewHolder(eventViewAdapter.MyViewHolder holder, int position) {
         EventDetails currentInfo = eventArray.get(position);
-        SimpleDateFormat df = new SimpleDateFormat("MMM, dd hh:mm a");
+        SimpleDateFormat df = new SimpleDateFormat("MMM dd, hh:mm a");
         df.setTimeZone(TimeZone.getTimeZone("MST"));
         holder.eventName.setText(currentInfo.getName());
         holder.eventDate.setText(df.format(currentInfo.getStartDate()));
@@ -47,6 +49,7 @@ public class eventViewAdapter extends RecyclerView.Adapter<eventViewAdapter.MyVi
 
     @Override
     public int getItemCount() {
+        Log.v("Events Counted", "eventViewAdapter " + eventArray.size());
         return eventArray.size();
     }
 

@@ -12,7 +12,7 @@
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:background="@color/iconsColor"
-            android:src="@drawable/bcsa_final" />
+            android:src="@drawable/bcsa_banner" />
 
         <TextView
             android:id="@+id/txtBCSAHeadline"
