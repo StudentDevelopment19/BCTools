@@ -36,6 +36,10 @@ public class dealViewAdapter extends RecyclerView.Adapter<dealViewAdapter.MyView
         Log.v("Deals Received", "dealViewAdapter " + dealArray.size());
     }
 
+    public void updateDealData(List<DealObject> deals){
+        dealArray = deals;
+    }
+
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 

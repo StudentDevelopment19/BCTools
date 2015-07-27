@@ -31,11 +31,12 @@ import java.util.logging.Logger;
  */
 public class parseApplicationSetup extends Application{
 
-    public List<EventDetails> eventArray = new ArrayList<EventDetails>();
-    public List<DealObject> dealArray = new ArrayList<DealObject>();
-    public List<DirectoryObject> directoryArray = new ArrayList<DirectoryObject>();
+    private static List<EventDetails> eventArray = new ArrayList<EventDetails>();
+    private static List<DealObject> dealArray = new ArrayList<DealObject>();
+    private static List<DirectoryObject> directoryArray = new ArrayList<DirectoryObject>();
     private static Date today;
-    private boolean connection;
+    private static boolean connection;
+    Context context;
 
     @Override
     public void onCreate(){
@@ -43,12 +44,40 @@ public class parseApplicationSetup extends Application{
         super.onCreate();
         Parse.initialize(this, getString(R.string.parseAppID), getString(R.string.parseClientID));
 
-        //Set Date for current day (today)
-        Calendar c = Calendar.getInstance();
-        c.set(Calendar.HOUR, 0);
-        c.set(Calendar.MINUTE, 0);
-        c.set(Calendar.SECOND, 0);
-        today = c.getTime();
+        //SET DATA TO ARRAYS
+        setDirectoryData();
+        setEventData();
+        setDealData();
+
+        //SENDS INFORMATION TO DIRECTORY INFLATER
+        Tab1.setData(getDirectoryData());
+        Log.v("Directory Sent", "parseApplicationSetup " + directoryArray.size());
+
+        //SENDS INFORMATION TO EVENT INFLATER
+        Tab2.setData(getEventData());
+        Log.v("Events Sent", "parseApplicationSetup " + eventArray.size());
+
+        //SENDS INFORMATION TO DEAL INFLATER
+        Tab4.setData(getDealData());
+        Log.v("Deals Sent", "parseApplicationSetup " + dealArray.size());
+
+        connection = internetConnection();
+
+        Tab2.setConnectionStatus(connection);
+        Tab4.setConnectionStatus(connection);
+        Tab5.setConnectionStatus(connection);
+
+
+
+        ParseUser.enableAutomaticUser();
+        ParseACL defaultACL = new ParseACL();
+        ParseACL.setDefaultACL(defaultACL, true);
+
+    }
+
+    public void setDirectoryData(){
+
+        context = getApplicationContext();
 
         //PARSE QUERY FOR CONTACTS//
         ParseQuery<ParseObject> dQuery = new ParseQuery<ParseObject>("serviceDirectory");
@@ -57,7 +86,7 @@ public class parseApplicationSetup extends Application{
             @Override
             public void done(List<ParseObject> list, ParseException e) {
                 if (e != null) {
-                    Toast.makeText(getApplicationContext(), "An error has occurred", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "An error has occurred", Toast.LENGTH_LONG).show();
                 } else for (ParseObject object : list) {
                     //Get data from Parse.com table
                     String contactName = object.getString("serviceName");
@@ -81,9 +110,23 @@ public class parseApplicationSetup extends Application{
                 }
             }
         });
-        //SENDS INFORMATION TO DIRECTORY INFLATER
-        Tab1.setData(directoryArray);
-        Log.v("Directory Sent", "parseApplicationSetup " + directoryArray.size());
+
+    }
+
+    public List<DirectoryObject> getDirectoryData(){
+        return directoryArray;
+    }
+
+    public void setEventData(){
+
+        //Set Date for current day (today)
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.HOUR, 0);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+        today = c.getTime();
+
+        context = getApplicationContext();
 
         //PARSE QUERY FOR EVENTS//
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("events");
@@ -92,7 +135,7 @@ public class parseApplicationSetup extends Application{
             @Override
             public void done(List<ParseObject> list, ParseException e) {
                 if (e != null) {
-                    Toast.makeText(getApplicationContext(), "An error has occurred", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "An error has occurred", Toast.LENGTH_LONG).show();
                 } else for (ParseObject objects : list) {
                     //Get data from Parse.com table
                     String eventName = objects.getString("eventName");
@@ -121,9 +164,23 @@ public class parseApplicationSetup extends Application{
 
             }
         });
-        //SENDS INFORMATION TO EVENT INFLATER
-        Tab2.setData(eventArray);
-        Log.v("Events Sent", "parseApplicationSetup " + eventArray.size());
+
+    }
+
+    public  List<EventDetails> getEventData(){
+        return eventArray;
+    }
+
+    public void setDealData(){
+
+        //Set Date for current day (today)
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.HOUR, 0);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+        today = c.getTime();
+
+        context = getApplicationContext();
 
         //PARSE QUERY FOR DEALS//
         ParseQuery<ParseObject> query2 = new ParseQuery<ParseObject>("deals");
@@ -132,7 +189,7 @@ public class parseApplicationSetup extends Application{
             @Override
             public void done(List<ParseObject> list, ParseException e) {
                 if (e != null) {
-                    Toast.makeText(getApplicationContext(), "An error has occurred", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "An error has occurred", Toast.LENGTH_LONG).show();
                 } else for (ParseObject objects : list) {
                     //Get data from Parse.com table
                     String dealTitle = objects.getString("title");
@@ -162,22 +219,11 @@ public class parseApplicationSetup extends Application{
                 }
             }
         });
-        //SENDS INFORMATION TO DEAL INFLATER
-        Tab4.setData(dealArray);
-        Log.v("Deals Sent", "parseApplicationSetup " + dealArray.size());
 
-        connection = internetConnection();
+    }
 
-        Tab2.setConnectionStatus(connection);
-        Tab4.setConnectionStatus(connection);
-        Tab5.setConnectionStatus(connection);
-
-
-
-        ParseUser.enableAutomaticUser();
-        ParseACL defaultACL = new ParseACL();
-        ParseACL.setDefaultACL(defaultACL, true);
-
+    public List<DealObject> getDealData(){
+        return dealArray;
     }
 
     public boolean internetConnection(){

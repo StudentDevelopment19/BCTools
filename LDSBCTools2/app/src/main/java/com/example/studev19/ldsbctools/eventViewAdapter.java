@@ -29,6 +29,10 @@ public class eventViewAdapter extends RecyclerView.Adapter<eventViewAdapter.MyVi
         Log.v("Events Received", "eventViewAdapter " + eventArray.size());
     }
 
+    public void updatedEventData(List<EventDetails> events){
+        eventArray = events;
+    }
+
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 

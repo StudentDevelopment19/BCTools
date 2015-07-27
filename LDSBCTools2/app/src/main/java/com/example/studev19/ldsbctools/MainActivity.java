@@ -14,12 +14,14 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.parse.FindCallback;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -28,6 +30,7 @@ import android.support.v4.view.ViewPager;
 import com.example.studev19.ldsbctools.tabs.SlidingTabLayout;
 import com.parse.Parse;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
@@ -46,6 +49,7 @@ public class MainActivity extends ActionBarActivity {
     private static final int DIALOG_ALERT = 10;
     private static final int NO_INTERNET_DIALOG = 5;
     private boolean connection;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +82,8 @@ public class MainActivity extends ActionBarActivity {
 
         //Setting the ViewPager for the SlidingTabsLayout
         tabs.setViewPager(pager);
+
+
 
         if (connection == false){
             //Snackbar.make(findViewById(android.R.id.content), "You are not connected to the internet. Some information will not be displayed", Snackbar.LENGTH_LONG).show();

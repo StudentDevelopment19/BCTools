@@ -28,6 +28,10 @@ public class directoryViewAdapter extends RecyclerView.Adapter<directoryViewAdap
         Log.v("Directory Received", "directoryViewAdapter " + directoryArray.size());
     }
 
+    public void updatedData(List<DirectoryObject> directory){
+        directoryArray = directory;
+    }
+
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 

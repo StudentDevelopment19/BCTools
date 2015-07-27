@@ -31,11 +31,11 @@
         <ImageView
             android:id="@+id/videoView"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/txtBCSAHeadline"
             android:paddingBottom="8dp"
             android:paddingTop="8dp"
-            android:src="@drawable/bcsa_final" />
+            android:src="@drawable/thumbnail_square" />
 
         <TextView
             android:id="@+id/divider1"
