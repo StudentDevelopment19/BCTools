@@ -81,8 +81,8 @@ public class directoryDetailedActivity extends ActionBarActivity {
         emailText.setText(displayedInformation.getEmail());                 //Sets value for Email address from Array
         TextView locationText = (TextView) findViewById(R.id.txtLocation);  //Find view for Location
         locationText.setText(displayedInformation.getLocation());           //Sets value for Location from Array
-        TextView scheduleText = (TextView) findViewById(R.id.txtSchedule);  //Finds view for schedule
-        scheduleText.setText(displayedInformation.getHours());              //Sets value for Schedule
+        TextView webText = (TextView) findViewById(R.id.txtWeb);            //Finds view for schedule
+        webText.setText(displayedInformation.getHours());                   //Sets value for Schedule
 
     }
 

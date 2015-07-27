@@ -120,18 +120,6 @@ public class Tab2 extends Fragment {
             }
         });
 
-
-        /*if (this.getConnectionStatus() == false){
-            recyclerView.setVisibility(View.GONE);
-        }
-
-        else if (this.getConnectionStatus() == true && eventArray.isEmpty() == true){
-            recyclerView.setVisibility(View.GONE);
-            noData.setText("There are no upcoming events to show right now. Try again latter by refreshing the view");
-        }
-        else if (this.getConnectionStatus() == true && eventArray.isEmpty() == false){
-            noData.setVisibility(View.GONE);
-        }*/
         return v;
     }
 
