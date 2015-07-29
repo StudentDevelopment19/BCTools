@@ -92,7 +92,7 @@ public class directoryDetailedActivity extends ActionBarActivity {
             webIcon.setVisibility(View.GONE);
             webText.setVisibility(View.GONE);
         }
-        else{
+        else if (displayedInformation.getWebSite() != ""){
             hyperlink = "<a href='" + displayedInformation.getWebSite() + "'>"+ displayedInformation.getWebSite() +"</a>";
             webText.setClickable(true);                                     //Sets Website text clickable
             webText.setMovementMethod(LinkMovementMethod.getInstance());    //Enables hyperlink
