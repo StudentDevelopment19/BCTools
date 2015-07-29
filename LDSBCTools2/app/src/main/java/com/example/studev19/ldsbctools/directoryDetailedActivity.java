@@ -11,11 +11,14 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.telephony.PhoneNumberUtils;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +30,7 @@ public class directoryDetailedActivity extends ActionBarActivity {
     Toolbar toolbar;
     private static DirectoryObject displayedInformation;
     private static final int DIALOG_ALERT = 10;
+    private static String hyperlink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,8 +85,19 @@ public class directoryDetailedActivity extends ActionBarActivity {
         emailText.setText(displayedInformation.getEmail());                 //Sets value for Email address from Array
         TextView locationText = (TextView) findViewById(R.id.txtLocation);  //Find view for Location
         locationText.setText(displayedInformation.getLocation());           //Sets value for Location from Array
-        TextView webText = (TextView) findViewById(R.id.txtWeb);            //Finds view for schedule
-        webText.setText(displayedInformation.getHours());                   //Sets value for Schedule
+        TextView webText = (TextView) findViewById(R.id.txtWeb);            //Finds view for Website
+        ImageView webIcon = (ImageView) findViewById(R.id.icoWeb);          //Finds view for Website Icon
+        Log.v(displayedInformation.getName(), webText.getText().toString());
+        if (displayedInformation.getWebSite() == "") {
+            webIcon.setVisibility(View.GONE);
+            webText.setVisibility(View.GONE);
+        }
+        else{
+            hyperlink = "<a href='" + displayedInformation.getWebSite() + "'>"+ displayedInformation.getWebSite() +"</a>";
+            webText.setClickable(true);                                     //Sets Website text clickable
+            webText.setMovementMethod(LinkMovementMethod.getInstance());    //Enables hyperlink
+            webText.setText(Html.fromHtml(hyperlink));                      //Sets value for Website));
+        }
 
     }
 

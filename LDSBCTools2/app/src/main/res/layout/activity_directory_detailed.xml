@@ -140,7 +140,7 @@
                 android:layout_height="48dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignTop="@+id/icoSchedule"
+                android:layout_alignTop="@+id/icoWeb"
                 android:layout_marginLeft="72dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="Roboto Regular"

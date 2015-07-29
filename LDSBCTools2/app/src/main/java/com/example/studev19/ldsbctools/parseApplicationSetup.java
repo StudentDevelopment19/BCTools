@@ -95,6 +95,11 @@ public class parseApplicationSetup extends Application{
                     String contactEmail = object.getString("email");
                     String contactLoc = object.getString("Location");
                     String contactSch = object.getString("hours");
+                    String contactWeb = object.getString("website");
+                    if (object.getString("website").isEmpty()){
+                        contactWeb = "";
+                    }
+                    Log.v(contactName, contactWeb);
 
                     //Assign data to a DirectoryObject
                     DirectoryObject newObject = new DirectoryObject();
@@ -104,6 +109,7 @@ public class parseApplicationSetup extends Application{
                     newObject.setEmail(contactEmail);
                     newObject.setLocation(contactLoc);
                     newObject.setHours(contactSch);
+                    newObject.setWebSite(contactWeb);
 
                     //Add object to eventArray
                     directoryArray.add(newObject);
