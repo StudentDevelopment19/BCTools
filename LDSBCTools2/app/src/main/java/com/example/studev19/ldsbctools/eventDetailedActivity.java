@@ -64,7 +64,7 @@ public class eventDetailedActivity extends ActionBarActivity {
         SimpleDateFormat endTime = new SimpleDateFormat("hh:mm a");
         endTime.setTimeZone(TimeZone.getTimeZone("MST"));
         eventStartDate.setText(dateFormat.format(displayedInformation.getStartDate())
-                + " to " + endTime.format(displayedInformation.getEndDate()));                       //Set value for Start Date
+                + " to " + endTime.format(displayedInformation.getEndDate()));              //Set value for Start Date
         TextView eventLocation = (TextView) findViewById(R.id.txtEventLocation);            //Find view for Event Location
         eventLocation.setText(displayedInformation.getLocation());                          //Set value for Event Location
         Button addEventButton = (Button) findViewById(R.id.btnAddEvent);

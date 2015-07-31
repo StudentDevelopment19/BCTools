@@ -146,6 +146,7 @@
                 android:fontFamily="Roboto Regular"
                 android:hint="Website"
                 android:paddingTop="12dp"
+                android:textColorLink="@color/accentColor"
                 android:textSize="16sp" />
 
         </RelativeLayout>

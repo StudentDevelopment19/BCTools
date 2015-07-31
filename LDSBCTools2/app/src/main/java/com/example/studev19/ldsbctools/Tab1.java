@@ -66,7 +66,8 @@ public class Tab1 extends Fragment {
                     @Override
                     public void done(List<ParseObject> list, ParseException e) {
                         if (e != null) {
-                            Toast.makeText(context, "An error has occurred", Toast.LENGTH_LONG).show();
+                            Toast.makeText(context, "An error has occurred. \n" +
+                                    "Please connect to the Internet and refresh this view", Toast.LENGTH_LONG).show();
                         } else for (ParseObject object : list) {
                             //Get data from Parse.com table
                             String contactName = object.getString("serviceName");
@@ -75,6 +76,11 @@ public class Tab1 extends Fragment {
                             String contactEmail = object.getString("email");
                             String contactLoc = object.getString("Location");
                             String contactSch = object.getString("hours");
+                            String contactWeb = object.getString("website");
+                            if (object.getString("website").isEmpty()){
+                                contactWeb = "";
+                            }
+                            Log.v(contactName, contactWeb);
 
                             //Assign data to a DirectoryObject
                             DirectoryObject newObject = new DirectoryObject();
@@ -84,6 +90,7 @@ public class Tab1 extends Fragment {
                             newObject.setEmail(contactEmail);
                             newObject.setLocation(contactLoc);
                             newObject.setHours(contactSch);
+                            newObject.setWebSite(contactWeb);
 
                             //Add object to eventArray
                             directory.add(newObject);

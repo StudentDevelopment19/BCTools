@@ -88,12 +88,12 @@ public class directoryDetailedActivity extends ActionBarActivity {
         TextView webText = (TextView) findViewById(R.id.txtWeb);            //Finds view for Website
         ImageView webIcon = (ImageView) findViewById(R.id.icoWeb);          //Finds view for Website Icon
         Log.v(displayedInformation.getName(), webText.getText().toString());
-        if (displayedInformation.getWebSite() == "") {
+        if (displayedInformation.getWebSite() == "") {                      //If website value is empty dismiss the views
             webIcon.setVisibility(View.GONE);
             webText.setVisibility(View.GONE);
         }
-        else if (displayedInformation.getWebSite() != ""){
-            hyperlink = "<a href='" + displayedInformation.getWebSite() + "'>"+ displayedInformation.getWebSite() +"</a>";
+        else if (displayedInformation.getWebSite() != ""){                  //If website value is not empty create hyperlink
+            hyperlink = "<a href='" + displayedInformation.getWebSite() + "'>"+ "Website" +"</a>";
             webText.setClickable(true);                                     //Sets Website text clickable
             webText.setMovementMethod(LinkMovementMethod.getInstance());    //Enables hyperlink
             webText.setText(Html.fromHtml(hyperlink));                      //Sets value for Website));

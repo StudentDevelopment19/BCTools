@@ -86,7 +86,8 @@ public class parseApplicationSetup extends Application{
             @Override
             public void done(List<ParseObject> list, ParseException e) {
                 if (e != null) {
-                    Toast.makeText(context, "An error has occurred", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "An error has occurred. \n" +
+                            "Please connect to the Internet and refresh this view", Toast.LENGTH_LONG).show();
                 } else for (ParseObject object : list) {
                     //Get data from Parse.com table
                     String contactName = object.getString("serviceName");
@@ -141,7 +142,8 @@ public class parseApplicationSetup extends Application{
             @Override
             public void done(List<ParseObject> list, ParseException e) {
                 if (e != null) {
-                    Toast.makeText(context, "An error has occurred", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "An error has occurred. \n" +
+                            "Please connect to the Internet and refresh this view", Toast.LENGTH_LONG).show();
                 } else for (ParseObject objects : list) {
                     //Get data from Parse.com table
                     String eventName = objects.getString("eventName");
@@ -195,7 +197,8 @@ public class parseApplicationSetup extends Application{
             @Override
             public void done(List<ParseObject> list, ParseException e) {
                 if (e != null) {
-                    Toast.makeText(context, "An error has occurred", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "An error has occurred. \n" +
+                            "Please connect to the Internet and refresh this view", Toast.LENGTH_LONG).show();
                 } else for (ParseObject objects : list) {
                     //Get data from Parse.com table
                     String dealTitle = objects.getString("title");

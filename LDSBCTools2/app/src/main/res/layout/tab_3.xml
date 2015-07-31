@@ -14,25 +14,11 @@
             android:background="@color/iconsColor"
             android:src="@drawable/bcsa_banner" />
 
-        <TextView
-            android:id="@+id/txtBCSAHeadline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/imgBCSA"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="Roboto Regular"
-            android:text="LDS Business College Student Associations (BCSA)"
-            android:textColor="@color/primaryTextColor"
-            android:textSize="24sp" />
-
         <ImageView
             android:id="@+id/videoView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtBCSAHeadline"
+            android:layout_below="@+id/imgBCSA"
             android:paddingBottom="8dp"
             android:paddingTop="8dp"
             android:src="@drawable/thumbnail_square" />

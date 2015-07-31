@@ -75,7 +75,7 @@ public class Tab4 extends Fragment {
                     @Override
                     public void done(List<ParseObject> list, ParseException e) {
                         if (e != null) {
-                            Toast.makeText(context, "An error has occurred", Toast.LENGTH_LONG).show();
+                            Toast.makeText(context, "An error has occurred. \nPlease connect to the Internet and refresh this view", Toast.LENGTH_LONG).show();
                         } else for (ParseObject objects : list) {
                             //Get data from Parse.com table
                             String dealTitle = objects.getString("title");
