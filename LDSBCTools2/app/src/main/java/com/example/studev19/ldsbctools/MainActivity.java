@@ -86,7 +86,6 @@ public class MainActivity extends ActionBarActivity {
 
 
         if (connection == false){
-            //Snackbar.make(findViewById(android.R.id.content), "You are not connected to the internet. Some information will not be displayed", Snackbar.LENGTH_LONG).show();
             showDialog(NO_INTERNET_DIALOG);
         }
 

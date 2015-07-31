@@ -2,10 +2,8 @@ package com.example.studev19.ldsbctools;
 
 import android.app.Application;
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -18,13 +16,10 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
-import java.util.logging.Logger;
 
 /**
  * Created by studev19 on 6/12/2015.
@@ -214,7 +209,7 @@ public class parseApplicationSetup extends Application{
                         //Assign data to a DealObject
                         DealObject newObject = new DealObject();
                         newObject.setDealTitle(dealTitle);
-                        newObject.setDealDesciption(dealDesc);
+                        newObject.setDealDescription(dealDesc);
                         newObject.setDealAddress(dealAddress);
                         newObject.setDealCompany(dealCompany);
                         newObject.setDealStartDate(dealStartDate);

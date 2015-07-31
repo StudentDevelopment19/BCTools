@@ -1,7 +1,5 @@
 package com.example.studev19.ldsbctools;
 
-import android.graphics.Bitmap;
-
 import com.parse.ParseFile;
 
 import java.util.Calendar;
@@ -12,7 +10,7 @@ import java.util.Date;
  */
 public class DealObject {
     private String dealTitle;
-    private String dealDesciption;
+    private String dealDescription;
     private String dealCompany;
     private String dealAddress;
     private Date dealStartDate;
@@ -27,12 +25,12 @@ public class DealObject {
         this.dealTitle = title;
     }
 
-    public String getDealDesciption(){
-        return dealDesciption;
+    public String getDealDescription(){
+        return dealDescription;
     }
 
-    public void setDealDesciption(String description){
-        this.dealDesciption = description;
+    public void setDealDescription(String description){
+        this.dealDescription = description;
     }
 
     public String getDealCompany(){

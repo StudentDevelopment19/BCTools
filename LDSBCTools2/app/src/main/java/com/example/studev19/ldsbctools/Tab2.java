@@ -42,17 +42,17 @@ public class Tab2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         context = getActivity();
-        View v = inflater.inflate(R.layout.tab_2, container, false);
-        eventSwipe = (SwipeRefreshLayout) v.findViewById(R.id.eventSwipeRefresh);
-        eventSwipe.setColorSchemeResources(R.color.primaryColor, R.color.accentColor);
+        View v = inflater.inflate(R.layout.tab_2, container, false);                                //Find view
+        eventSwipe = (SwipeRefreshLayout) v.findViewById(R.id.eventSwipeRefresh);                   //Find Swipe Refresh Layout
+        eventSwipe.setColorSchemeResources(R.color.primaryColor, R.color.accentColor);              //Set colors for swipeRefreshLayout
         noData = (TextView) v.findViewById(R.id.txtDataNotFoundForEvents);
-        recyclerView = (RecyclerView) v.findViewById(R.id.eventList);
-        adapter = new eventViewAdapter(getActivity(), getData());
+        recyclerView = (RecyclerView) v.findViewById(R.id.eventList);                               //Find Recycler View
+        adapter = new eventViewAdapter(getActivity(), getData());                                   //Create Adapter
         Log.v("Events Received", "Tab2 " + getData().size());
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapter);                                                           //Set Adapter to RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        new Handler().postDelayed(new Runnable() {
+        new Handler().postDelayed(new Runnable() {                                                  //Refresh the view after 1 second to show information from the beginning
             @Override
             public void run() {
                 adapter.notifyDataSetChanged();
@@ -61,8 +61,8 @@ public class Tab2 extends Fragment {
 
         eventSwipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onRefresh() {
-                eventArray.clear();
+            public void onRefresh() {                                                     // Set Refresh Listener
+                eventArray.clear();                                                                 //Clear data set
 
                 //Set Date for current day (today)
                 Calendar c = Calendar.getInstance();
@@ -71,7 +71,7 @@ public class Tab2 extends Fragment {
                 c.set(Calendar.SECOND, 0);
                 today = c.getTime();
 
-                //PARSE QUERY FOR EVENTS//
+                //PARSE QUERY FOR EVENTS//                                                          //Re-run the parseQuery
                 ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("events");
                 query.addAscendingOrder("startDate");
                 query.findInBackground(new FindCallback<ParseObject>() {

@@ -3,16 +3,10 @@ package com.example.studev19.ldsbctools;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.net.Uri;
-import android.provider.MediaStore.Video;
-import android.provider.MediaStore;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
-
-import android.util.Log;
 import android.widget.ImageView;
-import android.widget.MediaController;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -49,7 +43,6 @@ public class Tab3 extends Fragment {
         View v = inflater.inflate(R.layout.tab_3, container, false);
 
         videoURL = "http://bcmessenger.com/wp-content/uploads/2014/09/Student_Involvement_condesnsed_02.mp4?_=1";
-        //videoView = (VideoView) v.findViewById(R.id.videoView);
 
         //SET HYPERLINK TO VIDEO
         hyperlinkVideo = (ImageView) v.findViewById(R.id.videoView);

@@ -2,8 +2,6 @@ package com.example.studev19.ldsbctools;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -52,17 +50,20 @@ public class dealViewAdapter extends RecyclerView.Adapter<dealViewAdapter.MyView
     @Override
     public void onBindViewHolder(final dealViewAdapter.MyViewHolder holder, int position) {
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM, dd");
-        dateFormat.setTimeZone(TimeZone.getTimeZone("MST"));
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM, dd");                              //Set date format
+        dateFormat.setTimeZone(TimeZone.getTimeZone("MST"));                                        //Set time zone
 
-        DealObject currentInfo = dealArray.get(position);
-        holder.dealDesc1.setText(currentInfo.getDealDesciption() + " @ " + currentInfo.getDealCompany());
-        holder.dealDesc2.setText("Valid through " + dateFormat.format(currentInfo.getDealStartDate()) + " to " + dateFormat.format(currentInfo.getDealEndDate()));
-        ParseFile imageFile = currentInfo.getDealImage();
-        holder.parseImageView.setParseFile(imageFile);
+        DealObject currentInfo = dealArray.get(position);                                           //Get position from object
+        holder.dealDesc1.setText(currentInfo.getDealDescription() +                                 //Set value for deal description and company
+                " @ " + currentInfo.getDealCompany());
+        holder.dealDesc2.setText("Valid through " +                                                 //Set value for "Valid through"
+                dateFormat.format(currentInfo.getDealStartDate()) + " to " +
+                dateFormat.format(currentInfo.getDealEndDate()));
+        ParseFile imageFile = currentInfo.getDealImage();                                           //Get image for detailed view
+        holder.parseImageView.setParseFile(imageFile);                                              //Set image for detailed view
         holder.parseImageView.loadInBackground(new GetDataCallback() {
             @Override
-            public void done(byte[] bytes, ParseException e) {
+            public void done(byte[] bytes, ParseException e) {                                      //Load image for display
                 //The image is loaded and displayed
                 int oldHeight = holder.parseImageView.getHeight();
                 int oldWidth = holder.parseImageView.getWidth();
@@ -84,12 +85,12 @@ public class dealViewAdapter extends RecyclerView.Adapter<dealViewAdapter.MyView
         public MyViewHolder(View itemView){
             super(itemView);
             itemView.setOnClickListener(this);
-            dealDesc1 = (TextView) itemView.findViewById(R.id.txtDealRowDesc1);
-            dealDesc2 = (TextView) itemView.findViewById(R.id.txtDealRowDesc2);
-            parseImageView = (ParseImageView) itemView.findViewById(R.id.imgDealRowImage);
+            dealDesc1 = (TextView) itemView.findViewById(R.id.txtDealRowDesc1);                     //Find TextView for deal description and company
+            dealDesc2 = (TextView) itemView.findViewById(R.id.txtDealRowDesc2);                     //Find TextView for "Valid through"
+            parseImageView = (ParseImageView) itemView.findViewById(R.id.imgDealRowImage);          //Find ImageView
         }
         @Override
-        public void onClick(View v) {
+        public void onClick(View v) {                                                               //Set onClick Listener
             dealDetailedActivity.setDealInfo(dealArray.get(getPosition()));
             context.startActivity(new Intent(context, dealDetailedActivity.class));
         }

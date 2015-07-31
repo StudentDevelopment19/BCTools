@@ -2,8 +2,6 @@ package com.example.studev19.ldsbctools;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.media.Image;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -11,16 +9,12 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.parse.GetCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseImageView;
-import com.parse.ParseObject;
 
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
@@ -51,12 +45,12 @@ public class dealDetailedActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //This section fills the information of the detailed view
-        final ParseImageView dealImage = (ParseImageView) findViewById(R.id.imgDealImage);
-        ParseFile imageFile = displayedInformation.getDealImage();
-        dealImage.setParseFile(imageFile);
+        final ParseImageView dealImage = (ParseImageView) findViewById(R.id.imgDealImage);          //Find image view
+        ParseFile imageFile = displayedInformation.getDealImage();                                  //Set ParseFile as image from parse
+        dealImage.setParseFile(imageFile);                                                          //Set dealImage as Image from parse
         dealImage.loadInBackground(new GetDataCallback() {
             @Override
-            public void done(byte[] bytes, ParseException e) {
+public void done(byte[] bytes, ParseException e) {                                                  //This process makes the image visible from app
                 //The image is loaded and displayed
                 int oldHeight = dealImage.getHeight();
                 int oldWidth = dealImage.getWidth();
@@ -65,18 +59,20 @@ public class dealDetailedActivity extends ActionBarActivity {
             }
         });
 
-        TextView dealNameText = (TextView) findViewById(R.id.txtDealName);
-        dealNameText.setText(displayedInformation.getDealTitle());
-        TextView dealDescText = (TextView) findViewById(R.id.txtDealDescription);
-        dealDescText.setText(displayedInformation.getDealDesciption());
-        TextView dealCompanyText = (TextView) findViewById(R.id.txtDealCompany);
-        dealCompanyText.setText(displayedInformation.getDealCompany());
-        TextView dealAddressText = (TextView) findViewById(R.id.txtDealAddress);
-        dealAddressText.setText(displayedInformation.getDealAddress());
-        TextView dealStDateText = (TextView) findViewById(R.id.txtDealDates);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM, dd");
-        dateFormat.setTimeZone(TimeZone.getTimeZone("MST"));
-        dealStDateText.setText(dateFormat.format(displayedInformation.getDealStartDateOnMST()) + " to " + dateFormat.format(displayedInformation.getEndDateOnMTS()));
+        TextView dealNameText = (TextView) findViewById(R.id.txtDealName);                          //Find TextView for dealName
+        dealNameText.setText(displayedInformation.getDealTitle());                                  //Set value for dealName
+        TextView dealDescText = (TextView) findViewById(R.id.txtDealDescription);                   //Find TextView for dealDescription
+        dealDescText.setText(displayedInformation.getDealDescription());                            //Set value for dealDescription
+        TextView dealCompanyText = (TextView) findViewById(R.id.txtDealCompany);                    //Find TextView for dealCompany
+        dealCompanyText.setText(displayedInformation.getDealCompany());                             //Set value for dealCompany
+        TextView dealAddressText = (TextView) findViewById(R.id.txtDealAddress);                    //Find TextView for dealAddress
+        dealAddressText.setText(displayedInformation.getDealAddress());                             //Set value for dealAddress
+        TextView dealStDateText = (TextView) findViewById(R.id.txtDealDates);                       //Find TextView for dealDate
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM, dd");                              //Set dateFormat
+        dateFormat.setTimeZone(TimeZone.getTimeZone("MST"));                                        //Set time zone to MST
+        dealStDateText.setText(dateFormat.format(displayedInformation.
+                getDealStartDateOnMST()) + " to " +
+                dateFormat.format(displayedInformation.getEndDateOnMTS()));                         //Set date format and value for dealDate
 
     }
 

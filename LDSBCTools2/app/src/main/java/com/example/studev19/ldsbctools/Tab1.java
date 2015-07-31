@@ -37,29 +37,29 @@ public class Tab1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
 
         context = getActivity();
-        View v = inflater.inflate(R.layout.tab_1, container, false);
-        swipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipeRefresh);
-        swipeRefreshLayout.setColorSchemeResources(R.color.primaryColor, R.color.accentColor);
-        recyclerView = (RecyclerView) v.findViewById(R.id.directoryList);
-        adapter = new directoryViewAdapter(getActivity(), getData());
+        View v = inflater.inflate(R.layout.tab_1, container, false);                                //Find view
+        swipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipeRefresh);                //Find Swipe Refresh Layout
+        swipeRefreshLayout.setColorSchemeResources(R.color.primaryColor, R.color.accentColor);      //Set colors for swipeRefreshLayout
+        recyclerView = (RecyclerView) v.findViewById(R.id.directoryList);                           //Find Recycler View
+        adapter = new directoryViewAdapter(getActivity(), getData());                               //Create Adapter
         Log.v("Directory Received", "Tab1 " + getData().size());
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapter);                                                           //Set Adapter to RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        new Handler().postDelayed(new Runnable() {
+        new Handler().postDelayed(new Runnable() {                                                  //Refresh the view after 1 second to show information from the beginning
             @Override
             public void run() {
-                adapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();                                                     //Notify that the data has changed
             }
         }, 1000);
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onRefresh() {
+            public void onRefresh() {                                             // Set Refresh Listener
 
-                directory.clear();
+                directory.clear();                                                                  //Clear data set
 
-                //PARSE QUERY FOR CONTACTS//
+                //PARSE QUERY FOR CONTACTS//                                                        //Re-run the parseQuery
                 ParseQuery<ParseObject> dQuery = new ParseQuery<ParseObject>("serviceDirectory");
                 dQuery.addAscendingOrder("serviceName");
                 dQuery.findInBackground(new FindCallback<ParseObject>() {
@@ -100,7 +100,7 @@ public class Tab1 extends Fragment {
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
-                    public void run() {
+                    public void run() {                                                   //Notify that data has changed
                         adapter.updatedData(directory);
                         adapter.notifyDataSetChanged();
                         swipeRefreshLayout.setRefreshing(false);

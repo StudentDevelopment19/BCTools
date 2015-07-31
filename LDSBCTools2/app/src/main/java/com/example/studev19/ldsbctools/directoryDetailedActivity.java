@@ -51,52 +51,56 @@ public class directoryDetailedActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //This section fills the information of the detailed view
-        TextView descText = (TextView) findViewById(R.id.txtDescription);   //Find view for Description
-        descText.setText(displayedInformation.getDescription());            //Sets Value for description from array
-        TextView phoneText = (TextView) findViewById(R.id.txtPhone);        //Find view for Phone Number
+        TextView descText = (TextView) findViewById(R.id.txtDescription);                           //Find view for Description
+        descText.setText(displayedInformation.getDescription());                                    //Sets Value for description from array
+        TextView phoneText = (TextView) findViewById(R.id.txtPhone);                                //Find view for Phone Number
         phoneText.setOnClickListener(new View.OnClickListener() {            //Sets onClick listener for Phone Call
             @Override
             public void onClick(View view) {
-                try {                                                        //Start Call Activity
+                try {                                                                               //Start Call Activity
                     Intent callIntent = new Intent(Intent.ACTION_CALL);
                     callIntent.setData(Uri.parse("tel:" + displayedInformation.getPhone()));
                     startActivity(callIntent);
-                } catch (ActivityNotFoundException activityException) {
-                    Toast.makeText(getApplicationContext(), "Application has stopped, failed to make a call to the " + displayedInformation.getName(), Toast.LENGTH_SHORT).show();
+                } catch (ActivityNotFoundException activityException) {                             //Exception handler for call activity
+                    Toast.makeText(getApplicationContext(),
+                            "Application has stopped, failed to make a call to the " +
+                                    displayedInformation.getName(), Toast.LENGTH_SHORT).show();
                     Log.e("BC Tools", "Call failed", activityException);
                 }
             }
         });
-        phoneText.setText(displayedInformation.getPhone());                 //Sets value for phone number from array
-        TextView emailText = (TextView) findViewById(R.id.txtEmail);        //Find view for Email
+        phoneText.setText(displayedInformation.getPhone());                                         //Sets value for phone number from array
+        TextView emailText = (TextView) findViewById(R.id.txtEmail);                                //Find view for Email
         emailText.setOnClickListener(new View.OnClickListener() {           //Sets onClick listener for Email
             @Override
             public void onClick(View view) {
-                try {                                                        //Start Email Activity
+                try {                                                                               //Start Email Activity
                     Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
                     emailIntent.setData(Uri.parse("mailto:" + displayedInformation.getEmail()));
                     startActivity(emailIntent);
-                } catch (ActivityNotFoundException activityException) {
-                    Toast.makeText(getApplicationContext(), "Application has stopped, failed to send an email to the " + displayedInformation.getName(), Toast.LENGTH_SHORT).show();
+                } catch (ActivityNotFoundException activityException) {                             //Exception handler for email activity
+                    Toast.makeText(getApplicationContext(),
+                            "Application has stopped, failed to send an email to the " +
+                                    displayedInformation.getName(), Toast.LENGTH_SHORT).show();
                     Log.e("BC Tools", "Email failed", activityException);
                 }
             }
         });
-        emailText.setText(displayedInformation.getEmail());                 //Sets value for Email address from Array
-        TextView locationText = (TextView) findViewById(R.id.txtLocation);  //Find view for Location
-        locationText.setText(displayedInformation.getLocation());           //Sets value for Location from Array
-        TextView webText = (TextView) findViewById(R.id.txtWeb);            //Finds view for Website
-        ImageView webIcon = (ImageView) findViewById(R.id.icoWeb);          //Finds view for Website Icon
+        emailText.setText(displayedInformation.getEmail());                                         //Sets value for Email address from Array
+        TextView locationText = (TextView) findViewById(R.id.txtLocation);                          //Find view for Location
+        locationText.setText(displayedInformation.getLocation());                                   //Sets value for Location from Array
+        TextView webText = (TextView) findViewById(R.id.txtWeb);                                    //Finds view for Website
+        ImageView webIcon = (ImageView) findViewById(R.id.icoWeb);                                  //Finds view for Website Icon
         Log.v(displayedInformation.getName(), webText.getText().toString());
-        if (displayedInformation.getWebSite() == "") {                      //If website value is empty dismiss the views
+        if (displayedInformation.getWebSite() == "") {                                              //If website value is empty dismiss the views
             webIcon.setVisibility(View.GONE);
             webText.setVisibility(View.GONE);
         }
-        else if (displayedInformation.getWebSite() != ""){                  //If website value is not empty create hyperlink
-            hyperlink = "<a href='" + displayedInformation.getWebSite() + "'>"+ "Website" +"</a>";
-            webText.setClickable(true);                                     //Sets Website text clickable
-            webText.setMovementMethod(LinkMovementMethod.getInstance());    //Enables hyperlink
-            webText.setText(Html.fromHtml(hyperlink));                      //Sets value for Website));
+        else if (displayedInformation.getWebSite() != ""){                                          //If website value is not empty create hyperlink
+            hyperlink = "<a href='" + displayedInformation.getWebSite() + "'>"+ "Website" +"</a>";  //Set hyperlink value
+            webText.setClickable(true);                                                             //Sets Website text clickable
+            webText.setMovementMethod(LinkMovementMethod.getInstance());                            //Enables hyperlink
+            webText.setText(Html.fromHtml(hyperlink));                                              //Sets value for Website));
         }
 
     }

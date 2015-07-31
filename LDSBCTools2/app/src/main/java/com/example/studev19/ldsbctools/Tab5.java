@@ -21,26 +21,26 @@ public class Tab5 extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.tab_5, container, false);
-        webSwipe = (SwipeRefreshLayout) v.findViewById(R.id.swipeWeb);
-        webSwipe.setColorSchemeResources(R.color.primaryColor, R.color.accentColor);
-        final WebView WEB_VIEW = (WebView) v.findViewById(R.id.webView);
+        View v = inflater.inflate(R.layout.tab_5, container, false);                                //Find View
+        webSwipe = (SwipeRefreshLayout) v.findViewById(R.id.swipeWeb);                              //Find Swipe to Refresh
+        webSwipe.setColorSchemeResources(R.color.primaryColor, R.color.accentColor);                //Set swipeToRefresh colors
+        final WebView WEB_VIEW = (WebView) v.findViewById(R.id.webView);                            //Find WebView
         WEB_VIEW.getSettings().setJavaScriptEnabled(true);
 
-        if (connectionStatus == false){
+        if (connectionStatus == false){                                                             //If there is no connection
             String html = "<html><body><p>You must be connected to the internet to display this tab correctly.</p></body></html>";
             String mime = "text/html";
             String encoding = "utf-8";
 
             WEB_VIEW.loadDataWithBaseURL(null, html, mime, encoding, null);
         }
-        else {
+        else {                                                                                      //If there is connection
             WEB_VIEW.loadUrl("https://docs.google.com/a/ldsbc.edu/forms/d/1PGgxSl2w9vsp4cq5jxii5Y6AOgCfCJ75o527xOrXD4U/viewform");
         }
 
         webSwipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onRefresh() {
+            public void onRefresh() {                                                       //Set Refresh Listener
                 webSwipe.setRefreshing(true);
                 (new Handler()).postDelayed(new Runnable() {
                     @Override

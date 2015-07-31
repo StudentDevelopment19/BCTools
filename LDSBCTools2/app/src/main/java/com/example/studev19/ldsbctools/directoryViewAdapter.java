@@ -44,7 +44,7 @@ public class directoryViewAdapter extends RecyclerView.Adapter<directoryViewAdap
     public void onBindViewHolder(MyViewHolder holder, int position) {
         DirectoryObject currentInfo = directoryArray.get(position);
 
-        holder.title.setText(currentInfo.getName());
+        holder.title.setText(currentInfo.getName());                                                //Set value for Service Name
     }
 
     @Override
@@ -58,11 +58,11 @@ public class directoryViewAdapter extends RecyclerView.Adapter<directoryViewAdap
         public MyViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            title = (TextView) itemView.findViewById(R.id.listNameText);
+            title = (TextView) itemView.findViewById(R.id.listNameText);                            //Find TextView for Service Name
         }
 
         @Override
-        public void onClick(View v) {
+        public void onClick(View v) {                                                               //Set onClick Listener
             directoryDetailedActivity.setServiceInfo(directoryArray.get(getPosition()));
             context.startActivity(new Intent(context, directoryDetailedActivity.class));
         }

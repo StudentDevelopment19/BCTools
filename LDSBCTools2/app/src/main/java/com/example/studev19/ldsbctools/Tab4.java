@@ -1,9 +1,6 @@
 package com.example.studev19.ldsbctools;
 
-import android.app.Application;
 import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -46,20 +43,20 @@ public class Tab4 extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         context = getActivity();
-        View v = inflater.inflate(R.layout.tab_4, container, false);
+        View v = inflater.inflate(R.layout.tab_4, container, false);                                //Find view
         noData = (TextView) v.findViewById(R.id.txtDataNotFoundForDeals);
-        recyclerView = (RecyclerView) v.findViewById(R.id.dealList);
-        dealsSwipe = (SwipeRefreshLayout) v.findViewById(R.id.dealSwipeRefresh);
-        dealsSwipe.setColorSchemeResources(R.color.primaryColor, R.color.accentColor);
-        adapter = new dealViewAdapter(getActivity(), getData());
+        recyclerView = (RecyclerView) v.findViewById(R.id.dealList);                                //Find Recycler View
+        dealsSwipe = (SwipeRefreshLayout) v.findViewById(R.id.dealSwipeRefresh);                    //Find Swipe Refresh Layout
+        dealsSwipe.setColorSchemeResources(R.color.primaryColor, R.color.accentColor);              //Set colors for swipeRefreshLayout
+        adapter = new dealViewAdapter(getActivity(), getData());                                    //Create Adapter
         Log.v("Deals Received", "Tab4 " + getData().size());
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapter);                                                           //Set Adapter to RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         dealsSwipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onRefresh() {
-                dealArray.clear();
+        public void onRefresh() {                                                     // Set Refresh Listener
+                dealArray.clear();                                                                  //Clear data set
 
                 //Set Date for current day (today)
                 Calendar c = Calendar.getInstance();
@@ -68,7 +65,7 @@ public class Tab4 extends Fragment {
                 c.set(Calendar.SECOND, 0);
                 today = c.getTime();
 
-                //PARSE QUERY FOR DEALS//
+                //PARSE QUERY FOR DEALS//                                                           //Re-run the parseQuery
                 ParseQuery<ParseObject> query2 = new ParseQuery<ParseObject>("deals");
                 query2.addAscendingOrder("startDate");
                 query2.findInBackground(new FindCallback<ParseObject>() {
@@ -91,7 +88,7 @@ public class Tab4 extends Fragment {
                                 //Assign data to a DealObject
                                 DealObject newObject = new DealObject();
                                 newObject.setDealTitle(dealTitle);
-                                newObject.setDealDesciption(dealDesc);
+                                newObject.setDealDescription(dealDesc);
                                 newObject.setDealAddress(dealAddress);
                                 newObject.setDealCompany(dealCompany);
                                 newObject.setDealStartDate(dealStartDate);

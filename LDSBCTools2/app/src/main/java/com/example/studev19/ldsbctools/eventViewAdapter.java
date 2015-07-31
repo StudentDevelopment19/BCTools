@@ -45,10 +45,10 @@ public class eventViewAdapter extends RecyclerView.Adapter<eventViewAdapter.MyVi
     @Override
     public void onBindViewHolder(eventViewAdapter.MyViewHolder holder, int position) {
         EventDetails currentInfo = eventArray.get(position);
-        SimpleDateFormat df = new SimpleDateFormat("MMM dd, hh:mm a");
-        df.setTimeZone(TimeZone.getTimeZone("MST"));
-        holder.eventName.setText(currentInfo.getName());
-        holder.eventDate.setText(df.format(currentInfo.getStartDate()));
+        SimpleDateFormat df = new SimpleDateFormat("MMM dd, hh:mm a");                              //Set date format
+        df.setTimeZone(TimeZone.getTimeZone("MST"));                                                //Set time zone on MST
+        holder.eventName.setText(currentInfo.getName());                                            //Set value for Event Name
+        holder.eventDate.setText(df.format(currentInfo.getStartDate()));                            //Set value for Event Time
     }
 
     @Override
@@ -63,12 +63,12 @@ public class eventViewAdapter extends RecyclerView.Adapter<eventViewAdapter.MyVi
         public MyViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            eventName = (TextView) itemView.findViewById(R.id.txtEventListName);
-            eventDate = (TextView) itemView.findViewById(R.id.txtEventListTime);
+            eventName = (TextView) itemView.findViewById(R.id.txtEventListName);                    //Find TextView for Event Name
+            eventDate = (TextView) itemView.findViewById(R.id.txtEventListTime);                    //Find TextView for Event Time
         }
 
         @Override
-        public void onClick(View v) {
+        public void onClick(View v) {                                                               //Set onClick Listener
             eventDetailedActivity.setEventInfo(eventArray.get(getPosition()));
             context.startActivity(new Intent(context, eventDetailedActivity.class));
         }
