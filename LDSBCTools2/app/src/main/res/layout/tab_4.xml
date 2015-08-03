@@ -24,9 +24,9 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
+        android:fontFamily="Roboto Medium"
         android:text="Please connect to the internet and refresh the view"
         android:textColor="@color/secondaryTextColor"
-        android:fontFamily="Roboto Medium"
         android:textSize="15sp" />
 
 </LinearLayout>

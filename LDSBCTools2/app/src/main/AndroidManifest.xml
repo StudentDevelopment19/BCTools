@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.studev19.ldsbctools" >
+    package="com.example.studev19.ldsbctools">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -13,11 +13,11 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_no_background"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_main" >
+            android:label="@string/title_activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,7 +27,7 @@
         <activity
             android:name=".directoryDetailedActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_directory_detailed" >
+            android:label="@string/title_activity_directory_detailed">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studev19.ldsbctools.MainActivity" />
@@ -35,7 +35,7 @@
         <activity
             android:name=".eventDetailedActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_event_detailed" >
+            android:label="@string/title_activity_event_detailed">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studev19.ldsbctools.MainActivity" />
@@ -43,7 +43,7 @@
         <activity
             android:name=".dealDetailedActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_deal_detailed" >
+            android:label="@string/title_activity_deal_detailed">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studev19.ldsbctools.MainActivity" />
