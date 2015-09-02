@@ -133,7 +133,8 @@ public class directoryDetailedActivity extends ActionBarActivity {
                     emailIcon.setLayoutParams(lp);
                 }
             }
-            if (phoneIcon.getVisibility() == View.GONE && locationIcon.getVisibility() == View.GONE){//If info for location and phone is not available, the location and phone
+            if (phoneIcon.getVisibility() == View.GONE &&
+                    locationIcon.getVisibility() == View.GONE){                                     //If info for location and phone is not available, the location and phone
                 ViewGroup.LayoutParams p = emailIcon.getLayoutParams();                             //will not be displayed and the email option will be moved up.
                 if (p instanceof  RelativeLayout.LayoutParams){
                     RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams)p;
@@ -157,7 +158,7 @@ public class directoryDetailedActivity extends ActionBarActivity {
             webText.setText(Html.fromHtml(hyperlink));                                              //Sets value for Website));
 
             if (emailIcon.getVisibility() == View.GONE){                                            //If info for phone is not available, the phone will not be displayed
-                ViewGroup.LayoutParams p = webIcon.getLayoutParams();                             //and the email option will be moved up.
+                ViewGroup.LayoutParams p = webIcon.getLayoutParams();                               //and the email option will be moved up.
                 if (p instanceof  RelativeLayout.LayoutParams){
                     RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams)p;
                     lp.addRule(RelativeLayout.BELOW, R.id.icoPhone);
