@@ -1,42 +1,20 @@
-package com.example.studev19.ldsbctools;
+package com.example.studev19.bctools;
 
-import android.app.Application;
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.parse.FindCallback;
-
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-
 import android.support.v4.view.ViewPager;
 
-import com.example.studev19.ldsbctools.tabs.SlidingTabLayout;
-import com.parse.Parse;
-import com.parse.ParseException;
-import com.parse.ParseFile;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
-
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Toast;
+import com.example.studev19.bctools.tabs.SlidingTabLayout;
 
 public class MainActivity extends ActionBarActivity {
 

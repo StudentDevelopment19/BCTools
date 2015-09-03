@@ -1,4 +1,4 @@
-package com.example.studev19.ldsbctools.tabs;
+package com.example.studev19.bctools.tabs;
 
 /*
  * Copyright 2014 Google Inc. All rights reserved.
@@ -19,7 +19,6 @@ package com.example.studev19.ldsbctools.tabs;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.os.Build;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
@@ -33,7 +32,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.studev19.ldsbctools.R;
+import com.example.studev19.bctools.R;
 
 /**
  * To be used with ViewPager to provide a tab indicator component which give constant feedback as to
