@@ -1,4 +1,4 @@
-package com.example.studev19.ldsbctools;
+package com.example.studev19.bctools;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
