@@ -6,7 +6,7 @@
     <string name="action_settings">About</string>
     <string name="title_activity_directory_detailed">directoryDetailedActivity</string>
     <string name="title_activity_event_detailed">eventDetailedActivity</string>
-
+    <string name="current_version">Version 1.0.1</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_deal_detailed">dealDetailedActivity</string>
 </resources>
