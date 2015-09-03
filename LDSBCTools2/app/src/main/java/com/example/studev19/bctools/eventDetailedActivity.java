@@ -141,7 +141,7 @@ public class eventDetailedActivity extends ActionBarActivity {
             case DIALOG_ALERT:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("About this App");
-                builder.setMessage("Version 1.0" + "\n\u00a92015 LDS Business College");
+                builder.setMessage(getString(R.string.current_version) + "\n\u00a92015 LDS Business College");
                 builder.setCancelable(true);
                 builder.setPositiveButton("OK", new OkOnClickListener());
                 AlertDialog dialog = builder.create();
