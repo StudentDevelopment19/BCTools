@@ -150,10 +150,24 @@ public class parseApplicationSetup extends Application{
                 } else for (ParseObject objects : list) {
                     //Get data from Parse.com table
                     String eventName = objects.getString("eventName");
+                    if (objects.getString("eventName").isEmpty()){
+                        eventName = "";
+                    }
                     String eventDesc = objects.getString("description");
+                    if (objects.getString("description").isEmpty()){
+                        eventDesc = "";
+                    }
                     String eventLocation = objects.getString("location");
+                    if (objects.getString("location").isEmpty()){
+                        eventLocation = "";
+                    }
+                    String eventWebPage = objects.getString("website");
+                    if (objects.getString("website").isEmpty()){
+                        eventWebPage = "";
+                    }
                     Date eventStartDate = objects.getDate("startDate");
                     Date eventEndDate = objects.getDate("endDate");
+                    ParseFile eventImage = objects.getParseFile("image");
 
                     //ADD ONLY THE UPCOMING EVENTS
                     if (eventEndDate.before(today) == false) {
@@ -162,10 +176,12 @@ public class parseApplicationSetup extends Application{
                         newObject.setName(eventName);
                         newObject.setDescription(eventDesc);
                         newObject.setLocation(eventLocation);
+                        newObject.setEventWeb(eventWebPage);
                         newObject.setStartDate(eventStartDate);
                         newObject.setStartDateCalendar(eventStartDate);
                         newObject.setEndDate(eventEndDate);
                         newObject.setEndDateCalendar(eventEndDate);
+                        newObject.setEventImage(eventImage);
 
                         //Add object to eventArray
                         eventArray.add(newObject);

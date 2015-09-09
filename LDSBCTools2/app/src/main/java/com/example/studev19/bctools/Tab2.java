@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
@@ -43,10 +44,10 @@ public class Tab2 extends Fragment {
 
         context = getActivity();
         View v = inflater.inflate(R.layout.tab_2, container, false);                                //Find view
-        eventSwipe = (SwipeRefreshLayout) v.findViewById(R.id.eventSwipeRefresh);                   //Find Swipe Refresh Layout
-        eventSwipe.setColorSchemeResources(R.color.primaryColor, R.color.accentColor);              //Set colors for swipeRefreshLayout
         noData = (TextView) v.findViewById(R.id.txtDataNotFoundForEvents);
         recyclerView = (RecyclerView) v.findViewById(R.id.eventList);                               //Find Recycler View
+        eventSwipe = (SwipeRefreshLayout) v.findViewById(R.id.eventSwipeRefresh);                   //Find Swipe Refresh Layout
+        eventSwipe.setColorSchemeResources(R.color.primaryColor, R.color.accentColor);              //Set colors for swipeRefreshLayout
         adapter = new eventViewAdapter(getActivity(), getData());                                   //Create Adapter
         Log.v("Events Received", "Tab2 " + getData().size());
         recyclerView.setAdapter(adapter);                                                           //Set Adapter to RecyclerView
@@ -83,10 +84,24 @@ public class Tab2 extends Fragment {
                         } else for (ParseObject objects : list) {
                             //Get data from Parse.com table
                             String eventName = objects.getString("eventName");
+                            if (objects.getString("eventName").isEmpty()) {
+                                eventName = "";
+                            }
                             String eventDesc = objects.getString("description");
+                            if (objects.getString("description").isEmpty()) {
+                                eventDesc = "";
+                            }
                             String eventLocation = objects.getString("location");
+                            if (objects.getString("location").isEmpty()) {
+                                eventLocation = "";
+                            }
+                            String eventWebPage = objects.getString("website");
+                            if (objects.getString("website").isEmpty()) {
+                                eventWebPage = "";
+                            }
                             Date eventStartDate = objects.getDate("startDate");
                             Date eventEndDate = objects.getDate("endDate");
+                            ParseFile eventImage = objects.getParseFile("image");
 
                             //ADD ONLY THE UPCOMING EVENTS
                             if (eventEndDate.before(today) == false) {
@@ -95,10 +110,12 @@ public class Tab2 extends Fragment {
                                 newObject.setName(eventName);
                                 newObject.setDescription(eventDesc);
                                 newObject.setLocation(eventLocation);
+                                newObject.setEventWeb(eventWebPage);
                                 newObject.setStartDate(eventStartDate);
                                 newObject.setStartDateCalendar(eventStartDate);
                                 newObject.setEndDate(eventEndDate);
                                 newObject.setEndDateCalendar(eventEndDate);
+                                newObject.setEventImage(eventImage);
 
                                 //Add object to eventArray
                                 eventArray.add(newObject);
@@ -124,20 +141,16 @@ public class Tab2 extends Fragment {
         return v;
     }
 
-    public static void setData(List<EventDetails> array){
+    public static void setData(List<EventDetails> array) {
         eventArray = array;
     }
 
-    public static List<EventDetails> getData(){
+    public static List<EventDetails> getData() {
         return eventArray;
     }
 
-    public static void setConnectionStatus(boolean status){
+    public static void setConnectionStatus(boolean status) {
         connectionStatus = status;
-    }
-
-    public boolean getConnectionStatus(){
-        return connectionStatus;
     }
 
 }

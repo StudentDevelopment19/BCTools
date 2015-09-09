@@ -21,20 +21,20 @@ import java.util.TimeZone;
 /**
  * Created by studev19 on 7/8/2015.
  */
-public class dealViewAdapter extends RecyclerView.Adapter<dealViewAdapter.MyViewHolder>{
+public class dealViewAdapter extends RecyclerView.Adapter<dealViewAdapter.MyViewHolder> {
 
     private LayoutInflater inflater;
     public static List<DealObject> dealArray;
     private Context context;
 
-    public dealViewAdapter(Context context, List<DealObject> dealList){
+    public dealViewAdapter(Context context, List<DealObject> dealList) {
         this.context = context;
         inflater = LayoutInflater.from(context);
         dealArray = dealList;
         Log.v("Deals Received", "dealViewAdapter " + dealArray.size());
     }
 
-    public void updateDealData(List<DealObject> deals){
+    public void updateDealData(List<DealObject> deals) {
         dealArray = deals;
     }
 
@@ -54,11 +54,7 @@ public class dealViewAdapter extends RecyclerView.Adapter<dealViewAdapter.MyView
         dateFormat.setTimeZone(TimeZone.getTimeZone("MST"));                                        //Set time zone
 
         DealObject currentInfo = dealArray.get(position);                                           //Get position from object
-        holder.dealDesc1.setText(currentInfo.getDealDescription() +                                 //Set value for deal description and company
-                " @ " + currentInfo.getDealCompany());
-        holder.dealDesc2.setText("Valid through " +                                                 //Set value for "Valid through"
-                dateFormat.format(currentInfo.getDealStartDate()) + " to " +
-                dateFormat.format(currentInfo.getDealEndDate()));
+        holder.dealDesc1.setText(currentInfo.getDealTitle());                                       //Set value for deal name
         ParseFile imageFile = currentInfo.getDealImage();                                           //Get image for detailed view
         holder.parseImageView.setParseFile(imageFile);                                              //Set image for detailed view
         holder.parseImageView.loadInBackground(new GetDataCallback() {
@@ -79,16 +75,17 @@ public class dealViewAdapter extends RecyclerView.Adapter<dealViewAdapter.MyView
         return dealArray.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        TextView dealDesc1, dealDesc2;
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        TextView dealDesc1;
         ParseImageView parseImageView;
-        public MyViewHolder(View itemView){
+
+        public MyViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
             dealDesc1 = (TextView) itemView.findViewById(R.id.txtDealRowDesc1);                     //Find TextView for deal description and company
-            dealDesc2 = (TextView) itemView.findViewById(R.id.txtDealRowDesc2);                     //Find TextView for "Valid through"
             parseImageView = (ParseImageView) itemView.findViewById(R.id.imgDealRowImage);          //Find ImageView
         }
+
         @Override
         public void onClick(View v) {                                                               //Set onClick Listener
             dealDetailedActivity.setDealInfo(dealArray.get(getPosition()));

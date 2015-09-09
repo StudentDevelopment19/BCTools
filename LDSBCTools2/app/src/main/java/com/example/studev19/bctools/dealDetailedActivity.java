@@ -2,8 +2,8 @@ package com.example.studev19.bctools;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -50,7 +50,7 @@ public class dealDetailedActivity extends ActionBarActivity {
         dealImage.setParseFile(imageFile);                                                          //Set dealImage as Image from parse
         dealImage.loadInBackground(new GetDataCallback() {
             @Override
-public void done(byte[] bytes, ParseException e) {                                                  //This process makes the image visible from app
+            public void done(byte[] bytes, ParseException e) {                                                  //This process makes the image visible from app
                 //The image is loaded and displayed
                 int oldHeight = dealImage.getHeight();
                 int oldWidth = dealImage.getWidth();
@@ -68,7 +68,7 @@ public void done(byte[] bytes, ParseException e) {                              
         TextView dealAddressText = (TextView) findViewById(R.id.txtDealAddress);                    //Find TextView for dealAddress
         dealAddressText.setText(displayedInformation.getDealAddress());                             //Set value for dealAddress
         TextView dealStDateText = (TextView) findViewById(R.id.txtDealDates);                       //Find TextView for dealDate
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM, dd");                              //Set dateFormat
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd");                              //Set dateFormat
         dateFormat.setTimeZone(TimeZone.getTimeZone("MST"));                                        //Set time zone to MST
         dealStDateText.setText(dateFormat.format(displayedInformation.
                 getDealStartDateOnMST()) + " to " +

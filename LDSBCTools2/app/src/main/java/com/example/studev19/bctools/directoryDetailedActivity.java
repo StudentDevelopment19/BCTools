@@ -3,10 +3,11 @@ package com.example.studev19.bctools;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
@@ -14,7 +15,6 @@ import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -54,11 +54,10 @@ public class directoryDetailedActivity extends ActionBarActivity {
         //LOCATION SECTION
         TextView locationText = (TextView) findViewById(R.id.txtLocation);                          //Find view for Location
         ImageView locationIcon = (ImageView) findViewById(R.id.icoLocation);                        //Finds view for Location Icon
-        if (displayedInformation.getLocation() == "") {                                             //If website value is empty dismiss the views
+        if (displayedInformation.getLocation() == "") {                                             //If Location value is empty dismiss the views
             locationIcon.setVisibility(View.GONE);
             locationText.setVisibility(View.GONE);
-        }
-        else if (displayedInformation.getLocation() != ""){                                         //If website value is not empty create hyperlink
+        } else if (displayedInformation.getLocation() != "") {                                         //If Location value is not empty show Location
             locationText.setText(displayedInformation.getLocation());                               //Sets value for Location from Array
         }
 
@@ -68,8 +67,7 @@ public class directoryDetailedActivity extends ActionBarActivity {
         if (displayedInformation.getPhone() == "") {                                                //If phone value is empty dismiss the views
             phoneIcon.setVisibility(View.GONE);
             phoneText.setVisibility(View.GONE);
-        }
-        else if (displayedInformation.getPhone() != ""){                                            //If website value is not empty create hyperlink
+        } else if (displayedInformation.getPhone() != "") {                                            //If website value is not empty create hyperlink
             phoneText.setOnClickListener(new View.OnClickListener() {            //Sets onClick listener for Phone Call
                 @Override
                 public void onClick(View view) {
@@ -86,23 +84,23 @@ public class directoryDetailedActivity extends ActionBarActivity {
                 }
             });
             phoneText.setText(displayedInformation.getPhone());                                     //Sets value for phone number from array
-            if (locationIcon.getVisibility() == View.GONE){                                         //If info for location is not available, the location will not be displayed
+            if (locationIcon.getVisibility() == View.GONE) {                                         //If info for location is not available, the location will not be displayed
                 ViewGroup.LayoutParams p = phoneIcon.getLayoutParams();                             //and the phone option will be moved up.
-                if (p instanceof  RelativeLayout.LayoutParams){
-                    RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams)p;
+                if (p instanceof RelativeLayout.LayoutParams) {
+                    RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) p;
                     lp.addRule(RelativeLayout.BELOW, R.id.divider1);
                     phoneIcon.setLayoutParams(lp);
                 }
             }
         }
 
+        //EMAIL SECTION
         TextView emailText = (TextView) findViewById(R.id.txtEmail);                                //Find view for Email
         ImageView emailIcon = (ImageView) findViewById(R.id.icoEmail);                              //Finds view for Email Icon
         if (displayedInformation.getEmail() == "") {                                                //If email value is empty dismiss the views
             emailIcon.setVisibility(View.GONE);
             emailText.setVisibility(View.GONE);
-        }
-        else if (displayedInformation.getEmail() != ""){                                            //If website value is not show value
+        } else if (displayedInformation.getEmail() != "") {                                            //If website value is not show value
             emailText.setOnClickListener(new View.OnClickListener() {                                   //Sets onClick listener for Email
                 @Override
                 public void onClick(View view) {
@@ -120,42 +118,41 @@ public class directoryDetailedActivity extends ActionBarActivity {
             });
 
             emailText.setText(displayedInformation.getEmail());
-            if (phoneIcon.getVisibility() == View.GONE){                                            //If info for phone is not available, the phone will not be displayed
+            if (phoneIcon.getVisibility() == View.GONE) {                                            //If info for phone is not available, the phone will not be displayed
                 ViewGroup.LayoutParams p = emailIcon.getLayoutParams();                             //and the email option will be moved up.
-                if (p instanceof  RelativeLayout.LayoutParams){
-                    RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams)p;
+                if (p instanceof RelativeLayout.LayoutParams) {
+                    RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) p;
                     lp.addRule(RelativeLayout.BELOW, R.id.icoLocation);
                     emailIcon.setLayoutParams(lp);
                 }
             }
             if (phoneIcon.getVisibility() == View.GONE &&
-                    locationIcon.getVisibility() == View.GONE){                                     //If info for location and phone is not available, the location and phone
+                    locationIcon.getVisibility() == View.GONE) {                                     //If info for location and phone is not available, the location and phone
                 ViewGroup.LayoutParams p = emailIcon.getLayoutParams();                             //will not be displayed and the email option will be moved up.
-                if (p instanceof  RelativeLayout.LayoutParams){
-                    RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams)p;
+                if (p instanceof RelativeLayout.LayoutParams) {
+                    RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) p;
                     lp.addRule(RelativeLayout.BELOW, R.id.divider1);
                     emailIcon.setLayoutParams(lp);
                 }
             }
         }
-
+        //WEBSITE SECTION
         TextView webText = (TextView) findViewById(R.id.txtWeb);                                    //Finds view for Website
         ImageView webIcon = (ImageView) findViewById(R.id.icoWeb);                                  //Finds view for Website Icon
         Log.v(displayedInformation.getName(), webText.getText().toString());
         if (displayedInformation.getWebSite() == "") {                                              //If website value is empty dismiss the views
             webIcon.setVisibility(View.GONE);
             webText.setVisibility(View.GONE);
-        }
-        else if (displayedInformation.getWebSite() != ""){                                          //If website value is not empty create hyperlink
-            hyperlink = "<a href='" + displayedInformation.getWebSite() + "'>"+ "Website" +"</a>";  //Set hyperlink value
+        } else if (displayedInformation.getWebSite() != "") {                                          //If website value is not empty create hyperlink
+            hyperlink = "<a href='" + displayedInformation.getWebSite() + "'>" + "Website" + "</a>";  //Set hyperlink value
             webText.setClickable(true);                                                             //Sets Website text clickable
             webText.setMovementMethod(LinkMovementMethod.getInstance());                            //Enables hyperlink
             webText.setText(Html.fromHtml(hyperlink));                                              //Sets value for Website));
 
-            if (emailIcon.getVisibility() == View.GONE){                                            //If info for phone is not available, the phone will not be displayed
+            if (emailIcon.getVisibility() == View.GONE) {                                            //If info for phone is not available, the phone will not be displayed
                 ViewGroup.LayoutParams p = webIcon.getLayoutParams();                               //and the email option will be moved up.
-                if (p instanceof  RelativeLayout.LayoutParams){
-                    RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams)p;
+                if (p instanceof RelativeLayout.LayoutParams) {
+                    RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) p;
                     lp.addRule(RelativeLayout.BELOW, R.id.icoPhone);
                     emailIcon.setLayoutParams(lp);
                 }

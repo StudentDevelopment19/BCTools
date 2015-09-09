@@ -31,31 +31,16 @@
                 android:id="@+id/txtDealRowDesc1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/txtDealRowDesc2"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
                 android:background="#66000000"
                 android:fontFamily="Roboto Regular"
                 android:hint="Deal Title"
+                android:paddingBottom="8dp"
                 android:paddingLeft="8dp"
                 android:paddingTop="8dp"
                 android:textColor="@color/iconsColor"
                 android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/txtDealRowDesc2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:background="#66000000"
-                android:fontFamily="Roboto Regular"
-                android:hint="Deal Description"
-                android:paddingBottom="8dp"
-                android:paddingLeft="8dp"
-                android:textColor="@color/iconsColor"
-                android:textSize="14sp" />
 
         </RelativeLayout>
 
