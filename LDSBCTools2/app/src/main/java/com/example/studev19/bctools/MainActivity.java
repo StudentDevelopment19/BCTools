@@ -6,14 +6,13 @@ import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import android.support.v4.view.ViewPager;
-
 import com.example.studev19.bctools.tabs.SlidingTabLayout;
 
 public class MainActivity extends ActionBarActivity {
@@ -61,7 +60,12 @@ public class MainActivity extends ActionBarActivity {
         //Setting the ViewPager for the SlidingTabsLayout
         tabs.setViewPager(pager);
 
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment)
+                getSupportFragmentManager().findFragmentById(R.id.navigationDrawer);
+
+        drawerFragment.setUp(R.id.navigationDrawer, (DrawerLayout)findViewById(R.id.drawerLayout), toolbar);
 
         if (connection == false){
             showDialog(NO_INTERNET_DIALOG);
