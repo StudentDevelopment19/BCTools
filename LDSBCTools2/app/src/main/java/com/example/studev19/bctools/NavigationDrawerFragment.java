@@ -69,7 +69,7 @@ public class NavigationDrawerFragment extends Fragment{
     }
 
     public static List<NavigationObject> getData(){
-        Log.v("NavDrawer", "NavDrawerFragment onCreate happens");
+        Log.v("NavDrawer", "NavDrawerFragment getData happens");
         List<NavigationObject> data = new ArrayList<>();
         String[] titles = {"Home", "Directory", "Events", "BCSA", "Deals", "Feedback"};
         int[] images = {R.drawable.ic_contact, R.drawable.ic_phone_custom, R.drawable.ic_event, R.drawable.ic_company, R.drawable.ic_shopping, R.drawable.ic_feedback};
@@ -79,7 +79,7 @@ public class NavigationDrawerFragment extends Fragment{
             current.setIcon(images[i]);
             data.add(current);
         }
-        Log.v("NavDrawer", "NavDrawerFragment onCreate happened");
+        Log.v("NavDrawer", "NavDrawerFragment getData happened");
         return data;
     }
 
@@ -118,6 +118,8 @@ public class NavigationDrawerFragment extends Fragment{
                 mDrawerToggle.syncState();
             }
         });
+
+        Log.v("NavDrawer", "NavDrawerFragment setUp happened");
     }
 
     public static void saveToPreferences(Context context, String preferenceName, String preferenceValue){
@@ -127,11 +129,13 @@ public class NavigationDrawerFragment extends Fragment{
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(preferenceName, preferenceValue);
         editor.apply();
+        Log.v("NavDrawer", "NavDrawerFragment saveToPreferences happened");
     }
 
     public static String readFromPreferences(Context context, String preferenceName, String defaultValue){
         Log.v("NavDrawer", "NavDrawerFragment readFromPreferences happens");
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
+        Log.v("NavDrawer", "NavDrawerFragment readFromPreferences happened");
         return sharedPreferences.getString(preferenceName, defaultValue);
     }
 

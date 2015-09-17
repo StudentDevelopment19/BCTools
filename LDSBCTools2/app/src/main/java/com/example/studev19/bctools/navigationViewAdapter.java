@@ -46,6 +46,7 @@ public class navigationViewAdapter extends RecyclerView.Adapter<navigationViewAd
         NavigationObject currentData = navList.get(position);
         holder.title.setText(currentData.getName());
         holder.icon.setImageResource(currentData.getIcon());
+        Log.v("NavDrawer", "navViewAdapter onBindViewHolder happened");
     }
 
     @Override
