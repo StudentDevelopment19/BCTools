@@ -1,20 +1,24 @@
 package com.example.studev19.bctools;
 
+import android.app.Dialog;
 import android.content.Context;
-import android.os.Bundle;
+import android.content.DialogInterface;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.studev19.bctools.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -25,37 +29,45 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by studev19 on 5/18/2015.
- */
-public class Tab4 extends Fragment {
+public class DealListActivity extends AppCompatActivity {
 
+    private static Toolbar toolbar;
+    private static final int DIALOG_ALERT = 10;
+    private static final int NO_INTERNET_DIALOG = 5;
     private static RecyclerView recyclerView;
     private static SwipeRefreshLayout dealsSwipe;
     private static dealViewAdapter adapter;
     private static List<DealObject> dealArray;
-    private TextView noData;
-    private static boolean connectionStatus;
     private static Context context;
     private static Date today;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_deal_list);
 
-        context = getActivity();
-        View v = inflater.inflate(R.layout.tab_4, container, false);                                //Find view
-        noData = (TextView) v.findViewById(R.id.txtDataNotFoundForDeals);
-        recyclerView = (RecyclerView) v.findViewById(R.id.dealList);                                //Find Recycler View
-        dealsSwipe = (SwipeRefreshLayout) v.findViewById(R.id.dealSwipeRefresh);                    //Find Swipe Refresh Layout
+        toolbar = (Toolbar) findViewById(R.id.app_bar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        context = this;
+
+        recyclerView = (RecyclerView) findViewById(R.id.dealList);
+        dealsSwipe = (SwipeRefreshLayout) findViewById(R.id.dealSwipeRefresh);
         dealsSwipe.setColorSchemeResources(R.color.primaryColor, R.color.accentColor);              //Set colors for swipeRefreshLayout
-        adapter = new dealViewAdapter(getActivity(), getData());                                    //Create Adapter
-        Log.v("Deals Received", "Tab4 " + getData().size());
+        adapter = new dealViewAdapter(context, getData());                                    //Create Adapter
         recyclerView.setAdapter(adapter);                                                           //Set Adapter to RecyclerView
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                adapter.notifyDataSetChanged();
+            }
+        }, 1000);
 
         dealsSwipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-        public void onRefresh() {                                                     // Set Refresh Listener
+            public void onRefresh() {                                                     // Set Refresh Listener
                 dealArray.clear();                                                                  //Clear data set
 
                 //Set Date for current day (today)
@@ -115,16 +127,69 @@ public class Tab4 extends Fragment {
             }
         });
 
-        /*if (dealArray.isEmpty() == true){
-            recyclerView.setVisibility(View.GONE);
-            if (connectionStatus == true){
-                noData.setText("There are no deals to show right now. Try again latter by refreshing the view");
-            }
+        NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment)
+                getSupportFragmentManager().findFragmentById(R.id.navigationDrawer);
+
+        drawerFragment.setUp(R.id.navigationDrawer, (DrawerLayout) findViewById(R.id.drawerLayout), toolbar);
+
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_deal_list, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            showDialog(DIALOG_ALERT);
+            return true;
         }
-        else {
-            noData.setVisibility(View.GONE);
-        }*/
-        return v;
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id){
+        switch (id) {
+            case DIALOG_ALERT:
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("About this App");
+                builder.setMessage(getString(R.string.current_version) + "\n\u00a92015 LDS Business College");
+                builder.setCancelable(true);
+                builder.setPositiveButton("OK", new OkOnClickListener());
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                break;
+            case NO_INTERNET_DIALOG:
+                AlertDialog.Builder internet = new AlertDialog.Builder(this);
+                internet.setTitle("You are not connected to the internet");
+                internet.setMessage("Some information cannot be displayed without internet connection");
+                internet.setCancelable(true);
+                internet.setPositiveButton("OK", new OkOnClickListener());
+                AlertDialog internetDialog = internet.create();
+                internetDialog.show();
+                break;
+        }
+
+        return super.onCreateDialog(id);
+    }
+
+    private final class OkOnClickListener implements DialogInterface.OnClickListener{
+
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+
+        }
     }
 
     public static void setData(List<DealObject> array){
@@ -133,10 +198,6 @@ public class Tab4 extends Fragment {
 
     public static List<DealObject> getData(){
         return dealArray;
-    }
-
-    public static void setConnectionStatus(boolean status){
-        connectionStatus = status;
     }
 
 }

@@ -42,7 +42,6 @@ public class directoryViewAdapter extends RecyclerView.Adapter<directoryViewAdap
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         DirectoryObject currentInfo = directoryArray.get(position);
-
         holder.title.setText(currentInfo.getName());                                                //Set value for Service Name
     }
 

@@ -45,22 +45,19 @@ public class parseApplicationSetup extends Application{
         setDealData();
 
         //SENDS INFORMATION TO DIRECTORY INFLATER
-        Tab1.setData(getDirectoryData());
+        DirectoryListActivity.setData(getDirectoryData());
         Log.v("Directory Sent", "parseApplicationSetup " + directoryArray.size());
 
         //SENDS INFORMATION TO EVENT INFLATER
-        Tab2.setData(getEventData());
+        EventListActivity.setData(getEventData());
         Log.v("Events Sent", "parseApplicationSetup " + eventArray.size());
 
         //SENDS INFORMATION TO DEAL INFLATER
-        Tab4.setData(getDealData());
+        DealListActivity.setData(getDealData());
         Log.v("Deals Sent", "parseApplicationSetup " + dealArray.size());
 
         connection = internetConnection();
-
-        Tab2.setConnectionStatus(connection);
-        Tab4.setConnectionStatus(connection);
-        Tab5.setConnectionStatus(connection);
+        FeedbackActivity.setConnectionStatus(connection);
 
 
 

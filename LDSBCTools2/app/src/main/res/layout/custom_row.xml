@@ -1,28 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:clickable="true"
+    android:layout_height="56dp"
     android:background="@drawable/ripple_effect"
-    >
+    android:clickable="true"
+    android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/icoContact"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginLeft="16dp"
-        android:minHeight="48dp"
-        android:src="@drawable/ic_contact" />
+    <RelativeLayout
+        android:layout_width="40dp"
+        android:layout_height="56dp"
+        android:layout_marginLeft="16dp">
+
+        <ImageView
+            android:id="@+id/icoContact"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:src="@drawable/material_circle" />
+        <TextView
+            android:id="@+id/txtDirectoryChar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="sans-serif-thin"
+            android:textSize="24sp"
+            android:hint="S"
+            android:textColorHint="@color/iconsColor"/>
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/listNameText"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="match_parent"
+        android:minHeight="56dp"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="72dp"
         android:layout_marginRight="16dp"
-        android:fontFamily="Roboto Regular"
+        android:fontFamily="sans-serif"
         android:hint="Directory Item"
         android:paddingTop="12dp"
         android:textSize="16sp" />

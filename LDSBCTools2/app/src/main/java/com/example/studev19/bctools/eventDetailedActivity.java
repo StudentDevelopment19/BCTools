@@ -35,8 +35,8 @@ import java.util.TimeZone;
 public class eventDetailedActivity extends ActionBarActivity {
     Toolbar toolbar;
     private static EventDetails displayedInformation;
-    Calendar calStartDate;
-    Calendar calEndDate;
+    private Calendar calStartDate;
+    private Calendar calEndDate;
     private static final int DIALOG_ALERT = 10;
     private static String hyperlink;
 

@@ -2,30 +2,42 @@ package com.example.studev19.bctools;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.os.Bundle;
 //import android.app.Fragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NavigationDrawerFragment extends Fragment {
+public class NavigationDrawerFragment extends Fragment{
 
     public static final String PREF_FILE_NAME = "testPref";
     public static final String KEY_USER_LEARNED_DRAWER = "user_learned_drawer";
 
-    private ActionBarDrawerToggle mDrawerToggle;
-    private DrawerLayout mDrawerLayout;
-    private boolean mUserLearnedDrawer;
-    private boolean mFromSavedInstanceState;
+    private static ActionBarDrawerToggle mDrawerToggle;
+    private static DrawerLayout mDrawerLayout;
+    private static boolean mUserLearnedDrawer;
+    private static boolean mFromSavedInstanceState;
     private View containerView;
+
+    private RecyclerView navRecycler;
+    private static navigationViewAdapter adapter;
 
     public NavigationDrawerFragment() {
         // Required empty public constructor
@@ -34,21 +46,45 @@ public class NavigationDrawerFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        mUserLearnedDrawer = Boolean.valueOf(readFromPreferences(getActivity(), KEY_USER_LEARNED_DRAWER, "false"));
+        Log.v("NavDrawer", "NavDrawerFragment onCreate happens");
+        mUserLearnedDrawer = Boolean.valueOf(readFromPreferences(getActivity(), KEY_USER_LEARNED_DRAWER, "true"));
         if (savedInstanceState != null){
             mFromSavedInstanceState = true;
         }
+        Log.v("NavDrawer", "NavDrawerFragment onCreate happened");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
+        Log.v("NavDrawer", "NavDrawerFragment onCreateView happens");
+        View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
+        navRecycler = (RecyclerView) layout.findViewById(R.id.navRecyclerView);
+        adapter = new navigationViewAdapter(getActivity(), getData());
+        navRecycler.setAdapter(adapter);
+        navRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
+        Log.v("NavDrawer", "NavDrawerFragment onCreateView happened");
+        return layout;
     }
 
+    public static List<NavigationObject> getData(){
+        Log.v("NavDrawer", "NavDrawerFragment onCreate happens");
+        List<NavigationObject> data = new ArrayList<>();
+        String[] titles = {"Home", "Directory", "Events", "BCSA", "Deals", "Feedback"};
+        int[] images = {R.drawable.ic_contact, R.drawable.ic_phone_custom, R.drawable.ic_event, R.drawable.ic_company, R.drawable.ic_shopping, R.drawable.ic_feedback};
+        for (int i=0; i<titles.length; i++){
+            NavigationObject current = new NavigationObject();
+            current.setName(titles[i]);
+            current.setIcon(images[i]);
+            data.add(current);
+        }
+        Log.v("NavDrawer", "NavDrawerFragment onCreate happened");
+        return data;
+    }
 
-    public void setUp(int fragmentID,DrawerLayout drawerLayout, Toolbar toolbar) {
+    public void setUp(int fragmentID,DrawerLayout drawerLayout, final Toolbar toolbar) {
+        Log.v("NavDrawer", "NavDrawerFragment setUp happens");
         containerView = getActivity().findViewById(fragmentID);
         mDrawerLayout = drawerLayout;
         mDrawerToggle = new ActionBarDrawerToggle(getActivity(), drawerLayout, toolbar,
@@ -56,7 +92,8 @@ public class NavigationDrawerFragment extends Fragment {
             @Override
             public  void onDrawerOpened(View drawerView){
                 super.onDrawerOpened(drawerView);
-                if (mUserLearnedDrawer){
+                Log.v("NavDrawer", "NavDrawerFragment setUp onDrawerOpened happens");
+                if (!mUserLearnedDrawer){
                     mUserLearnedDrawer = true;
                     saveToPreferences(getActivity(), KEY_USER_LEARNED_DRAWER, mUserLearnedDrawer+"");
                 }
@@ -66,8 +103,10 @@ public class NavigationDrawerFragment extends Fragment {
             @Override
             public void onDrawerClosed(View drawerView){
                 super.onDrawerClosed(drawerView);
+                Log.v("NavDrawer", "NavDrawerFragment setUp onDrawerClosed happens");
                 getActivity().invalidateOptionsMenu();
             }
+
         };
         if (!mUserLearnedDrawer && !mFromSavedInstanceState){
             mDrawerLayout.openDrawer(containerView);
@@ -82,14 +121,16 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
     public static void saveToPreferences(Context context, String preferenceName, String preferenceValue){
+        Log.v("NavDrawer", "NavDrawerFragment saveToPreferences happens");
         SharedPreferences sharedPreferences = context.getSharedPreferences
                 (PREF_FILE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(preferenceName, preferenceValue);
-        editor.commit();
+        editor.apply();
     }
 
     public static String readFromPreferences(Context context, String preferenceName, String defaultValue){
+        Log.v("NavDrawer", "NavDrawerFragment readFromPreferences happens");
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
         return sharedPreferences.getString(preferenceName, defaultValue);
     }
