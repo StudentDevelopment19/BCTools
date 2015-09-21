@@ -15,6 +15,7 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.PushService;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -38,6 +39,7 @@ public class parseApplicationSetup extends Application{
 
         super.onCreate();
         Parse.initialize(this, getString(R.string.parseAppID), getString(R.string.parseClientID));
+        PushService.setDefaultPushCallback(this, MainActivity.class);
 
         //SET DATA TO ARRAYS
         setDirectoryData();

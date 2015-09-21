@@ -15,9 +15,9 @@
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_directory">DirectoryActivity</string>
-    <string name="title_activity_directory_list">DirectoryListActivity</string>
-    <string name="title_activity_event_list">EventListActivity</string>
-    <string name="title_activity_deal_list">DealListActivity</string>
-    <string name="title_activity_bcsa">BCSAActivity</string>
-    <string name="title_activity_feedback">FeedbackActivity</string>
+    <string name="title_activity_directory_list">Directory</string>
+    <string name="title_activity_event_list">Events</string>
+    <string name="title_activity_deal_list">Deals</string>
+    <string name="title_activity_bcsa">BCSA</string>
+    <string name="title_activity_feedback">Feedback</string>
 </resources>
