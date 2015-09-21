@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.studev19.bctools.MainActivity">
+    tools:context="com.example.studev19.bctools.EventListActivity">
 
     <include
         android:id="@+id/app_bar"
@@ -18,17 +18,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ScrollView
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/eventSwipeRefresh"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:paddingTop="8dp">
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/eventList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"/>
 
-                </RelativeLayout>
-
-            </ScrollView>
+            </android.support.v4.widget.SwipeRefreshLayout>
 
         </FrameLayout>
 

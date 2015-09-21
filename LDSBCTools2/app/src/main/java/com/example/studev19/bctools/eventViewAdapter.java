@@ -7,7 +7,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+
+import com.parse.GetDataCallback;
+import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseImageView;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -43,12 +49,24 @@ public class eventViewAdapter extends RecyclerView.Adapter<eventViewAdapter.MyVi
     }
 
     @Override
-    public void onBindViewHolder(eventViewAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(final eventViewAdapter.MyViewHolder holder, int position) {
         EventDetails currentInfo = eventArray.get(position);
         SimpleDateFormat df = new SimpleDateFormat("MMM dd, hh:mm a");                              //Set date format
         df.setTimeZone(TimeZone.getTimeZone("MST"));                                                //Set time zone on MST
         holder.eventName.setText(currentInfo.getName());                                            //Set value for Event Name
         holder.eventDate.setText(df.format(currentInfo.getStartDate()));                            //Set value for Event Time
+        ParseFile imageFile = currentInfo.getEventImage();
+        holder.eventParseImageView.setParseFile(imageFile);
+        holder.eventParseImageView.loadInBackground(new GetDataCallback() {
+            @Override
+            public void done(byte[] bytes, ParseException e) {
+                //The image is loaded and displayed
+                int oldHeight = holder.eventParseImageView.getHeight();
+                int oldWidth = holder.eventParseImageView.getWidth();
+                Log.v("LOG!!!!!!", "imageView height = " + oldHeight);      // DISPLAYS 90 px
+                Log.v("LOG!!!!!!", "imageView width = " + oldWidth);        // DISPLAYS 90 px
+            }
+        });
     }
 
     @Override
@@ -60,15 +78,17 @@ public class eventViewAdapter extends RecyclerView.Adapter<eventViewAdapter.MyVi
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView eventName;
         TextView eventDate;
+        ParseImageView eventParseImageView;
         public MyViewHolder(View itemView) {
             super(itemView);
-            itemView.setOnClickListener(this);
             eventName = (TextView) itemView.findViewById(R.id.txtEventListName);                    //Find TextView for Event Name
             eventDate = (TextView) itemView.findViewById(R.id.txtEventListTime);                    //Find TextView for Event Time
+            eventParseImageView = (ParseImageView) itemView.findViewById(R.id.imgEventRowImage);
+            itemView.setOnClickListener(this);
         }
 
         @Override
-        public void onClick(View v) {                                                               //Set onClick Listener
+        public void onClick(View v) {
             eventDetailedActivity.setEventInfo(eventArray.get(getPosition()));
             context.startActivity(new Intent(context, eventDetailedActivity.class));
         }

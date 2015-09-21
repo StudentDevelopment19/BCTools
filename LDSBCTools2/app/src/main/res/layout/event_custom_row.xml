@@ -1,12 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/ripple_effect"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
     android:clickable="true"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:paddingBottom="8dp"
+    android:paddingTop="16dp">
 
-    <RelativeLayout
+    <!--CardView 1 layout-->
+
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        card_view:cardCornerRadius="4dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.parse.ParseImageView
+                android:id="@+id/imgEventRowImage"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/txtEventListName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imgEventRowImage"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:hint="Directory Item"
+                android:paddingBottom="8dp"
+                android:paddingTop="8dp"
+                android:textSize="20sp"
+                android:textColor="@color/primaryTextColor"/>
+
+            <TextView
+                android:id="@+id/txtEventListTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtEventListName"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="sans-serif"
+                android:hint="Item's Time"
+                android:paddingBottom="8dp"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <!--List layout-->
+    <!--<RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -24,7 +79,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="72dp"
             android:layout_marginRight="16dp"
-            android:fontFamily="Roboto Regular"
+            android:fontFamily="sans-serif"
             android:hint="Directory Item"
             android:paddingBottom="4dp"
             android:paddingTop="12dp"
@@ -38,13 +93,13 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="72dp"
             android:layout_marginRight="16dp"
-            android:fontFamily="Roboto Regular"
+            android:fontFamily="sans-serif"
             android:hint="Item's Time"
             android:paddingBottom="8dp"
             android:paddingTop="4dp"
             android:textColor="@color/secondaryTextColor"
             android:textSize="14sp" />
 
-    </RelativeLayout>
+    </RelativeLayout>-->
 
-</LinearLayout>
+</RelativeLayout>
