@@ -38,6 +38,7 @@ public class parseApplicationSetup extends Application{
     public void onCreate(){
 
         super.onCreate();
+        Parse.enableLocalDatastore(this);
         Parse.initialize(this, getString(R.string.parseAppID), getString(R.string.parseClientID));
         PushService.setDefaultPushCallback(this, MainActivity.class);
 
@@ -73,7 +74,7 @@ public class parseApplicationSetup extends Application{
 
         context = getApplicationContext();
 
-        //PARSE QUERY FOR CONTACTS//
+        //PARSE QUERY FOR CONTACTS FROM THE INTERNET//
         ParseQuery<ParseObject> dQuery = new ParseQuery<ParseObject>("serviceDirectory");
         dQuery.addAscendingOrder("serviceName");
         dQuery.findInBackground(new FindCallback<ParseObject>() {
@@ -81,8 +82,26 @@ public class parseApplicationSetup extends Application{
             public void done(List<ParseObject> list, ParseException e) {
                 if (e != null) {
                     Toast.makeText(context, "An error has occurred. \n" +
-                            "Please connect to the Internet and refresh this view", Toast.LENGTH_LONG).show();
-                } else for (ParseObject object : list) {
+                            "Data could not be downloaded from server", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    ParseObject.pinAllInBackground("directory", list);
+                }
+            }
+        });
+
+        //PARSE QUERY FOR CONTACTS FROM LOCAL DATA
+        ParseQuery<ParseObject> localDirQuery = new ParseQuery<ParseObject>("serviceDirectory");
+        localDirQuery.addAscendingOrder("serviceName");
+        localDirQuery.fromLocalDatastore();
+        localDirQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e != null) {
+                    Toast.makeText(context, "An error has occurred. \n" +
+                            "There is not saved information", Toast.LENGTH_LONG).show();
+                }
+                else for (ParseObject object : list) {
                     //Get data from Parse.com table
                     String contactName = object.getString("serviceName");
                     String contactDesc = object.getString("description");
@@ -137,10 +156,27 @@ public class parseApplicationSetup extends Application{
 
         context = getApplicationContext();
 
-        //PARSE QUERY FOR EVENTS//
-        ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("events");
-        query.addAscendingOrder("startDate");
-        query.findInBackground(new FindCallback<ParseObject>() {
+        //PARSE QUERY FOR EVENTS FROM THE INTERNET
+        ParseQuery<ParseObject> eventQuery = new ParseQuery<ParseObject>("events");
+        eventQuery.addAscendingOrder("startDate");
+        eventQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e != null) {
+                    Toast.makeText(context, "An error has occurred. \n" +
+                            "Data could not be downloaded from server", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    ParseObject.pinAllInBackground("events", list);
+                }
+            }
+        });
+
+        //PARSE QUERY FOR EVENTS FROM LOCAL DATA//
+        ParseQuery<ParseObject> localEventQuery = new ParseQuery<ParseObject>("events");
+        localEventQuery.addAscendingOrder("startDate");
+        localEventQuery.fromLocalDatastore();
+        localEventQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
                 if (e != null) {
@@ -208,10 +244,26 @@ public class parseApplicationSetup extends Application{
 
         context = getApplicationContext();
 
-        //PARSE QUERY FOR DEALS//
-        ParseQuery<ParseObject> query2 = new ParseQuery<ParseObject>("deals");
-        query2.addAscendingOrder("startDate");
-        query2.findInBackground(new FindCallback<ParseObject>() {
+        //PARSE QUERY DEALS FROM THE INTERNET//
+        ParseQuery <ParseObject> dealsQuery = new ParseQuery<ParseObject>("deals");
+        dealsQuery.addAscendingOrder("startDate");
+        dealsQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e != null){
+
+                }
+                else{
+                    ParseObject.pinAllInBackground("deals", list);
+                }
+            }
+        });
+
+        //PARSE QUERY FOR DEALS FROM LOCAL DATA//
+        ParseQuery<ParseObject> localDealsQuery = new ParseQuery<ParseObject>("deals");
+        localDealsQuery.addAscendingOrder("startDate");
+        localDealsQuery.fromLocalDatastore();
+        localDealsQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
                 if (e != null) {

@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.studev19.bctools.R;
+import com.parse.DeleteCallback;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -71,37 +72,67 @@ public class DirectoryListActivity extends AppCompatActivity {
 
                 directory.clear();                                                                  //Clear data set
 
-                //PARSE QUERY FOR CONTACTS//                                                        //Re-run the parseQuery
+                //PARSE QUERY FOR CONTACTS FROM THE INTERNET//
                 ParseQuery<ParseObject> dQuery = new ParseQuery<ParseObject>("serviceDirectory");
                 dQuery.addAscendingOrder("serviceName");
                 dQuery.findInBackground(new FindCallback<ParseObject>() {
                     @Override
+                    public void done(final List<ParseObject> list, ParseException e) {
+                        if (e != null) {
+                            Toast.makeText(context, "An error has occurred. \n" +
+                                    "Data could not be downloaded from server", Toast.LENGTH_LONG).show();
+                        } else {
+                            ParseObject.unpinAllInBackground("directory", new DeleteCallback() {
+                                @Override
+                                public void done(ParseException e) {
+                                    ParseObject.pinAllInBackground(list);
+                                }
+                            });
+                        }
+                    }
+                });
+
+                //PARSE QUERY FOR CONTACTS FROM LOCAL DATA
+                ParseQuery<ParseObject> localDirQuery = new ParseQuery<ParseObject>("serviceDirectory");
+                localDirQuery.addAscendingOrder("serviceName");
+                localDirQuery.fromLocalDatastore();
+                localDirQuery.findInBackground(new FindCallback<ParseObject>() {
+                    @Override
                     public void done(List<ParseObject> list, ParseException e) {
                         if (e != null) {
                             Toast.makeText(context, "An error has occurred. \n" +
-                                    "Please connect to the Internet and refresh this view", Toast.LENGTH_LONG).show();
-                        } else for (ParseObject object : list) {
+                                    "There is not saved information", Toast.LENGTH_LONG).show();
+                        }
+                        else for (ParseObject object : list) {
                             //Get data from Parse.com table
                             String contactName = object.getString("serviceName");
                             String contactDesc = object.getString("description");
                             String contactPhone = object.getString("phone");
+                            if (object.getString("phone").isEmpty()){
+                                contactPhone = "";
+                            }
                             String contactEmail = object.getString("email");
+                            if (object.getString("email").isEmpty()){
+                                contactEmail = "";
+                            }
                             String contactLoc = object.getString("Location");
-                            String contactSch = object.getString("hours");
+                            if (object.getString("Location").isEmpty()){
+                                contactLoc = "";
+                            }
                             String contactWeb = object.getString("website");
-                            if (object.getString("website").isEmpty()) {
+                            if (object.getString("website").isEmpty()){
                                 contactWeb = "";
                             }
                             Log.v(contactName, contactWeb);
 
                             //Assign data to a DirectoryObject
                             DirectoryObject newObject = new DirectoryObject();
+
                             newObject.setName(contactName);
                             newObject.setDescription(contactDesc);
                             newObject.setPhone(contactPhone);
                             newObject.setEmail(contactEmail);
                             newObject.setLocation(contactLoc);
-                            newObject.setHours(contactSch);
                             newObject.setWebSite(contactWeb);
 
                             //Add object to eventArray

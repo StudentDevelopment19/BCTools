@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.studev19.bctools.R;
+import com.parse.DeleteCallback;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -69,6 +70,7 @@ public class EventListActivity extends AppCompatActivity {
             public void onRefresh() {
                 eventArray.clear();
 
+
                 //Set Date for current day (today)
                 Calendar c = Calendar.getInstance();
                 c.set(Calendar.HOUR, 0);
@@ -76,15 +78,35 @@ public class EventListActivity extends AppCompatActivity {
                 c.set(Calendar.SECOND, 0);
                 today = c.getTime();
 
-                //PARSE QUERY FOR EVENTS//                                                          //Re-run the parseQuery
-                ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("events");
-                query.addAscendingOrder("startDate");
-                query.findInBackground(new FindCallback<ParseObject>() {
+                //PARSE QUERY FOR EVENTS FROM THE INTERNET
+                ParseQuery<ParseObject> eventQuery = new ParseQuery<ParseObject>("events");
+                eventQuery.addAscendingOrder("startDate");
+                eventQuery.findInBackground(new FindCallback<ParseObject>() {
+                    @Override
+                    public void done(final List<ParseObject> list, ParseException e) {
+                        if (e != null) {
+
+                        }
+                        else {
+                            ParseObject.unpinAllInBackground("events", new DeleteCallback() {
+                                @Override
+                                public void done(ParseException e) {
+                                    ParseObject.pinAllInBackground("events", list);
+                                }
+                            });
+                        }
+                    }
+                });
+
+                //PARSE QUERY FOR EVENTS FROM LOCAL DATA//
+                ParseQuery<ParseObject> localEventQuery = new ParseQuery<ParseObject>("events");
+                localEventQuery.addAscendingOrder("startDate");
+                localEventQuery.fromLocalDatastore();
+                localEventQuery.findInBackground(new FindCallback<ParseObject>() {
                     @Override
                     public void done(List<ParseObject> list, ParseException e) {
                         if (e != null) {
-                            Toast.makeText(context, "An error has occurred. \n" +
-                                    "Please connect to the Internet and refresh this view", Toast.LENGTH_LONG).show();
+
                         } else for (ParseObject objects : list) {
                             //Get data from Parse.com table
                             String eventName = objects.getString("eventName");

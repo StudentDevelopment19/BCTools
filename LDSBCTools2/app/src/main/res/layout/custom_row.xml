@@ -17,15 +17,17 @@
             android:layout_height="wrap_content"
             android:minHeight="48dp"
             android:src="@drawable/material_circle" />
+
         <TextView
             android:id="@+id/txtDirectoryChar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:fontFamily="sans-serif-thin"
-            android:textSize="24sp"
             android:hint="S"
-            android:textColorHint="@color/iconsColor"/>
+            android:textColor="@color/iconsColor"
+            android:textColorHint="@color/iconsColor"
+            android:textSize="24sp" />
 
     </RelativeLayout>
 
@@ -33,12 +35,12 @@
         android:id="@+id/listNameText"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:minHeight="56dp"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="72dp"
         android:layout_marginRight="16dp"
         android:fontFamily="sans-serif"
         android:hint="Directory Item"
+        android:minHeight="56dp"
         android:paddingTop="12dp"
         android:textSize="16sp" />
 

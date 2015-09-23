@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.studev19.bctools.R;
+import com.parse.DeleteCallback;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -77,14 +78,35 @@ public class DealListActivity extends AppCompatActivity {
                 c.set(Calendar.SECOND, 0);
                 today = c.getTime();
 
-                //PARSE QUERY FOR DEALS//                                                           //Re-run the parseQuery
-                ParseQuery<ParseObject> query2 = new ParseQuery<ParseObject>("deals");
-                query2.addAscendingOrder("startDate");
-                query2.findInBackground(new FindCallback<ParseObject>() {
+                //PARSE QUERY DEALS FROM THE INTERNET//
+                ParseQuery <ParseObject> dealsQuery = new ParseQuery<ParseObject>("deals");
+                dealsQuery.addAscendingOrder("startDate");
+                dealsQuery.findInBackground(new FindCallback<ParseObject>() {
+                    @Override
+                    public void done(final List<ParseObject> list, ParseException e) {
+                        if (e != null){
+                        }
+                        else{
+                            ParseObject.unpinAllInBackground("deals", new DeleteCallback() {
+                                @Override
+                                public void done(ParseException e) {
+                                    ParseObject.pinAllInBackground("deals", list);
+                                }
+                            });
+                        }
+                    }
+                });
+
+                //PARSE QUERY FOR DEALS FROM LOCAL DATA//
+                ParseQuery<ParseObject> localDealsQuery = new ParseQuery<ParseObject>("deals");
+                localDealsQuery.addAscendingOrder("startDate");
+                localDealsQuery.fromLocalDatastore();
+                localDealsQuery.findInBackground(new FindCallback<ParseObject>() {
                     @Override
                     public void done(List<ParseObject> list, ParseException e) {
                         if (e != null) {
-                            Toast.makeText(context, "An error has occurred. \nPlease connect to the Internet and refresh this view", Toast.LENGTH_LONG).show();
+                            Toast.makeText(context, "An error has occurred. \n" +
+                                    "Please connect to the Internet and refresh this view", Toast.LENGTH_LONG).show();
                         } else for (ParseObject objects : list) {
                             //Get data from Parse.com table
                             String dealTitle = objects.getString("title");

@@ -19,6 +19,7 @@ public class directoryViewAdapter extends RecyclerView.Adapter<directoryViewAdap
     private LayoutInflater inflater;
     public static List<DirectoryObject> directoryArray;
     private Context context;
+    private String iconChar;
 
     public directoryViewAdapter(Context context, List<DirectoryObject> directory){
         this.context = context;
@@ -43,6 +44,8 @@ public class directoryViewAdapter extends RecyclerView.Adapter<directoryViewAdap
     public void onBindViewHolder(MyViewHolder holder, int position) {
         DirectoryObject currentInfo = directoryArray.get(position);
         holder.title.setText(currentInfo.getName());                                                //Set value for Service Name
+        iconChar = currentInfo.getName().substring(0,1);
+        holder.icoChar.setText(iconChar);
     }
 
     @Override
@@ -53,10 +56,12 @@ public class directoryViewAdapter extends RecyclerView.Adapter<directoryViewAdap
 
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView title;
+        TextView icoChar;
         public MyViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
             title = (TextView) itemView.findViewById(R.id.listNameText);                            //Find TextView for Service Name
+            icoChar = (TextView) itemView.findViewById(R.id.txtDirectoryChar);
         }
 
         @Override
