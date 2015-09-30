@@ -74,6 +74,7 @@ public class navigationViewAdapter extends RecyclerView.Adapter<navigationViewAd
                 case 3: context.startActivity(new Intent(context, BCSAActivity.class));break;
                 case 4: context.startActivity(new Intent(context, DealListActivity.class));break;
                 case 5: context.startActivity(new Intent(context, FeedbackActivity.class));break;
+                case 6: context.startActivity(new Intent(context, JobServicesActivity.class));break;
             }
         }
     }

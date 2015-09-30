@@ -6,7 +6,8 @@
     <!--<color name="primaryColorDark">#33691E</color>-->      <!--Light Green 900-->
     <color name="primaryColorLight">#81C784</color>     <!--Green 300-->
     <!--<color name="primaryColorLight">#AED581</color>-->     <!--Light Green 300-->
-    <color name="accentColor">#FFAB40</color>
+    <color name="accentColor">#FFAB40</color>           <!--Orange A200-->
+    <!--<color name="accentColor">#FFD700</color>-->           <!--School Gold-->
     <color name="primaryTextColor">#212121</color>
     <color name="secondaryTextColor">#727272</color>
     <color name="iconsColor">#FFFFFF</color>

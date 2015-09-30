@@ -3,65 +3,42 @@ package com.example.studev19.bctools;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.net.Uri;
-import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.parse.ParseAnalytics;
+import com.example.studev19.bctools.R;
 
-public class MainActivity extends ActionBarActivity {
-
-    private Toolbar toolbar;
+public class JobServicesActivity extends AppCompatActivity {
+    private static Toolbar toolbar;
     private static final int DIALOG_ALERT = 10;
     private static final int NO_INTERNET_DIALOG = 5;
-    private boolean connection;
-
+    private static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        connection = internetConnection();
-        ParseAnalytics.trackAppOpenedInBackground(getIntent());
+        setContentView(R.layout.activity_job_services);
 
-        //Creating the Toolbar and setting it as the Toolbar for the Activity
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        context = this;
 
-        Log.v("NavDrawer", "MainActivity declares drawerFragment");
         NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigationDrawer);
-        Log.v("NavDrawer", "MainActivity declared drawerFragment as " + drawerFragment);
-
-        Log.v("NavDrawer", "MainActivity starts drawerFragment.setUp");
         drawerFragment.setUp(R.id.navigationDrawer, (DrawerLayout) findViewById(R.id.drawerLayout), toolbar);
-
-
-        if (connection == false){
-            showDialog(NO_INTERNET_DIALOG);
-        }
 
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_job_services, menu);
         return true;
     }
 
@@ -116,11 +93,4 @@ public class MainActivity extends ActionBarActivity {
 
         }
     }
-
-    public boolean internetConnection(){
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
-        return networkInfo != null && networkInfo.isConnectedOrConnecting();
-    }
-
 }

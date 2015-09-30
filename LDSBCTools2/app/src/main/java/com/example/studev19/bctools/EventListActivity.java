@@ -14,21 +14,21 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
-
-import com.example.studev19.bctools.R;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import com.parse.DeleteCallback;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class EventListActivity extends AppCompatActivity {
+public class EventListActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     private static Toolbar toolbar;
     private static final int DIALOG_ALERT = 10;
@@ -39,16 +39,25 @@ public class EventListActivity extends AppCompatActivity {
     private static List<EventDetails> eventArray;
     private static Context context;
     private static Date today;
+    private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_list);
+        context = this;
 
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(context, R.array.items, R.layout.layout_drop_title);
+        arrayAdapter.setDropDownViewResource(R.layout.layout_drop_list);
+        spinner = new Spinner(getSupportActionBar().getThemedContext());
+        spinner.setAdapter(arrayAdapter);
+        toolbar.addView(spinner);
+        spinner.setOnItemSelectedListener(this);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        context = this;
 
         //Create RecyclerView
         recyclerView = (RecyclerView) findViewById(R.id.eventList);
@@ -69,6 +78,7 @@ public class EventListActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 eventArray.clear();
+                spinner.setSelection(0);
 
 
                 //Set Date for current day (today)
@@ -128,6 +138,10 @@ public class EventListActivity extends AppCompatActivity {
                             Date eventStartDate = objects.getDate("startDate");
                             Date eventEndDate = objects.getDate("endDate");
                             ParseFile eventImage = objects.getParseFile("image");
+                            String eventCategory = objects.getString("category");
+                            if (objects.getString("category").isEmpty()){
+                                eventCategory = "";
+                            }
 
                             //ADD ONLY THE UPCOMING EVENTS
                             if (eventEndDate.before(today) == false) {
@@ -142,6 +156,7 @@ public class EventListActivity extends AppCompatActivity {
                                 newObject.setEndDate(eventEndDate);
                                 newObject.setEndDateCalendar(eventEndDate);
                                 newObject.setEventImage(eventImage);
+                                newObject.setCategory(eventCategory);
 
                                 //Add object to eventArray
                                 eventArray.add(newObject);
@@ -216,6 +231,155 @@ public class EventListActivity extends AppCompatActivity {
         }
 
         return super.onCreateDialog(id);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        final String spinnerSelected = parent.getItemAtPosition(position).toString();
+        eventArray.clear();
+
+
+        //Set Date for current day (today)
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.HOUR, 0);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+        today = c.getTime();
+
+        if (spinnerSelected.equals("All Events")){
+            //PARSE QUERY FOR EVENTS FROM LOCAL DATA//
+            ParseQuery<ParseObject> localEventQuery = new ParseQuery<ParseObject>("events");
+            localEventQuery.addAscendingOrder("startDate");
+            localEventQuery.fromLocalDatastore();
+            localEventQuery.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> list, ParseException e) {
+                    if (e != null) {
+
+                    } else for (ParseObject objects : list) {
+                        //Get data from Parse.com table
+                        String eventName = objects.getString("eventName");
+                        if (objects.getString("eventName").isEmpty()) {
+                            eventName = "";
+                        }
+                        String eventDesc = objects.getString("description");
+                        if (objects.getString("description").isEmpty()) {
+                            eventDesc = "";
+                        }
+                        String eventLocation = objects.getString("location");
+                        if (objects.getString("location").isEmpty()) {
+                            eventLocation = "";
+                        }
+                        String eventWebPage = objects.getString("website");
+                        if (objects.getString("website").isEmpty()) {
+                            eventWebPage = "";
+                        }
+                        Date eventStartDate = objects.getDate("startDate");
+                        Date eventEndDate = objects.getDate("endDate");
+                        ParseFile eventImage = objects.getParseFile("image");
+                        String eventCategory = objects.getString("category");
+                        if (objects.getString("category").isEmpty()) {
+                            eventCategory = "";
+                        }
+
+                        //ADD ONLY THE UPCOMING EVENTS
+                        if (eventEndDate.before(today) == false) {
+                            //Assign data to an EventDetails object
+                            EventDetails newObject = new EventDetails();
+                            newObject.setName(eventName);
+                            newObject.setDescription(eventDesc);
+                            newObject.setLocation(eventLocation);
+                            newObject.setEventWeb(eventWebPage);
+                            newObject.setStartDate(eventStartDate);
+                            newObject.setStartDateCalendar(eventStartDate);
+                            newObject.setEndDate(eventEndDate);
+                            newObject.setEndDateCalendar(eventEndDate);
+                            newObject.setEventImage(eventImage);
+                            newObject.setCategory(eventCategory);
+
+                            //Add object to eventArray
+                            eventArray.add(newObject);
+                        }
+
+                    }
+
+                }
+            });
+        }
+        else {
+            //PARSE QUERY FOR EVENTS FROM LOCAL DATA//
+            ParseQuery<ParseObject> localEventQuery = new ParseQuery<ParseObject>("events").whereContains("category", spinnerSelected);
+            localEventQuery.addAscendingOrder("startDate");
+            localEventQuery.fromLocalDatastore();
+            localEventQuery.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> list, ParseException e) {
+                    if (e != null) {
+
+                    } else for (ParseObject objects : list) {
+                        //Get data from Parse.com table
+                        String eventName = objects.getString("eventName");
+                        if (objects.getString("eventName").isEmpty()) {
+                            eventName = "";
+                        }
+                        String eventDesc = objects.getString("description");
+                        if (objects.getString("description").isEmpty()) {
+                            eventDesc = "";
+                        }
+                        String eventLocation = objects.getString("location");
+                        if (objects.getString("location").isEmpty()) {
+                            eventLocation = "";
+                        }
+                        String eventWebPage = objects.getString("website");
+                        if (objects.getString("website").isEmpty()) {
+                            eventWebPage = "";
+                        }
+                        Date eventStartDate = objects.getDate("startDate");
+                        Date eventEndDate = objects.getDate("endDate");
+                        ParseFile eventImage = objects.getParseFile("image");
+                        String eventCategory = objects.getString("category");
+                        if (objects.getString("category").isEmpty()) {
+                            eventCategory = "";
+                        }
+
+                        //ADD ONLY THE UPCOMING EVENTS
+                        if (eventEndDate.before(today) == false) {
+                            //Assign data to an EventDetails object
+                            EventDetails newObject = new EventDetails();
+                            newObject.setName(eventName);
+                            newObject.setDescription(eventDesc);
+                            newObject.setLocation(eventLocation);
+                            newObject.setEventWeb(eventWebPage);
+                            newObject.setStartDate(eventStartDate);
+                            newObject.setStartDateCalendar(eventStartDate);
+                            newObject.setEndDate(eventEndDate);
+                            newObject.setEndDateCalendar(eventEndDate);
+                            newObject.setEventImage(eventImage);
+                            newObject.setCategory(eventCategory);
+
+                            //Add object to eventArray
+                            eventArray.add(newObject);
+                        }
+
+                    }
+
+                }
+            });
+        }
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                adapter.updatedEventData(eventArray);
+                adapter.notifyDataSetChanged();
+            }
+        }, 1000);
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 
     private final class OkOnClickListener implements DialogInterface.OnClickListener{

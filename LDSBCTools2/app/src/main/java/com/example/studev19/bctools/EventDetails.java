@@ -19,6 +19,7 @@ public class EventDetails {
     private Date endDate;
     private Date endDateCalendar;
     private ParseFile eventImage;
+    private String category;
 
     public String getName() {
         return eventName;
@@ -102,6 +103,14 @@ public class EventDetails {
 
     public void setEventImage(ParseFile image) {
         this.eventImage = image;
+    }
+
+    public String getCategory(){
+        return category;
+    }
+
+    public void setCategory(String category){
+        this.category = category;
     }
 
 }

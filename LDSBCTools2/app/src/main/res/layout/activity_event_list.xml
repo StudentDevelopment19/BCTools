@@ -7,7 +7,8 @@
 
     <include
         android:id="@+id/app_bar"
-        layout="@layout/app_bar" />
+        layout="@layout/app_bar">
+    </include>
 
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/drawerLayout"
@@ -37,7 +38,7 @@
         <fragment
             android:id="@+id/navigationDrawer"
             android:name="com.example.studev19.bctools.NavigationDrawerFragment"
-            android:layout_width="280dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             tools:layout="@layout/fragment_navigation_drawer" />

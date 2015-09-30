@@ -203,6 +203,10 @@ public class parseApplicationSetup extends Application{
                     Date eventStartDate = objects.getDate("startDate");
                     Date eventEndDate = objects.getDate("endDate");
                     ParseFile eventImage = objects.getParseFile("image");
+                    String eventCategory = objects.getString("category");
+                    if (objects.getString("category").isEmpty()){
+                        eventCategory = "";
+                    }
 
                     //ADD ONLY THE UPCOMING EVENTS
                     if (eventEndDate.before(today) == false) {
@@ -217,6 +221,7 @@ public class parseApplicationSetup extends Application{
                         newObject.setEndDate(eventEndDate);
                         newObject.setEndDateCalendar(eventEndDate);
                         newObject.setEventImage(eventImage);
+                        newObject.setCategory(eventCategory);
 
                         //Add object to eventArray
                         eventArray.add(newObject);

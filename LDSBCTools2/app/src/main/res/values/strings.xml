@@ -20,4 +20,5 @@
     <string name="title_activity_deal_list">Deals</string>
     <string name="title_activity_bcsa">BCSA</string>
     <string name="title_activity_feedback">Feedback</string>
+    <string name="title_activity_job_services">Employment Services</string>
 </resources>

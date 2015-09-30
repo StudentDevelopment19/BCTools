@@ -6,15 +6,19 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <uses-permission android:name="android.permission.VIBRATE"/>
-    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
-    <permission android:name="ldsbc.com.studev19.bctools.permission.C2D_MESSAGE" android:protectionLevel="signature"/>
-    <uses-permission android:name="ldsbc.com.studev19.bctools.permission.C2D_MESSAGE"/>
+
+    <permission
+        android:name="ldsbc.com.studev19.bctools.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="ldsbc.com.studev19.bctools.permission.C2D_MESSAGE" />
 
     <application
         android:name=".parseApplicationSetup"
@@ -23,7 +27,8 @@
         android:label="@string/app_name"
         android:largeHeap="true"
         android:theme="@style/AppTheme" >
-        <!--MAIN ACTIVITY - HOME-->
+
+        <!-- MAIN ACTIVITY - HOME -->
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -34,7 +39,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--SERVICE DIRECTORY-->
+        <!-- SERVICE DIRECTORY -->
         <activity
             android:name=".DirectoryListActivity"
             android:label="@string/title_activity_directory_list"
@@ -43,7 +48,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studev19.bctools.MainActivity" />
         </activity>
-        <!--SERVICE DETAILED VIEW-->
+        <!-- SERVICE DETAILED VIEW -->
         <activity
             android:name=".directoryDetailedActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -52,7 +57,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studev19.bctools.DirectoryListActivity" />
         </activity>
-        <!--EVENT DIRECTORY-->
+        <!-- EVENT DIRECTORY -->
         <activity
             android:name=".EventListActivity"
             android:label="@string/title_activity_event_list"
@@ -61,7 +66,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studev19.bctools.MainActivity" />
         </activity>
-        <!--EVENT DETAILED VIEW-->
+        <!-- EVENT DETAILED VIEW -->
         <activity
             android:name=".eventDetailedActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -70,7 +75,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studev19.bctools.EventListActivity" />
         </activity>
-        <!--DEALS DIRECTORY-->
+        <!-- DEALS DIRECTORY -->
         <activity
             android:name=".DealListActivity"
             android:label="@string/title_activity_deal_list"
@@ -79,7 +84,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studev19.bctools.MainActivity" />
         </activity>
-        <!--DEALS DETAILED VIEW-->
+        <!-- DEALS DETAILED VIEW -->
         <activity
             android:name=".dealDetailedActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -88,7 +93,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studev19.bctools.DealListActivity" />
         </activity>
-        <!--BCSA-->
+        <!-- BCSA -->
         <activity
             android:name=".BCSAActivity"
             android:label="@string/title_activity_bcsa"
@@ -97,7 +102,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studev19.bctools.MainActivity" />
         </activity>
-        <!--FEEDBACK-->
+        <!-- FEEDBACK -->
         <activity
             android:name=".FeedbackActivity"
             android:label="@string/title_activity_feedback"
@@ -106,24 +111,42 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studev19.bctools.MainActivity" />
         </activity>
+        <!--Employment Services-->
+        <activity
+            android:name=".JobServicesActivity"
+            android:label="@string/title_activity_job_services"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.studev19.bctools.MainActivity" />
+        </activity>
+
         <service android:name="com.parse.PushService" />
-        <receiver android:name="com.parse.ParsePushBroadcastReceiver"
-            android:exported="false">
+
+        <receiver
+            android:name="com.parse.ParsePushBroadcastReceiver"
+            android:exported="false" >
             <intent-filter>
                 <action android:name="com.parse.push.intent.RECEIVE" />
                 <action android:name="com.parse.push.intent.DELETE" />
                 <action android:name="com.parse.push.intent.OPEN" />
             </intent-filter>
         </receiver>
-        <receiver android:name="com.parse.GcmBroadcastReceiver"
-            android:permission="com.google.android.c2dm.permission.SEND">
+        <receiver
+            android:name="com.parse.GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
                 <category android:name="ldsbc.com.studev19.bctools" />
             </intent-filter>
         </receiver>
-        <meta-data android:name="com.parse.push.notification_icon" android:resource="@drawable/ic_event_notification"/>
+
+        <meta-data
+            android:name="com.parse.push.notification_icon"
+            android:resource="@drawable/ic_event_notification" />
+
     </application>
 
 </manifest>

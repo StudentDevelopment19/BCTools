@@ -71,8 +71,8 @@ public class NavigationDrawerFragment extends Fragment{
     public static List<NavigationObject> getData(){
         Log.v("NavDrawer", "NavDrawerFragment getData happens");
         List<NavigationObject> data = new ArrayList<>();
-        String[] titles = {"Home", "Directory", "Events", "BCSA", "Deals", "Feedback"};
-        int[] images = {R.drawable.ic_contact, R.drawable.ic_phone_custom, R.drawable.ic_event, R.drawable.ic_company, R.drawable.ic_shopping, R.drawable.ic_feedback};
+        String[] titles = {"Home", "Directory", "Events", "BCSA", "Deals", "Feedback", "Employment Services"};
+        int[] images = {R.drawable.ic_contact, R.drawable.ic_phone_custom, R.drawable.ic_event, R.drawable.ic_explore, R.drawable.ic_shopping, R.drawable.ic_feedback, R.drawable.ic_company};
         for (int i=0; i<titles.length; i++){
             NavigationObject current = new NavigationObject();
             current.setName(titles[i]);

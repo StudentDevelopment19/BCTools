@@ -22,7 +22,7 @@ import java.util.TimeZone;
 /**
  * Created by Adrian Lopez on 15/06/2015.
  */
-public class eventViewAdapter extends RecyclerView.Adapter<eventViewAdapter.MyViewHolder>{
+public class eventViewAdapter extends RecyclerView.Adapter<eventViewAdapter.MyViewHolder> {
 
     private LayoutInflater inflater;
     public static List<EventDetails> eventArray;
