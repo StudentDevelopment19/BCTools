@@ -23,8 +23,8 @@ import java.util.TimeZone;
  */
 public class dealViewAdapter extends RecyclerView.Adapter<dealViewAdapter.MyViewHolder> {
 
-    private LayoutInflater inflater;
     public static List<DealObject> dealArray;
+    private LayoutInflater inflater;
     private Context context;
 
     public dealViewAdapter(Context context, List<DealObject> dealList) {

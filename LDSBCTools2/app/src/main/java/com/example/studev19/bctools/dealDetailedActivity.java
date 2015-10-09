@@ -22,9 +22,13 @@ import java.util.TimeZone;
 
 public class dealDetailedActivity extends ActionBarActivity {
 
-    Toolbar toolbar;
-    private static DealObject displayedInformation;
     private static final int DIALOG_ALERT = 10;
+    private static DealObject displayedInformation;
+    Toolbar toolbar;
+
+    public static void setDealInfo(DealObject dealObject) {
+        displayedInformation = dealObject;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,10 +110,6 @@ public class dealDetailedActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
 
-    }
-
-    public static void setDealInfo(DealObject dealObject) {
-        displayedInformation = dealObject;
     }
 
     @Override

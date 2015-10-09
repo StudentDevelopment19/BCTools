@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.studev19.bctools"
-    >
+    package="com.example.studev19.bctools" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -110,7 +109,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studev19.bctools.MainActivity" />
         </activity>
-        <!--Employment Services-->
+        <!-- Employment Services -->
         <activity
             android:name=".JobServicesActivity"
             android:label="@string/title_activity_job_services"
@@ -146,6 +145,30 @@
             android:name="com.parse.push.notification_icon"
             android:resource="@drawable/ic_event_notification" />
 
+        <activity
+            android:name=".JobListActivity"
+            android:label="@string/title_activity_job_list"
+            android:parentActivityName=".JobServicesActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.studev19.bctools.JobServicesActivity" />
+        </activity>
+        <activity
+            android:name=".jobDetailedActivity"
+            android:label="@string/title_activity_job_details"
+            android:parentActivityName=".JobListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.studev19.bctools.JobListActivity" />
+        </activity>
+        <activity
+            android:name=".AppointmentActivity"
+            android:label="@string/title_activity_appointment"
+            android:parentActivityName=".JobServicesActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.studev19.bctools.JobServicesActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -14,21 +14,21 @@ import java.util.List;
 /**
  * Created by studev19 on 6/3/2015.
  */
-public class directoryViewAdapter extends RecyclerView.Adapter<directoryViewAdapter.MyViewHolder>{
+public class directoryViewAdapter extends RecyclerView.Adapter<directoryViewAdapter.MyViewHolder> {
 
-    private LayoutInflater inflater;
     public static List<DirectoryObject> directoryArray;
+    private LayoutInflater inflater;
     private Context context;
     private String iconChar;
 
-    public directoryViewAdapter(Context context, List<DirectoryObject> directory){
+    public directoryViewAdapter(Context context, List<DirectoryObject> directory) {
         this.context = context;
         inflater = LayoutInflater.from(context);
         directoryArray = directory;
         Log.v("Directory Received", "directoryViewAdapter " + directoryArray.size());
     }
 
-    public void updatedData(List<DirectoryObject> directory){
+    public void updatedData(List<DirectoryObject> directory) {
         directoryArray = directory;
     }
 
@@ -44,7 +44,7 @@ public class directoryViewAdapter extends RecyclerView.Adapter<directoryViewAdap
     public void onBindViewHolder(MyViewHolder holder, int position) {
         DirectoryObject currentInfo = directoryArray.get(position);
         holder.title.setText(currentInfo.getName());                                                //Set value for Service Name
-        iconChar = currentInfo.getName().substring(0,1);
+        iconChar = currentInfo.getName().substring(0, 1);
         holder.icoChar.setText(iconChar);
     }
 
@@ -57,6 +57,7 @@ public class directoryViewAdapter extends RecyclerView.Adapter<directoryViewAdap
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView title;
         TextView icoChar;
+
         public MyViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);

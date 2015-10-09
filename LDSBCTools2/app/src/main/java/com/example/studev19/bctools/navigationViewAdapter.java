@@ -2,7 +2,6 @@ package com.example.studev19.bctools;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.List;
@@ -18,14 +16,13 @@ import java.util.List;
 /**
  * Created by studev19 on 9/14/2015.
  */
-public class navigationViewAdapter extends RecyclerView.Adapter<navigationViewAdapter.MyViewHolder>{
+public class navigationViewAdapter extends RecyclerView.Adapter<navigationViewAdapter.MyViewHolder> {
 
-    private LayoutInflater inflater;
-    private static List<NavigationObject> navList =  Collections.emptyList();
-    private DrawerLayout mDrawerLayout;
+    private static List<NavigationObject> navList = Collections.emptyList();
     public Context context;
+    private LayoutInflater inflater;
 
-    public navigationViewAdapter(Context context, List<NavigationObject> navigationList){
+    public navigationViewAdapter(Context context, List<NavigationObject> navigationList) {
         Log.v("NavDrawer", "navViewAdapter calls values");
         this.context = context;
         inflater = LayoutInflater.from(context);
@@ -58,7 +55,8 @@ public class navigationViewAdapter extends RecyclerView.Adapter<navigationViewAd
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView title;
         ImageView icon;
-        public  MyViewHolder(View view){
+
+        public MyViewHolder(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.txtNavItem);
             icon = (ImageView) view.findViewById(R.id.icoNavItem);
@@ -67,14 +65,28 @@ public class navigationViewAdapter extends RecyclerView.Adapter<navigationViewAd
 
         @Override
         public void onClick(View v) {
-            switch (getPosition()){
-                case 0: context.startActivity(new Intent(context, MainActivity.class)); break;
-                case 1: context.startActivity(new Intent(context, DirectoryListActivity.class)); break;
-                case 2: context.startActivity(new Intent(context, EventListActivity.class));break;
-                case 3: context.startActivity(new Intent(context, BCSAActivity.class));break;
-                case 4: context.startActivity(new Intent(context, DealListActivity.class));break;
-                case 5: context.startActivity(new Intent(context, FeedbackActivity.class));break;
-                case 6: context.startActivity(new Intent(context, JobServicesActivity.class));break;
+            switch (getPosition()) {
+                case 0:
+                    context.startActivity(new Intent(context, MainActivity.class));
+                    break;
+                case 1:
+                    context.startActivity(new Intent(context, DirectoryListActivity.class));
+                    break;
+                case 2:
+                    context.startActivity(new Intent(context, EventListActivity.class));
+                    break;
+                case 3:
+                    context.startActivity(new Intent(context, BCSAActivity.class));
+                    break;
+                case 4:
+                    context.startActivity(new Intent(context, DealListActivity.class));
+                    break;
+                case 5:
+                    context.startActivity(new Intent(context, FeedbackActivity.class));
+                    break;
+                case 6:
+                    context.startActivity(new Intent(context, JobServicesActivity.class));
+                    break;
             }
         }
     }

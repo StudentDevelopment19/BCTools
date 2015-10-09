@@ -2,26 +2,28 @@ package com.example.studev19.bctools;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
 
-import com.example.studev19.bctools.R;
-
 public class FeedbackActivity extends AppCompatActivity {
 
+    private static final int DIALOG_ALERT = 10;
+    private static final int NO_INTERNET_DIALOG = 5;
     private static boolean connectionStatus;
     private static SwipeRefreshLayout webSwipe;
     private Toolbar toolbar;
-    private static final int DIALOG_ALERT = 10;
-    private static final int NO_INTERNET_DIALOG = 5;
+
+    public static void setConnectionStatus(boolean status) {
+        connectionStatus = status;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,15 +45,13 @@ public class FeedbackActivity extends AppCompatActivity {
         webSwipe.setColorSchemeResources(R.color.primaryColor, R.color.accentColor);
         final WebView WEB_VIEW = (WebView) findViewById(R.id.webView);
 
-        if (connectionStatus == false){
+        if (connectionStatus == false) {
             String html = "<html><body><p>You must be connected to the internet to display this tab correctly.</p></body></html>";
             String mime = "text/html";
             String encoding = "utf-8";
 
             WEB_VIEW.loadDataWithBaseURL(null, html, mime, encoding, null);
-        }
-
-        else {                                                                                      //If there is connection
+        } else {                                                                                      //If there is connection
             WEB_VIEW.loadUrl("https://docs.google.com/a/ldsbc.edu/forms/d/1PGgxSl2w9vsp4cq5jxii5Y6AOgCfCJ75o527xOrXD4U/viewform");
         }
 
@@ -127,10 +127,6 @@ public class FeedbackActivity extends AppCompatActivity {
         public void onClick(DialogInterface dialog, int which) {
 
         }
-    }
-
-    public static void setConnectionStatus(boolean status){
-        connectionStatus = status;
     }
 
 }

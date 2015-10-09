@@ -6,7 +6,7 @@
     <string name="action_settings">About</string>
     <string name="title_activity_directory_detailed">directoryDetailedActivity</string>
     <string name="title_activity_event_detailed">eventDetailedActivity</string>
-    <string name="current_version">Version 1.1</string>
+    <string name="current_version">Version 2.0</string>
     <string name="hello_world">Hello world!</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
@@ -21,4 +21,7 @@
     <string name="title_activity_bcsa">BCSA</string>
     <string name="title_activity_feedback">Feedback</string>
     <string name="title_activity_job_services">Employment Services</string>
+    <string name="title_activity_job_list">Employment Opportunities</string>
+    <string name="title_activity_job_details">JobDetails</string>
+    <string name="title_activity_appointment">AppointmentActivity</string>
 </resources>

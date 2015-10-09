@@ -105,11 +105,11 @@ public class EventDetails {
         this.eventImage = image;
     }
 
-    public String getCategory(){
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(String category){
+    public void setCategory(String category) {
         this.category = category;
     }
 

@@ -3,22 +3,19 @@ package com.example.studev19.bctools;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.studev19.bctools.R;
 import com.parse.DeleteCallback;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -32,15 +29,23 @@ import java.util.List;
 
 public class DealListActivity extends AppCompatActivity {
 
-    private static Toolbar toolbar;
     private static final int DIALOG_ALERT = 10;
     private static final int NO_INTERNET_DIALOG = 5;
+    private static Toolbar toolbar;
     private static RecyclerView recyclerView;
     private static SwipeRefreshLayout dealsSwipe;
     private static dealViewAdapter adapter;
     private static List<DealObject> dealArray;
     private static Context context;
     private static Date today;
+
+    public static List<DealObject> getData() {
+        return dealArray;
+    }
+
+    public static void setData(List<DealObject> array) {
+        dealArray = array;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,14 +84,13 @@ public class DealListActivity extends AppCompatActivity {
                 today = c.getTime();
 
                 //PARSE QUERY DEALS FROM THE INTERNET//
-                ParseQuery <ParseObject> dealsQuery = new ParseQuery<ParseObject>("deals");
+                ParseQuery<ParseObject> dealsQuery = new ParseQuery<ParseObject>("deals");
                 dealsQuery.addAscendingOrder("startDate");
                 dealsQuery.findInBackground(new FindCallback<ParseObject>() {
                     @Override
                     public void done(final List<ParseObject> list, ParseException e) {
-                        if (e != null){
-                        }
-                        else{
+                        if (e != null) {
+                        } else {
                             ParseObject.unpinAllInBackground("deals", new DeleteCallback() {
                                 @Override
                                 public void done(ParseException e) {
@@ -181,7 +185,7 @@ public class DealListActivity extends AppCompatActivity {
     }
 
     @Override
-    protected Dialog onCreateDialog(int id){
+    protected Dialog onCreateDialog(int id) {
         switch (id) {
             case DIALOG_ALERT:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -206,20 +210,12 @@ public class DealListActivity extends AppCompatActivity {
         return super.onCreateDialog(id);
     }
 
-    private final class OkOnClickListener implements DialogInterface.OnClickListener{
+    private final class OkOnClickListener implements DialogInterface.OnClickListener {
 
         @Override
         public void onClick(DialogInterface dialog, int which) {
 
         }
-    }
-
-    public static void setData(List<DealObject> array){
-        dealArray = array;
-    }
-
-    public static List<DealObject> getData(){
-        return dealArray;
     }
 
 }

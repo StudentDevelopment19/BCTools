@@ -1,0 +1,50 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.studev19.bctools.AppointmentActivity">
+
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar"/>
+
+    <TextView
+        android:id="@+id/txtApptDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Appointments"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="sans-serif"
+        android:textSize="16dp"
+        android:textColor="@color/primaryTextColor"/>
+
+    <RelativeLayout
+        android:id="@+id/layoutCall"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:clickable="true"
+        android:background="@drawable/ripple_effect">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_phone_custom"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="72dp"
+            android:layout_marginRight="16dp"
+            android:text="Call to make an appointment"
+            android:textSize="16dp"
+            android:gravity="center_vertical" />
+
+    </RelativeLayout>
+
+</LinearLayout>

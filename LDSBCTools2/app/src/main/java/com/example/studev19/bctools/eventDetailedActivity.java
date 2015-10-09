@@ -33,12 +33,16 @@ import java.util.TimeZone;
 
 
 public class eventDetailedActivity extends ActionBarActivity {
-    Toolbar toolbar;
+    private static final int DIALOG_ALERT = 10;
     private static EventDetails displayedInformation;
+    private static String hyperlink;
+    Toolbar toolbar;
     private Calendar calStartDate;
     private Calendar calEndDate;
-    private static final int DIALOG_ALERT = 10;
-    private static String hyperlink;
+
+    public static void setEventInfo(EventDetails eventDetails) {
+        displayedInformation = eventDetails;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -214,10 +218,6 @@ public class eventDetailedActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public static void setEventInfo(EventDetails eventDetails) {
-        displayedInformation = eventDetails;
     }
 
     @Override

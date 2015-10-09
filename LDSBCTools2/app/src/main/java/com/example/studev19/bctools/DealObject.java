@@ -17,43 +17,47 @@ public class DealObject {
     private Date dealEndDate;
     private ParseFile dealImage;
 
-    public String getDealTitle(){
+    public String getDealTitle() {
         return dealTitle;
     }
 
-    public void setDealTitle(String title){
+    public void setDealTitle(String title) {
         this.dealTitle = title;
     }
 
-    public String getDealDescription(){
+    public String getDealDescription() {
         return dealDescription;
     }
 
-    public void setDealDescription(String description){
+    public void setDealDescription(String description) {
         this.dealDescription = description;
     }
 
-    public String getDealCompany(){
+    public String getDealCompany() {
         return dealCompany;
     }
 
-    public void setDealCompany(String company){
+    public void setDealCompany(String company) {
         this.dealCompany = company;
     }
 
-    public String getDealAddress(){
+    public String getDealAddress() {
         return dealAddress;
     }
 
-    public void setDealAddress(String address){
+    public void setDealAddress(String address) {
         this.dealAddress = address;
     }
 
-    public Date getDealStartDate(){
+    public Date getDealStartDate() {
         return dealStartDate;
     }
 
-    public Date getDealStartDateOnMST(){
+    public void setDealStartDate(Date startDate) {
+        this.dealStartDate = startDate;
+    }
+
+    public Date getDealStartDateOnMST() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(this.dealStartDate);
         calendar.add(Calendar.HOUR, 7);
@@ -61,15 +65,15 @@ public class DealObject {
         return dealStartDate;
     }
 
-    public void setDealStartDate(Date startDate){
-        this.dealStartDate = startDate;
-    }
-
-    public Date getDealEndDate(){
+    public Date getDealEndDate() {
         return dealEndDate;
     }
 
-    public Date getEndDateOnMTS(){
+    public void setDealEndDate(Date endDate) {
+        this.dealEndDate = endDate;
+    }
+
+    public Date getEndDateOnMTS() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(this.dealEndDate);
         calendar.add(Calendar.HOUR, 7);
@@ -77,15 +81,11 @@ public class DealObject {
         return dealEndDate;
     }
 
-    public void setDealEndDate(Date endDate){
-        this.dealEndDate = endDate;
-    }
-
-    public ParseFile getDealImage(){
+    public ParseFile getDealImage() {
         return dealImage;
     }
 
-    public void setDealImage(ParseFile image){
+    public void setDealImage(ParseFile image) {
         this.dealImage = image;
     }
 

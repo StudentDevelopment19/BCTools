@@ -3,12 +3,12 @@ package com.example.studev19.bctools;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -18,21 +18,23 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+
 import com.parse.DeleteCallback;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class EventListActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+public class EventListActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private static Toolbar toolbar;
     private static final int DIALOG_ALERT = 10;
     private static final int NO_INTERNET_DIALOG = 5;
+    private static Toolbar toolbar;
     private static RecyclerView recyclerView;
     private static SwipeRefreshLayout eventSwipe;
     private static eventViewAdapter adapter;
@@ -40,6 +42,14 @@ public class EventListActivity extends AppCompatActivity implements AdapterView.
     private static Context context;
     private static Date today;
     private Spinner spinner;
+
+    public static List<EventDetails> getData() {
+        return eventArray;
+    }
+
+    public static void setData(List<EventDetails> array) {
+        eventArray = array;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,8 +106,7 @@ public class EventListActivity extends AppCompatActivity implements AdapterView.
                     public void done(final List<ParseObject> list, ParseException e) {
                         if (e != null) {
 
-                        }
-                        else {
+                        } else {
                             ParseObject.unpinAllInBackground("events", new DeleteCallback() {
                                 @Override
                                 public void done(ParseException e) {
@@ -139,7 +148,7 @@ public class EventListActivity extends AppCompatActivity implements AdapterView.
                             Date eventEndDate = objects.getDate("endDate");
                             ParseFile eventImage = objects.getParseFile("image");
                             String eventCategory = objects.getString("category");
-                            if (objects.getString("category").isEmpty()){
+                            if (objects.getString("category").isEmpty()) {
                                 eventCategory = "";
                             }
 
@@ -208,7 +217,7 @@ public class EventListActivity extends AppCompatActivity implements AdapterView.
     }
 
     @Override
-    protected Dialog onCreateDialog(int id){
+    protected Dialog onCreateDialog(int id) {
         switch (id) {
             case DIALOG_ALERT:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -246,7 +255,7 @@ public class EventListActivity extends AppCompatActivity implements AdapterView.
         c.set(Calendar.SECOND, 0);
         today = c.getTime();
 
-        if (spinnerSelected.equals("All Events")){
+        if (spinnerSelected.equals("All Events")) {
             //PARSE QUERY FOR EVENTS FROM LOCAL DATA//
             ParseQuery<ParseObject> localEventQuery = new ParseQuery<ParseObject>("events");
             localEventQuery.addAscendingOrder("startDate");
@@ -305,8 +314,7 @@ public class EventListActivity extends AppCompatActivity implements AdapterView.
 
                 }
             });
-        }
-        else {
+        } else {
             //PARSE QUERY FOR EVENTS FROM LOCAL DATA//
             ParseQuery<ParseObject> localEventQuery = new ParseQuery<ParseObject>("events").whereContains("category", spinnerSelected);
             localEventQuery.addAscendingOrder("startDate");
@@ -382,20 +390,12 @@ public class EventListActivity extends AppCompatActivity implements AdapterView.
 
     }
 
-    private final class OkOnClickListener implements DialogInterface.OnClickListener{
+    private final class OkOnClickListener implements DialogInterface.OnClickListener {
 
         @Override
         public void onClick(DialogInterface dialog, int which) {
 
         }
-    }
-
-    public static void setData(List<EventDetails> array) {
-        eventArray = array;
-    }
-
-    public static List<EventDetails> getData() {
-        return eventArray;
     }
 
 }

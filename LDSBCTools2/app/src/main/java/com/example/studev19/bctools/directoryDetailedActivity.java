@@ -24,10 +24,14 @@ import android.widget.Toast;
 
 
 public class directoryDetailedActivity extends ActionBarActivity {
-    Toolbar toolbar;
-    private static DirectoryObject displayedInformation;
     private static final int DIALOG_ALERT = 10;
+    private static DirectoryObject displayedInformation;
     private static String hyperlink;
+    Toolbar toolbar;
+
+    public static void setServiceInfo(DirectoryObject directoryObject) {
+        displayedInformation = directoryObject;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -189,10 +193,6 @@ public class directoryDetailedActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public static void setServiceInfo(DirectoryObject directoryObject) {
-        displayedInformation = directoryObject;
     }
 
     @Override

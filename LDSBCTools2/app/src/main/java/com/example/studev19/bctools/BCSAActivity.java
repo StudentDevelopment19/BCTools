@@ -4,10 +4,10 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -17,13 +17,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.studev19.bctools.R;
-
 public class BCSAActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
     private static final int DIALOG_ALERT = 10;
     private static final int NO_INTERNET_DIALOG = 5;
+    private Toolbar toolbar;
     private String videoURL;
     private TextView hyperlinkBCMessenger;
     private TextView hyperlinkMentor;

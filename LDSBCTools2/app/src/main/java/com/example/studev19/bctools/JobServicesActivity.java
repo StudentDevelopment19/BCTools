@@ -3,20 +3,21 @@ package com.example.studev19.bctools;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import com.example.studev19.bctools.R;
+import android.view.View;
+import android.widget.RelativeLayout;
 
 public class JobServicesActivity extends AppCompatActivity {
-    private static Toolbar toolbar;
     private static final int DIALOG_ALERT = 10;
     private static final int NO_INTERNET_DIALOG = 5;
+    private static Toolbar toolbar;
     private static Context context;
 
     @Override
@@ -28,6 +29,23 @@ public class JobServicesActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         context = this;
+
+        RelativeLayout jobSearch = (RelativeLayout) findViewById(R.id.layoutJobSearch);
+        jobSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, JobListActivity.class));
+            }
+        });
+
+        RelativeLayout appointments = (RelativeLayout) findViewById(R.id.layoutAppointments);
+        appointments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, AppointmentActivity.class));
+            }
+        });
+
 
         NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigationDrawer);

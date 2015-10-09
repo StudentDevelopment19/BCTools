@@ -25,17 +25,18 @@ import java.util.List;
 /**
  * Created by studev19 on 6/12/2015.
  */
-public class parseApplicationSetup extends Application{
+public class parseApplicationSetup extends Application {
 
     private static List<EventDetails> eventArray = new ArrayList<EventDetails>();
     private static List<DealObject> dealArray = new ArrayList<DealObject>();
     private static List<DirectoryObject> directoryArray = new ArrayList<DirectoryObject>();
+    private static List<JobObject> employmentArray = new ArrayList<JobObject>();
     private static Date today;
     private static boolean connection;
     Context context;
 
     @Override
-    public void onCreate(){
+    public void onCreate() {
 
         super.onCreate();
         Parse.enableLocalDatastore(this);
@@ -46,6 +47,7 @@ public class parseApplicationSetup extends Application{
         setDirectoryData();
         setEventData();
         setDealData();
+        setEmploymentData();
 
         //SENDS INFORMATION TO DIRECTORY INFLATER
         DirectoryListActivity.setData(getDirectoryData());
@@ -59,9 +61,11 @@ public class parseApplicationSetup extends Application{
         DealListActivity.setData(getDealData());
         Log.v("Deals Sent", "parseApplicationSetup " + dealArray.size());
 
+        //SENDS INFORMATION TO JOB INFLATER
+        JobListActivity.setData(getEmploymentData());
+
         connection = internetConnection();
         FeedbackActivity.setConnectionStatus(connection);
-
 
 
         ParseUser.enableAutomaticUser();
@@ -70,7 +74,7 @@ public class parseApplicationSetup extends Application{
 
     }
 
-    public void setDirectoryData(){
+    public void setDirectoryData() {
 
         context = getApplicationContext();
 
@@ -83,8 +87,7 @@ public class parseApplicationSetup extends Application{
                 if (e != null) {
                     Toast.makeText(context, "An error has occurred. \n" +
                             "Data could not be downloaded from server", Toast.LENGTH_LONG).show();
-                }
-                else {
+                } else {
                     ParseObject.pinAllInBackground("directory", list);
                 }
             }
@@ -100,25 +103,24 @@ public class parseApplicationSetup extends Application{
                 if (e != null) {
                     Toast.makeText(context, "An error has occurred. \n" +
                             "There is not saved information", Toast.LENGTH_LONG).show();
-                }
-                else for (ParseObject object : list) {
+                } else for (ParseObject object : list) {
                     //Get data from Parse.com table
                     String contactName = object.getString("serviceName");
                     String contactDesc = object.getString("description");
                     String contactPhone = object.getString("phone");
-                    if (object.getString("phone").isEmpty()){
+                    if (object.getString("phone").isEmpty()) {
                         contactPhone = "";
                     }
                     String contactEmail = object.getString("email");
-                    if (object.getString("email").isEmpty()){
+                    if (object.getString("email").isEmpty()) {
                         contactEmail = "";
                     }
                     String contactLoc = object.getString("Location");
-                    if (object.getString("Location").isEmpty()){
+                    if (object.getString("Location").isEmpty()) {
                         contactLoc = "";
                     }
                     String contactWeb = object.getString("website");
-                    if (object.getString("website").isEmpty()){
+                    if (object.getString("website").isEmpty()) {
                         contactWeb = "";
                     }
                     Log.v(contactName, contactWeb);
@@ -141,11 +143,11 @@ public class parseApplicationSetup extends Application{
 
     }
 
-    public List<DirectoryObject> getDirectoryData(){
+    public List<DirectoryObject> getDirectoryData() {
         return directoryArray;
     }
 
-    public void setEventData(){
+    public void setEventData() {
 
         //Set Date for current day (today)
         Calendar c = Calendar.getInstance();
@@ -165,8 +167,7 @@ public class parseApplicationSetup extends Application{
                 if (e != null) {
                     Toast.makeText(context, "An error has occurred. \n" +
                             "Data could not be downloaded from server", Toast.LENGTH_LONG).show();
-                }
-                else {
+                } else {
                     ParseObject.pinAllInBackground("events", list);
                 }
             }
@@ -185,26 +186,26 @@ public class parseApplicationSetup extends Application{
                 } else for (ParseObject objects : list) {
                     //Get data from Parse.com table
                     String eventName = objects.getString("eventName");
-                    if (objects.getString("eventName").isEmpty()){
+                    if (objects.getString("eventName").isEmpty()) {
                         eventName = "";
                     }
                     String eventDesc = objects.getString("description");
-                    if (objects.getString("description").isEmpty()){
+                    if (objects.getString("description").isEmpty()) {
                         eventDesc = "";
                     }
                     String eventLocation = objects.getString("location");
-                    if (objects.getString("location").isEmpty()){
+                    if (objects.getString("location").isEmpty()) {
                         eventLocation = "";
                     }
                     String eventWebPage = objects.getString("website");
-                    if (objects.getString("website").isEmpty()){
+                    if (objects.getString("website").isEmpty()) {
                         eventWebPage = "";
                     }
                     Date eventStartDate = objects.getDate("startDate");
                     Date eventEndDate = objects.getDate("endDate");
                     ParseFile eventImage = objects.getParseFile("image");
                     String eventCategory = objects.getString("category");
-                    if (objects.getString("category").isEmpty()){
+                    if (objects.getString("category").isEmpty()) {
                         eventCategory = "";
                     }
 
@@ -234,11 +235,11 @@ public class parseApplicationSetup extends Application{
 
     }
 
-    public  List<EventDetails> getEventData(){
+    public List<EventDetails> getEventData() {
         return eventArray;
     }
 
-    public void setDealData(){
+    public void setDealData() {
 
         //Set Date for current day (today)
         Calendar c = Calendar.getInstance();
@@ -250,15 +251,14 @@ public class parseApplicationSetup extends Application{
         context = getApplicationContext();
 
         //PARSE QUERY DEALS FROM THE INTERNET//
-        ParseQuery <ParseObject> dealsQuery = new ParseQuery<ParseObject>("deals");
+        ParseQuery<ParseObject> dealsQuery = new ParseQuery<ParseObject>("deals");
         dealsQuery.addAscendingOrder("startDate");
         dealsQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
-                if (e != null){
+                if (e != null) {
 
-                }
-                else{
+                } else {
                     ParseObject.pinAllInBackground("deals", list);
                 }
             }
@@ -306,11 +306,69 @@ public class parseApplicationSetup extends Application{
 
     }
 
-    public List<DealObject> getDealData(){
+    public List<DealObject> getDealData() {
         return dealArray;
     }
 
-    public boolean internetConnection(){
+    public void setEmploymentData() {
+
+        context = getApplicationContext();
+
+        //PARSE QUERY DEALS FROM THE INTERNET//
+        ParseQuery<ParseObject> employmentQuery = new ParseQuery<ParseObject>("jobListing");
+        employmentQuery.addAscendingOrder("createdAt");
+        employmentQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e != null) {
+
+                } else {
+                    ParseObject.pinAllInBackground("jobs", list);
+                }
+            }
+        });
+
+        //PARSE QUERY FOR DEALS FROM LOCAL DATA//
+        ParseQuery<ParseObject> localEmploymentQuery = new ParseQuery<ParseObject>("jobListing");
+        localEmploymentQuery.addAscendingOrder("createdAt");
+        localEmploymentQuery.fromLocalDatastore();
+        localEmploymentQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e != null) {
+                    Toast.makeText(context, "An error has occurred. \n" +
+                            "Please connect to the Internet and refresh this view", Toast.LENGTH_LONG).show();
+                } else for (ParseObject objects : list) {
+                    //Get data from Parse.com table
+                    String jobPosition = objects.getString("position");
+                    String jobCompany = objects.getString("company");
+                    String jobLocation = objects.getString("location");
+                    String jobDesc = objects.getString("description");
+
+                    //ADD ONLY THE UPCOMING EVENTS
+
+                    //Assign data to a DealObject
+                    JobObject newObject = new JobObject();
+                    newObject.setJobPosition(jobPosition);
+                    newObject.setJobCompany(jobCompany);
+                    newObject.setJobLocation(jobLocation);
+                    newObject.setJobDescription(jobDesc);
+
+                    //Add object to eventArray
+                    employmentArray.add(newObject);
+
+
+                }
+            }
+        });
+
+    }
+
+    public List<JobObject> getEmploymentData() {
+        return employmentArray;
+    }
+
+    public boolean internetConnection() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = cm.getActiveNetworkInfo();
         return networkInfo != null && networkInfo.isConnectedOrConnecting();

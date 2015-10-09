@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.parse.GetDataCallback;
@@ -24,18 +23,18 @@ import java.util.TimeZone;
  */
 public class eventViewAdapter extends RecyclerView.Adapter<eventViewAdapter.MyViewHolder> {
 
-    private LayoutInflater inflater;
     public static List<EventDetails> eventArray;
+    private LayoutInflater inflater;
     private Context context;
 
-    public eventViewAdapter(Context context, List<EventDetails> eventList){
+    public eventViewAdapter(Context context, List<EventDetails> eventList) {
         this.context = context;
         inflater = LayoutInflater.from(context);
         eventArray = eventList;
         Log.v("Events Received", "eventViewAdapter " + eventArray.size());
     }
 
-    public void updatedEventData(List<EventDetails> events){
+    public void updatedEventData(List<EventDetails> events) {
         eventArray = events;
     }
 
@@ -75,10 +74,11 @@ public class eventViewAdapter extends RecyclerView.Adapter<eventViewAdapter.MyVi
         return eventArray.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView eventName;
         TextView eventDate;
         ParseImageView eventParseImageView;
+
         public MyViewHolder(View itemView) {
             super(itemView);
             eventName = (TextView) itemView.findViewById(R.id.txtEventListName);                    //Find TextView for Event Name
