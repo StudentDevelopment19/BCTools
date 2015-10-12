@@ -3,6 +3,7 @@ package com.example.studev19.bctools;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
@@ -18,6 +19,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.parse.DeleteCallback;
 import com.parse.FindCallback;
@@ -57,6 +59,9 @@ public class EventListActivity extends AppCompatActivity implements AdapterView.
         setContentView(R.layout.activity_event_list);
         context = this;
 
+        Intent from = getIntent();
+        String stringFrom = from.getStringExtra("from");
+
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -68,6 +73,10 @@ public class EventListActivity extends AppCompatActivity implements AdapterView.
         toolbar.addView(spinner);
         spinner.setOnItemSelectedListener(this);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        if (!stringFrom.equals(null)){
+            int spinnerPosition = arrayAdapter.getPosition(stringFrom);
+            spinner.setSelection(spinnerPosition);
+        }
 
         //Create RecyclerView
         recyclerView = (RecyclerView) findViewById(R.id.eventList);

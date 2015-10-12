@@ -73,7 +73,9 @@ public class navigationViewAdapter extends RecyclerView.Adapter<navigationViewAd
                     context.startActivity(new Intent(context, DirectoryListActivity.class));
                     break;
                 case 2:
-                    context.startActivity(new Intent(context, EventListActivity.class));
+                    Intent events = new Intent(context, EventListActivity.class);
+                    events.putExtra("from", "All Events");
+                    context.startActivity(events);
                     break;
                 case 3:
                     context.startActivity(new Intent(context, BCSAActivity.class));
@@ -82,10 +84,10 @@ public class navigationViewAdapter extends RecyclerView.Adapter<navigationViewAd
                     context.startActivity(new Intent(context, DealListActivity.class));
                     break;
                 case 5:
-                    context.startActivity(new Intent(context, FeedbackActivity.class));
+                    context.startActivity(new Intent(context, JobServicesActivity.class));
                     break;
                 case 6:
-                    context.startActivity(new Intent(context, JobServicesActivity.class));
+                    context.startActivity(new Intent(context, FeedbackActivity.class));
                     break;
             }
         }

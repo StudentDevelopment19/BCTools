@@ -1,18 +1,22 @@
 package com.example.studev19.bctools;
 
 import android.app.Dialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 public class JobServicesActivity extends AppCompatActivity {
     private static final int DIALOG_ALERT = 10;
@@ -46,6 +50,31 @@ public class JobServicesActivity extends AppCompatActivity {
             }
         });
 
+        RelativeLayout employmentEvents = (RelativeLayout) findViewById(R.id.layoutEmploymentEvents);
+        employmentEvents.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent startEvents = new Intent(context, EventListActivity.class);
+                startEvents.putExtra("from", "Career");
+                context.startActivity(startEvents);
+            }
+        });
+
+        RelativeLayout employmentFeedback = (RelativeLayout) findViewById(R.id.layoutEmploymentFeedback);
+        employmentFeedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try{
+                    Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+                    emailIntent.setData(Uri.parse("mailto:adrian.lovi.39@gmail.com"));
+                    emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Feedback");
+                    startActivity(emailIntent);
+                }
+                catch (ActivityNotFoundException activityException){
+                    Toast.makeText(context, "Application has stopped, failed to send email to the Career Center", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
         NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigationDrawer);
