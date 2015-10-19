@@ -21,50 +21,50 @@
 
             <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:paddingBottom="32dp"
+                android:paddingTop="32dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
 
                 <TableRow
                     android:id="@+id/rowMenu1"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
                     android:layout_weight="0.5">
 
                     <RelativeLayout
                         android:id="@+id/layoutJobSearch"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginRight="8dp"
+                        android:layout_marginRight="16dp"
                         android:layout_weight="0.5"
-                        android:background="@drawable/background_shape1"
+                        android:background="@drawable/background_shape4"
                         android:elevation="2dp">
 
                         <ImageView
                             android:id="@+id/icoJobSearch"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:src="@drawable/hacker"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginRight="16dp"
+                            android:layout_centerHorizontal="true"
                             android:layout_centerVertical="true"
-                            android:layout_centerHorizontal="true" />
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="8dp"
+                            android:src="@drawable/ic_job_search_blue" />
 
                         <TextView
                             android:id="@+id/txtJobSearch"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Job Search"
-                            android:fontFamily="sans-serif"
-                            android:textSize="16sp"
-                            android:textColor="@color/iconsColor"
                             android:layout_alignParentBottom="true"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginBottom="8dp">
-
-                        </TextView>
+                            android:layout_marginBottom="8dp"
+                            android:fontFamily="sans-serif"
+                            android:text=" Job Search "
+                            android:textColor="@color/iconsColor"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
 
                     </RelativeLayout>
 
@@ -72,33 +72,33 @@
                         android:id="@+id/layoutAppointments"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="8dp"
+                        android:layout_marginLeft="16dp"
                         android:layout_weight="0.5"
-                        android:background="@drawable/background_shape1"
+                        android:background="@drawable/background_shape2"
                         android:elevation="2dp">
 
                         <ImageView
                             android:id="@+id/icoAppointments"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:src="@drawable/hacker"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginRight="16dp"
+                            android:layout_centerHorizontal="true"
                             android:layout_centerVertical="true"
-                            android:layout_centerHorizontal="true" />
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="8dp"
+                            android:src="@drawable/ic_employment_appointment" />
 
                         <TextView
                             android:id="@+id/txtAppointments"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Appointments"
-                            android:fontFamily="sans-serif"
-                            android:textSize="16sp"
-                            android:textColor="@color/iconsColor"
                             android:layout_alignParentBottom="true"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginBottom="8dp">
-                        </TextView>
+                            android:layout_marginBottom="8dp"
+                            android:fontFamily="sans-serif"
+                            android:text="Appointments"
+                            android:textColor="@color/iconsColor"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
 
                     </RelativeLayout>
                 </TableRow>
@@ -107,44 +107,40 @@
                     android:id="@+id/rowMenu2"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     android:layout_weight="0.5">
 
                     <RelativeLayout
                         android:id="@+id/layoutEmploymentEvents"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginRight="8dp"
+                        android:layout_marginRight="16dp"
                         android:layout_weight="0.5"
-                        android:background="@drawable/background_shape1"
+                        android:background="@drawable/background_shape2"
                         android:elevation="2dp">
 
                         <ImageView
                             android:id="@+id/icoEmploymentEvents"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:src="@drawable/hacker"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginRight="16dp"
+                            android:layout_centerHorizontal="true"
                             android:layout_centerVertical="true"
-                            android:layout_centerHorizontal="true" />
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="8dp"
+                            android:src="@drawable/ic_employment_event_green" />
 
                         <TextView
                             android:id="@+id/txtEmploymentEvents"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Events"
-                            android:fontFamily="sans-serif"
-                            android:textSize="16sp"
-                            android:textColor="@color/iconsColor"
                             android:layout_alignParentBottom="true"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginBottom="8dp">
-
-                        </TextView>
+                            android:layout_marginBottom="8dp"
+                            android:fontFamily="sans-serif"
+                            android:text="Events"
+                            android:textColor="@color/iconsColor"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
 
                     </RelativeLayout>
 
@@ -152,34 +148,33 @@
                         android:id="@+id/layoutEmploymentFeedback"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="8dp"
+                        android:layout_marginLeft="16dp"
                         android:layout_weight="0.5"
-                        android:background="@drawable/background_shape1"
+                        android:background="@drawable/background_shape4"
                         android:elevation="2dp">
 
                         <ImageView
                             android:id="@+id/icoEmploymentFeedback"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:src="@drawable/hacker"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginRight="16dp"
+                            android:layout_centerHorizontal="true"
                             android:layout_centerVertical="true"
-                            android:layout_centerHorizontal="true" />
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="8dp"
+                            android:src="@drawable/ic_employment_feedback" />
 
                         <TextView
                             android:id="@+id/txtEmploymentFeedback"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Feedback"
-                            android:fontFamily="sans-serif"
-                            android:textSize="16sp"
-                            android:textColor="@color/iconsColor"
                             android:layout_alignParentBottom="true"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginBottom="8dp">
-
-                        </TextView>
+                            android:layout_marginBottom="8dp"
+                            android:fontFamily="sans-serif"
+                            android:text="Feedback"
+                            android:textColor="@color/iconsColor"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
 
                     </RelativeLayout>
 

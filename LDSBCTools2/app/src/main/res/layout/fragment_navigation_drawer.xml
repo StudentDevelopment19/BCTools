@@ -1,14 +1,42 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="#EEE"
     tools:context="com.example.studev19.bctools.NavigationDrawerFragment">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/navRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primaryColor"
+        android:paddingBottom="48dp"
+        android:paddingTop="48dp"
+        android:elevation="2dp">
+        <ImageView
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:src="@mipmap/ic_launcher_no_background"
+            android:id="@+id/icoNavItem"
+            android:layout_centerVertical="true"/>
 
-</RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BC TOOLS"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
+            android:textColor="@color/iconsColor"
+            android:textSize="34sp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/icoNavItem"/>
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:paddingTop="8dp"
+        android:id="@+id/navRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+</LinearLayout>

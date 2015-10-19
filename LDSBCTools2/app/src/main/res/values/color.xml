@@ -1,16 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--Primary Color and Accent-->
     <color name="primaryColor">#388E3C</color>          <!--Green 700-->
     <!--<color name="primaryColor">#689F38</color>-->          <!--Light Green 700-->
+    <!--<color name="primaryColor">#228B22</color>-->          <!--School Green 500-->
     <color name="primaryColorDark">#1B5E20</color>      <!--Green 900-->
     <!--<color name="primaryColorDark">#33691E</color>-->      <!--Light Green 900-->
+    <!--<color name="primaryColorDark">#165A16</color>-->      <!--School Green 700-->
     <color name="primaryColorLight">#81C784</color>     <!--Green 300-->
     <!--<color name="primaryColorLight">#AED581</color>-->     <!--Light Green 300-->
+    <!--<color name="primaryColorLight">#88E288</color>-->     <!--School Green 100-->
     <color name="accentColor">#FFAB40</color>           <!--Orange A200-->
     <!--<color name="accentColor">#FFD700</color>-->           <!--School Gold-->
+
+    <!--Text Colors-->
     <color name="primaryTextColor">#212121</color>
     <color name="secondaryTextColor">#727272</color>
     <color name="iconsColor">#FFFFFF</color>
     <color name="dividerColor">#B6B6B6</color>
     <color name="tabScroll">#FFFFFF</color>
+
+    <!--Accent colors for employment icons-->
+    <color name="redAccentColor">#FF5252</color>        <!--Red A200-->
+    <color name="blueAccentColor">#536DFE</color>       <!--Indigo A200-->
+    <color name="purpleAccentColor">#7C4DFF</color>     <!--Deep Purple A200-->
+    <color name="greenAccentColor">#B2FF59</color>      <!--Light Green A200-->
+    <color name="amberAccentColor">#FFD740</color>      <!--Amber A200-->
+    <color name="blueF4S">#568ECB</color>               <!--F4S Blue-->
+    <color name="greenF4S">#CADD46</color>              <!--F4S Green-->
+
 </resources>
