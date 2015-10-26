@@ -7,19 +7,22 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import android.webkit.WebView;
+import android.os.Handler;
 import com.parse.ParseAnalytics;
 
 public class MainActivity extends ActionBarActivity {
 
     private static final int DIALOG_ALERT = 10;
     private static final int NO_INTERNET_DIALOG = 5;
+    private static SwipeRefreshLayout webSwipe;
     private Toolbar toolbar;
     private boolean connection;
 
@@ -36,18 +39,39 @@ public class MainActivity extends ActionBarActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        Log.v("NavDrawer", "MainActivity declares drawerFragment");
         NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigationDrawer);
-        Log.v("NavDrawer", "MainActivity declared drawerFragment as " + drawerFragment);
 
-        Log.v("NavDrawer", "MainActivity starts drawerFragment.setUp");
         drawerFragment.setUp(R.id.navigationDrawer, (DrawerLayout) findViewById(R.id.drawerLayout), toolbar);
 
+        webSwipe = (SwipeRefreshLayout) findViewById(R.id.swipeHome);
+        webSwipe.setColorSchemeColors(R.color.primaryColor, R.color.accentColor);
+        final WebView WEB_VIEW = (WebView) findViewById(R.id.webViewHome);
 
         if (connection == false) {
             showDialog(NO_INTERNET_DIALOG);
+            String html = "<html><body><p>You must be connected to the internet to display this tab correctly.</p></body></html>";
+            String mime = "text/html";
+            String encoding = "utf-8";
+            WEB_VIEW.loadDataWithBaseURL(null, html, mime, encoding, null);
         }
+        else{
+            WEB_VIEW.loadUrl("https://www.ldsbc.edu/");
+        }
+
+        webSwipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                webSwipe.setRefreshing(true);
+                (new Handler()).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        webSwipe.setRefreshing(false);
+                        WEB_VIEW.loadUrl("https://www.ldsbc.edu/");
+                    }
+                }, 4000);
+            }
+        });
 
     }
 

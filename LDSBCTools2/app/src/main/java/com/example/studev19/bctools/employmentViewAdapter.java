@@ -41,7 +41,7 @@ public class employmentViewAdapter extends RecyclerView.Adapter<employmentViewAd
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         JobObject currentInfo = employmentArray.get(position);
-        holder.position.setText(currentInfo.getJobPosition());
+        holder.position.setText(currentInfo.getJobPosition() + " @ ");
         holder.company.setText(currentInfo.getJobCompany());
         holder.location.setText(currentInfo.getJobLocation());
     }

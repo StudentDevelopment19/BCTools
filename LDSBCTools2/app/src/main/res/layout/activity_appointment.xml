@@ -9,42 +9,69 @@
         android:id="@+id/app_bar"
         layout="@layout/app_bar"/>
 
-    <TextView
-        android:id="@+id/txtApptDescription"
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Appointments"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="sans-serif"
-        android:textSize="16dp"
-        android:textColor="@color/primaryTextColor"/>
+        android:elevation="1dp"
+        card_view:cardCornerRadius="4dp">
 
-    <RelativeLayout
-        android:id="@+id/layoutCall"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:clickable="true"
-        android:background="@drawable/ripple_effect">
-
-        <ImageView
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_phone_custom"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="16dp"/>
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="72dp"
-            android:layout_marginRight="16dp"
-            android:text="Call to make an appointment"
-            android:textSize="16dp"
-            android:gravity="center_vertical" />
+            <TextView
+                android:id="@+id/txtApptDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Appointments"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="sans-serif"
+                android:textSize="16dp"
+                android:textColor="@color/primaryTextColor"/>
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/divider1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/txtApptDescription"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@color/dividerColor" />
+
+            <RelativeLayout
+                android:id="@+id/layoutCall"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:clickable="true"
+                android:layout_below="@id/divider1"
+                android:background="@drawable/ripple_effect">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_phone_custom"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="72dp"
+                    android:layout_marginRight="16dp"
+                    android:text="Call to make an appointment"
+                    android:textSize="16dp"
+                    android:gravity="center_vertical" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
 
 </LinearLayout>
