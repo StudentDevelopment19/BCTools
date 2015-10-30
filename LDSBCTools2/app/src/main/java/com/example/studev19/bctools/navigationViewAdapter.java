@@ -18,12 +18,11 @@ import java.util.List;
  */
 public class navigationViewAdapter extends RecyclerView.Adapter<navigationViewAdapter.MyViewHolder> {
 
-    private static List<NavigationObject> navList = Collections.emptyList();
+    private static List<NavigationObject> navList = Collections.emptyList();                        //List of Navigation Objects
     public Context context;
     private LayoutInflater inflater;
 
-    public navigationViewAdapter(Context context, List<NavigationObject> navigationList) {
-        Log.v("NavDrawer", "navViewAdapter calls values");
+    public navigationViewAdapter(Context context, List<NavigationObject> navigationList) {          //Initialize Inflater and Navigation Object List
         this.context = context;
         inflater = LayoutInflater.from(context);
         navList = navigationList;
@@ -31,24 +30,20 @@ public class navigationViewAdapter extends RecyclerView.Adapter<navigationViewAd
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Log.v("NavDrawer", "navViewAdapter onCreateViewHolder happens");
-        View view = inflater.inflate(R.layout.nav_custom_row, parent, false);
+        View view = inflater.inflate(R.layout.nav_custom_row, parent, false);                       //Inflates the nav_custom_row.xml layout.
         MyViewHolder holder = new MyViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        Log.v("NavDrawer", "navViewAdapter onBindViewHolder happens");
+    public void onBindViewHolder(MyViewHolder holder, int position) {                               //Inflate rows with data
         NavigationObject currentData = navList.get(position);
-        holder.title.setText(currentData.getName());
-        holder.icon.setImageResource(currentData.getIcon());
-        Log.v("NavDrawer", "navViewAdapter onBindViewHolder happened");
+        holder.title.setText(currentData.getName());                                                //Set value for Item Name
+        holder.icon.setImageResource(currentData.getIcon());                                        //Set value for Item Icon
     }
 
     @Override
     public int getItemCount() {
-        Log.v("NavDrawer", "navViewAdapter navList items are counted");
         return navList.size();
     }
 
@@ -58,36 +53,37 @@ public class navigationViewAdapter extends RecyclerView.Adapter<navigationViewAd
 
         public MyViewHolder(View view) {
             super(view);
-            title = (TextView) view.findViewById(R.id.txtNavItem);
-            icon = (ImageView) view.findViewById(R.id.icoNavItem);
+            title = (TextView) view.findViewById(R.id.txtNavItem);                                  //Find TextView for Name
+            icon = (ImageView) view.findViewById(R.id.icoNavItem);                                  //Find ImageView for Icon
             view.setOnClickListener(this);
         }
 
         @Override
-        public void onClick(View v) {
+        public void onClick(View v) {                                                               //onClickListener
+            //Open new activity by position on Item List
             switch (getPosition()) {
                 case 0:
-                    context.startActivity(new Intent(context, MainActivity.class));
+                    context.startActivity(new Intent(context, MainActivity.class));                 //Open MainActivity "Home"
                     break;
                 case 1:
-                    context.startActivity(new Intent(context, DirectoryListActivity.class));
+                    context.startActivity(new Intent(context, DirectoryListActivity.class));        //Open DirectoryListActivity "Directory"
                     break;
                 case 2:
-                    Intent events = new Intent(context, EventListActivity.class);
-                    events.putExtra("from", "All Events");
+                    Intent events = new Intent(context, EventListActivity.class);                   //Open EventListActivity "Events"
+                    events.putExtra("from", "All Events");                                          //Pass intent with information where the activity was opened from
                     context.startActivity(events);
                     break;
                 case 3:
-                    context.startActivity(new Intent(context, BCSAActivity.class));
+                    context.startActivity(new Intent(context, BCSAActivity.class));                 //Open BCSAActivity "BCSA"
                     break;
                 case 4:
-                    context.startActivity(new Intent(context, DealListActivity.class));
+                    context.startActivity(new Intent(context, DealListActivity.class));             //Open DealListActivity "Deals"
                     break;
                 case 5:
-                    context.startActivity(new Intent(context, JobServicesActivity.class));
+                    context.startActivity(new Intent(context, JobServicesActivity.class));          //Open JobServicesActivity "Career Services"
                     break;
                 case 6:
-                    context.startActivity(new Intent(context, FeedbackActivity.class));
+                    context.startActivity(new Intent(context, FeedbackActivity.class));             //Open FeedbackActivity "Feedback"
                     break;
             }
         }

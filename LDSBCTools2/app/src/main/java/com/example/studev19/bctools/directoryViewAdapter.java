@@ -16,12 +16,12 @@ import java.util.List;
  */
 public class directoryViewAdapter extends RecyclerView.Adapter<directoryViewAdapter.MyViewHolder> {
 
-    public static List<DirectoryObject> directoryArray;
-    private LayoutInflater inflater;
-    private Context context;
-    private String iconChar;
+    public static List<DirectoryObject> directoryArray;                                             //List of Directory Objects
+    private LayoutInflater inflater;                                                                //Declared Inflater
+    private Context context;                                                                        //Declared Context
+    private String iconChar;                                                                        //Char with first letter from service
 
-    public directoryViewAdapter(Context context, List<DirectoryObject> directory) {
+    public directoryViewAdapter(Context context, List<DirectoryObject> directory) {                 //Initialized from DirectoryListActivity.java
         this.context = context;
         inflater = LayoutInflater.from(context);
         directoryArray = directory;
@@ -30,28 +30,27 @@ public class directoryViewAdapter extends RecyclerView.Adapter<directoryViewAdap
 
     public void updatedData(List<DirectoryObject> directory) {
         directoryArray = directory;
-    }
+    }                                  //Updates data in directoryArray
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = inflater.inflate(R.layout.custom_row, parent, false);
+        View view = inflater.inflate(R.layout.custom_row, parent, false);                           //Inflates the custom_row.xml layout.
         MyViewHolder holder = new MyViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, int position) {                               //Inflate rows with data
         DirectoryObject currentInfo = directoryArray.get(position);
         holder.title.setText(currentInfo.getName());                                                //Set value for Service Name
-        iconChar = currentInfo.getName().substring(0, 1);
-        holder.icoChar.setText(iconChar);
+        iconChar = currentInfo.getName().substring(0, 1);                                           //Get first char from service name
+        holder.icoChar.setText(iconChar);                                                           //Set char in icon
     }
 
     @Override
     public int getItemCount() {
-        Log.v("Directory Counted", "directoryViewAdapter " + directoryArray.size());
-        return directoryArray.size();
+        return directoryArray.size();                                                               //Return List Size
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -62,7 +61,7 @@ public class directoryViewAdapter extends RecyclerView.Adapter<directoryViewAdap
             super(itemView);
             itemView.setOnClickListener(this);
             title = (TextView) itemView.findViewById(R.id.listNameText);                            //Find TextView for Service Name
-            icoChar = (TextView) itemView.findViewById(R.id.txtDirectoryChar);
+            icoChar = (TextView) itemView.findViewById(R.id.txtDirectoryChar);                      //Find TextView for Service Char
         }
 
         @Override

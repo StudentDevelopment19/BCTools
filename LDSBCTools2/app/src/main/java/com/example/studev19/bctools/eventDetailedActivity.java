@@ -33,34 +33,28 @@ import java.util.TimeZone;
 
 
 public class eventDetailedActivity extends ActionBarActivity {
-    private static final int DIALOG_ALERT = 10;
-    private static EventDetails displayedInformation;
-    private static String hyperlink;
-    Toolbar toolbar;
-    private Calendar calStartDate;
-    private Calendar calEndDate;
+    private static final int DIALOG_ALERT = 10;                                                     //ID for About App Dialog
+    private static EventDetails displayedInformation;                                               //EventDetails Object with info for Detailed View
+    private static String hyperlink;                                                                //Hyperlink to Event Website
+    Toolbar toolbar;                                                                                //Declared Toolbar
+    private Calendar calStartDate;                                                                  //Start Date
+    private Calendar calEndDate;                                                                    //End Date
 
-    public static void setEventInfo(EventDetails eventDetails) {
+    public static void setEventInfo(EventDetails eventDetails) {                                    //Set Current Info for Detailed View
         displayedInformation = eventDetails;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_event_detailed);
+        setContentView(R.layout.activity_event_detailed);                                           //Layout and views come from activity_event_detailed.xml
 
         //Creating the Toolbar and setting it as the Toolbar for the Activity
-        toolbar = (Toolbar) findViewById(R.id.app_bar);
-
-        //Set Title of the AppBar
-        toolbar.setTitle("");
-
-        //Applies the AppBar
-        setSupportActionBar(toolbar);
-
-        //Set the Navigation Up button and enables it
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar = (Toolbar) findViewById(R.id.app_bar);                                             //Initialize toolbar as app_bar
+        toolbar.setTitle("");                                                                       //Set Title of the AppBar
+        setSupportActionBar(toolbar);                                                               //Enables the AppBar
+        getSupportActionBar().setHomeButtonEnabled(true);                                           //Displays home/back button on toolbar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);                                      //Home button will show as back button
 
         //Initialize Calendars
         calStartDate = Calendar.getInstance();
@@ -68,7 +62,8 @@ public class eventDetailedActivity extends ActionBarActivity {
         calEndDate = Calendar.getInstance();
         calEndDate.setTime(displayedInformation.getEndDate());
 
-        //This section fills the information of the detailed view
+        //-----THE FOLLOWING SECTION FILLS THE INFORMATION OF THE DETAILED VIEW-----//
+
         final ParseImageView dealImage = (ParseImageView) findViewById(R.id.imgEventAd);            //Find image view
         ParseFile imageFile = displayedInformation.getEventImage();                                 //Set ParseFile as image from parse
         dealImage.setParseFile(imageFile);                                                          //Set dealImage as Image from parse
@@ -83,49 +78,48 @@ public class eventDetailedActivity extends ActionBarActivity {
             }
         });
 
-        //This section fills the information of the detailed view
         //EVENT NAME SECTION
-        TextView eventNameText = (TextView) findViewById(R.id.txtEventName);
-        eventNameText.setText(displayedInformation.getName());
+        TextView eventNameText = (TextView) findViewById(R.id.txtEventName);                        //Find view for Name Text
+        eventNameText.setText(displayedInformation.getName());                                      //Sets value for Event name from array and displays it
 
         //EVENT DESCRIPTION SECTION
-        TextView eventDescText = (TextView) findViewById(R.id.txtEventDescription);                 //Find view for Event Description
-        eventDescText.setText(displayedInformation.getDescription());                               //Set value for description
+        TextView eventDescText = (TextView) findViewById(R.id.txtEventDescription);                 //Find view for Event Description Text
+        eventDescText.setText(displayedInformation.getDescription());                               //Sets value for Description from array and displays it
 
 
         //DATE SECTION
-        TextView eventStartDate = (TextView) findViewById(R.id.txtEventSchedule);                   //Find view for Event Start Date
+        TextView eventStartDate = (TextView) findViewById(R.id.txtEventSchedule);                   //Find view for Event Start Date Text
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, hh:mm a");                      //Set date format for start date
         dateFormat.setTimeZone(TimeZone.getTimeZone("MST"));                                        //Set time zone to mst for start date
         SimpleDateFormat endTime = new SimpleDateFormat("hh:mm a");                                 //Set date format for end date
         endTime.setTimeZone(TimeZone.getTimeZone("MST"));                                           //Set time zone to mst for end date
-        eventStartDate.setText(dateFormat.format(displayedInformation.getStartDate())               //Set value for "Start Date to End Date"
+        eventStartDate.setText(dateFormat.format(displayedInformation.getStartDate())               //Set value for "Start Date to End Date" and display it
                 + " to " + endTime.format(displayedInformation.getEndDate()));
 
         //LOCATION SECTION
-        TextView eventLocation = (TextView) findViewById(R.id.txtEventLocation);                    //Find view for Event Location
+        TextView eventLocation = (TextView) findViewById(R.id.txtEventLocation);                    //Find view for Event Location Text
         ImageView eventLocationIcon = (ImageView) findViewById(R.id.icoEventLocation);              //Find view for Event Location Icon
-        if (displayedInformation.getLocation() == "") {                                              //If Location value is empty dismiss the views
+        if (displayedInformation.getLocation() == "") {                                             //If Location value is empty dismiss the views
             eventLocationIcon.setVisibility(View.GONE);
             eventLocation.setVisibility(View.GONE);
-        } else if (displayedInformation.getLocation() != "") {                                         //If Location value is not empty show Location
-            eventLocation.setText(displayedInformation.getLocation());                              //Set value for Event Location
+        } else if (displayedInformation.getLocation() != "") {                                      //If Location value is not empty show Location Text and Icon
+            eventLocation.setText(displayedInformation.getLocation());                              //Set value for Event Location Text
         }
 
         //WEB SECTION
-        TextView eventWebText = (TextView) findViewById(R.id.txtEventWeb);                          //Finds view for Website
+        TextView eventWebText = (TextView) findViewById(R.id.txtEventWeb);                          //Finds view for Website Text
         ImageView eventWebIco = (ImageView) findViewById(R.id.icoEventWeb);                         //Finds view for Website Icon
-        if (displayedInformation.getEventWeb() == "") {                                              //If website is empty dismiss the views
+        if (displayedInformation.getEventWeb() == "") {                                             //If website is empty dismiss the views
             eventWebIco.setVisibility(View.GONE);
             eventWebText.setVisibility(View.GONE);
-        } else if (displayedInformation.getEventWeb() != "") {                                         //If website is not empty create hyperlink
+        } else if (displayedInformation.getEventWeb() != "") {                                      //If website is not empty create hyperlink
             hyperlink = "<a href='" + displayedInformation.getEventWeb() + "'>" + "Website" + "</a>"; //Set hyperlink value
             eventWebText.setClickable(true);                                                        //Sets Website text clickable
             eventWebText.setMovementMethod(LinkMovementMethod.getInstance());                       //Enables hyperlink
-            eventWebText.setText(Html.fromHtml(hyperlink));                                         //Sets value for Website));
+            eventWebText.setText(Html.fromHtml(hyperlink));                                         //Sets value for Website
 
-            if (eventLocationIcon.getVisibility() == View.GONE) {
-                ViewGroup.LayoutParams p = eventWebIco.getLayoutParams();
+            if (eventLocationIcon.getVisibility() == View.GONE) {                                   //If info for Location is not available, Location Text and Icon will not be displayed
+                ViewGroup.LayoutParams p = eventWebIco.getLayoutParams();                           //and the Website Text and Icon will be moved up.
                 if (p instanceof RelativeLayout.LayoutParams) {
                     RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) p;
                     lp.addRule(RelativeLayout.BELOW, R.id.icoEventSchedule);
@@ -169,16 +163,16 @@ public class eventDetailedActivity extends ActionBarActivity {
             }
         });
 
-        if (eventWebIco.getVisibility() == View.GONE) {
-            ViewGroup.LayoutParams p = addEventButton.getLayoutParams();
+        if (eventWebIco.getVisibility() == View.GONE) {                                             //If info for Website is not available, Website Text and Icon will not be displayed
+            ViewGroup.LayoutParams p = addEventButton.getLayoutParams();                            //and the Button will be moved up.
             if (p instanceof RelativeLayout.LayoutParams) {
                 RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) p;
                 lp.addRule(RelativeLayout.BELOW, R.id.txtEventLocation);
                 addEventButton.setLayoutParams(lp);
             }
         }
-        if (eventWebIco.getVisibility() == View.GONE &&
-                eventLocationIcon.getVisibility() == View.GONE) {
+        if (eventWebIco.getVisibility() == View.GONE &&                                             //If info for Location and Website is not available, the Location and Website
+                eventLocationIcon.getVisibility() == View.GONE) {                                   //Text and Icons will not be displayed and the Button will be moved up.
             ViewGroup.LayoutParams p = addEventButton.getLayoutParams();
             if (p instanceof RelativeLayout.LayoutParams) {
                 RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) p;

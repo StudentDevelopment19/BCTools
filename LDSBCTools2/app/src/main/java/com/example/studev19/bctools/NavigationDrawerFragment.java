@@ -10,7 +10,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,64 +40,57 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
     public static List<NavigationObject> getData() {
-        Log.v("NavDrawer", "NavDrawerFragment getData happens");
         List<NavigationObject> data = new ArrayList<>();
-        String[] titles = {"Home", "Directory", "Events", "BCSA", "Deals", "Employment Services", "Feedback"};
-        int[] images = {R.drawable.ic_home_gray, R.drawable.ic_phone_gray, R.drawable.ic_event_gray, R.drawable.ic_explore_gray, R.drawable.ic_shopping_gray, R.drawable.ic_company_gray, R.drawable.ic_feedback_gray};
-        for (int i = 0; i < titles.length; i++) {
+        String[] titles = {"Home", "Directory",                                                     //Array of Item Titles on Navigation menu
+                "Events", "BCSA", "Deals",
+                "Career Services", "Feedback"};
+        int[] images = {R.drawable.ic_home_gray, R.drawable.ic_phone_gray,                          //Array of Item Icons on Navigation menu
+                R.drawable.ic_event_gray, R.drawable.ic_explore_gray, R.drawable.ic_shopping_gray,
+                R.drawable.ic_company_gray, R.drawable.ic_feedback_gray};
+        for (int i = 0; i < titles.length; i++) {                                                   //Add Titles and Icons to a NavigationObject array
             NavigationObject current = new NavigationObject();
             current.setName(titles[i]);
             current.setIcon(images[i]);
             data.add(current);
         }
-        Log.v("NavDrawer", "NavDrawerFragment getData happened");
         return data;
     }
 
     public static void saveToPreferences(Context context, String preferenceName, String preferenceValue) {
-        Log.v("NavDrawer", "NavDrawerFragment saveToPreferences happens");
         SharedPreferences sharedPreferences = context.getSharedPreferences
                 (PREF_FILE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(preferenceName, preferenceValue);
         editor.apply();
-        Log.v("NavDrawer", "NavDrawerFragment saveToPreferences happened");
     }
 
     public static String readFromPreferences(Context context, String preferenceName, String defaultValue) {
-        Log.v("NavDrawer", "NavDrawerFragment readFromPreferences happens");
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
-        Log.v("NavDrawer", "NavDrawerFragment readFromPreferences happened");
         return sharedPreferences.getString(preferenceName, defaultValue);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.v("NavDrawer", "NavDrawerFragment onCreate happens");
         mUserLearnedDrawer = Boolean.valueOf(readFromPreferences(getActivity(), KEY_USER_LEARNED_DRAWER, "true"));
         if (savedInstanceState != null) {
             mFromSavedInstanceState = true;
         }
-        Log.v("NavDrawer", "NavDrawerFragment onCreate happened");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        Log.v("NavDrawer", "NavDrawerFragment onCreateView happens");
-        View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
-        navRecycler = (RecyclerView) layout.findViewById(R.id.navRecyclerView);
-        adapter = new navigationViewAdapter(getActivity(), getData());
-        navRecycler.setAdapter(adapter);
-        navRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
-        Log.v("NavDrawer", "NavDrawerFragment onCreateView happened");
+        View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);      //Layout and views come from fragment_navigation_drawer.xml
+        navRecycler = (RecyclerView) layout.findViewById(R.id.navRecyclerView);                     //Find view for RecyclerView
+        adapter = new navigationViewAdapter(getActivity(), getData());                              //Initialize Adapter for RecyclerView
+        navRecycler.setAdapter(adapter);                                                            //Set Adapter to RecyclerView
+        navRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));                       //Give layout for RecyclerView
         return layout;
     }
 
-    public void setUp(int fragmentID, DrawerLayout drawerLayout, final Toolbar toolbar) {
-        Log.v("NavDrawer", "NavDrawerFragment setUp happens");
+    public void setUp(int fragmentID, DrawerLayout drawerLayout, final Toolbar toolbar) {           //Setup NavDrawer from activities
         containerView = getActivity().findViewById(fragmentID);
         mDrawerLayout = drawerLayout;
         mDrawerToggle = new ActionBarDrawerToggle(getActivity(), drawerLayout, toolbar,
@@ -106,7 +98,6 @@ public class NavigationDrawerFragment extends Fragment {
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                Log.v("NavDrawer", "NavDrawerFragment setUp onDrawerOpened happens");
                 if (!mUserLearnedDrawer) {
                     mUserLearnedDrawer = true;
                     saveToPreferences(getActivity(), KEY_USER_LEARNED_DRAWER, mUserLearnedDrawer + "");
@@ -117,7 +108,6 @@ public class NavigationDrawerFragment extends Fragment {
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
-                Log.v("NavDrawer", "NavDrawerFragment setUp onDrawerClosed happens");
                 getActivity().invalidateOptionsMenu();
             }
 
@@ -133,7 +123,6 @@ public class NavigationDrawerFragment extends Fragment {
             }
         });
 
-        Log.v("NavDrawer", "NavDrawerFragment setUp happened");
     }
 
 }

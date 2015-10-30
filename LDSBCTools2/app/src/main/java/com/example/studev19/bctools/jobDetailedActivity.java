@@ -12,33 +12,36 @@ import android.widget.TextView;
 
 public class jobDetailedActivity extends AppCompatActivity {
 
-    private static final int DIALOG_ALERT = 10;
-    private static Toolbar toolbar;
-    private static JobObject displayedInformation;
+    private static final int DIALOG_ALERT = 10;                                                     //ID for About App Dialog
+    private static Toolbar toolbar;                                                                 //Declared Toolbar
+    private static JobObject displayedInformation;                                                  //JobObject with info for Detailed View
 
     public static void setJobInfo(JobObject jobDetails) {
         displayedInformation = jobDetails;
-    }
+    }                                       //Set Current Info for Detailed View
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_job_detailed);
+        setContentView(R.layout.activity_job_detailed);                                             //Layout and views come from activity_job_detailed.xml
 
-        toolbar = (Toolbar) findViewById(R.id.app_bar);
-        toolbar.setTitle("Details");
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //Creating the Toolbar and setting it as the Toolbar for the Activity
+        toolbar = (Toolbar) findViewById(R.id.app_bar);                                             //Initialize toolbar as app_bar
+        toolbar.setTitle("Details");                                                                //Set Title for toolbar as "Details"
+        setSupportActionBar(toolbar);                                                               //Enables the AppBar
+        getSupportActionBar().setHomeButtonEnabled(true);                                           //Displays home/back button on toolbar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);                                      //Home button will show as back button
 
-        TextView positionText = (TextView) findViewById(R.id.txtDetailedJobPosition);
-        positionText.setText(displayedInformation.getJobPosition());
-        TextView companyText = (TextView) findViewById(R.id.txtDetailedJobCompany);
-        companyText.setText(displayedInformation.getJobCompany());
-        TextView locationText = (TextView) findViewById(R.id.txtDetailedJobLocation);
-        locationText.setText(displayedInformation.getJobLocation());
-        TextView descriptionText = (TextView) findViewById(R.id.txtDetailedJobDescription);
-        descriptionText.setText(displayedInformation.getJobDescription());
+        //-----THE FOLLOWING SECTION FILLS THE INFORMATION OF THE DETAILED VIEW-----//
+
+        TextView positionText = (TextView) findViewById(R.id.txtDetailedJobPosition);               //Find TextView for Position
+        positionText.setText(displayedInformation.getJobPosition());                                //Set value for Position
+        TextView companyText = (TextView) findViewById(R.id.txtDetailedJobCompany);                 //Find TextView for Company
+        companyText.setText(displayedInformation.getJobCompany());                                  //Set value for Company
+        TextView locationText = (TextView) findViewById(R.id.txtDetailedJobLocation);               //Find TextView for Location
+        locationText.setText(displayedInformation.getJobLocation());                                //Set value for Location
+        TextView descriptionText = (TextView) findViewById(R.id.txtDetailedJobDescription);         //Find TextView for Job Description
+        descriptionText.setText(displayedInformation.getJobDescription());                          //Set value for Job Description
 
     }
 

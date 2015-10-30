@@ -29,15 +29,14 @@ import java.util.List;
 
 public class DealListActivity extends AppCompatActivity {
 
-    private static final int DIALOG_ALERT = 10;
-    private static final int NO_INTERNET_DIALOG = 5;
-    private static Toolbar toolbar;
-    private static RecyclerView recyclerView;
-    private static SwipeRefreshLayout dealsSwipe;
-    private static dealViewAdapter adapter;
-    private static List<DealObject> dealArray;
-    private static Context context;
-    private static Date today;
+    private static final int DIALOG_ALERT = 10;                                                     //ID for About App Dialog
+    private static Toolbar toolbar;                                                                 //DeclaredToolbar
+    private static RecyclerView recyclerView;                                                       //RecyclerView for deal list
+    private static SwipeRefreshLayout dealsSwipe;                                                   //Refresh Layout
+    private static dealViewAdapter adapter;                                                         //RecyclerView Adapter
+    private static List<DealObject> dealArray;                                                      //List with deals
+    private static Context context;                                                                 //Context
+    private static Date today;                                                                      //Date object
 
     public static List<DealObject> getData() {
         return dealArray;
@@ -45,25 +44,28 @@ public class DealListActivity extends AppCompatActivity {
 
     public static void setData(List<DealObject> array) {
         dealArray = array;
-    }
+    }                                        //Set data from parseApplicationSetup
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_deal_list);
+        setContentView(R.layout.activity_deal_list);                                                //Layout and views come from activity_deal_list.xml
 
-        toolbar = (Toolbar) findViewById(R.id.app_bar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //Creating the Toolbar and setting it as the Toolbar for the Activity
+        toolbar = (Toolbar) findViewById(R.id.app_bar);                                             //Initialize toolbar as app_bar
+        setSupportActionBar(toolbar);                                                               //Enable toolbar
+        getSupportActionBar().setDisplayShowHomeEnabled(true);                                      //Displays home/back button on toolbar
         context = this;
 
-        recyclerView = (RecyclerView) findViewById(R.id.dealList);
-        dealsSwipe = (SwipeRefreshLayout) findViewById(R.id.dealSwipeRefresh);
-        dealsSwipe.setColorSchemeResources(R.color.primaryColor, R.color.accentColor);              //Set colors for swipeRefreshLayout
-        adapter = new dealViewAdapter(context, getData());                                    //Create Adapter
+        //RECYCLER VIEW
+        recyclerView = (RecyclerView) findViewById(R.id.dealList);                                  //Find view for RecyclerView
+        dealsSwipe = (SwipeRefreshLayout) findViewById(R.id.dealSwipeRefresh);                      //Find view for RefreshSwipe
+        dealsSwipe.setColorSchemeResources(R.color.primaryColor, R.color.accentColor);              //Set colors for dealsSwipe
+        adapter = new dealViewAdapter(context, getData());                                          //Initialize Adapter for RecyclerView
         recyclerView.setAdapter(adapter);                                                           //Set Adapter to RecyclerView
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));                            //Give layout for RecyclerView
 
+        //Refresh the view after 1 second to show information from the beginning
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -71,6 +73,7 @@ public class DealListActivity extends AppCompatActivity {
             }
         }, 1000);
 
+        //SWIPE LISTENER
         dealsSwipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {                                                     // Set Refresh Listener
@@ -141,6 +144,7 @@ public class DealListActivity extends AppCompatActivity {
                     }
                 });
 
+                //Notify that data has changed and refresh
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -153,6 +157,7 @@ public class DealListActivity extends AppCompatActivity {
             }
         });
 
+        //NAVIGATION SIDEBAR
         NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigationDrawer);
 
@@ -177,7 +182,7 @@ public class DealListActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            showDialog(DIALOG_ALERT);
+            showDialog(DIALOG_ALERT);                                                               //When menu is selected call the About App Dialog
             return true;
         }
 
@@ -185,7 +190,7 @@ public class DealListActivity extends AppCompatActivity {
     }
 
     @Override
-    protected Dialog onCreateDialog(int id) {
+    protected Dialog onCreateDialog(int id) {                                                       //Create About App Dialog
         switch (id) {
             case DIALOG_ALERT:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -195,15 +200,6 @@ public class DealListActivity extends AppCompatActivity {
                 builder.setPositiveButton("OK", new OkOnClickListener());
                 AlertDialog dialog = builder.create();
                 dialog.show();
-                break;
-            case NO_INTERNET_DIALOG:
-                AlertDialog.Builder internet = new AlertDialog.Builder(this);
-                internet.setTitle("You are not connected to the internet");
-                internet.setMessage("Some information cannot be displayed without internet connection");
-                internet.setCancelable(true);
-                internet.setPositiveButton("OK", new OkOnClickListener());
-                AlertDialog internetDialog = internet.create();
-                internetDialog.show();
                 break;
         }
 

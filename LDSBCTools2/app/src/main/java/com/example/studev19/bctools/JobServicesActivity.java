@@ -19,21 +19,25 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class JobServicesActivity extends AppCompatActivity {
-    private static final int DIALOG_ALERT = 10;
-    private static final int NO_INTERNET_DIALOG = 5;
-    private static Toolbar toolbar;
+    private static final int DIALOG_ALERT = 10;                                                     //ID for About App Dialog
+    private static final int NO_INTERNET_DIALOG = 5;                                                //ID for No Internet Connection Dialog
+    private static Toolbar toolbar;                                                                 //Declared Toolbar
     private static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_job_services);
+        setContentView(R.layout.activity_job_services);                                             //Layout and views come from activity_bcsa.xml
 
-        toolbar = (Toolbar) findViewById(R.id.app_bar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //Creating the Toolbar and setting it as the Toolbar for the Activity
+        toolbar = (Toolbar) findViewById(R.id.app_bar);                                             //Initialize toolbar as app_bar
+        setSupportActionBar(toolbar);                                                               //Enables toolbar
+        getSupportActionBar().setDisplayShowHomeEnabled(true);                                      //Displays home/back button on toolbar
         context = this;
 
+        //----ICONS TO CAREER SERVICES' ACTIVITIES----//
+
+        //--TO JOB LIST--//
         RelativeLayout jobSearch = (RelativeLayout) findViewById(R.id.layoutJobSearch);
         jobSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +46,7 @@ public class JobServicesActivity extends AppCompatActivity {
             }
         });
 
+        //--TO APPOINTMENTS--//
         RelativeLayout appointments = (RelativeLayout) findViewById(R.id.layoutAppointments);
         appointments.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +55,7 @@ public class JobServicesActivity extends AppCompatActivity {
             }
         });
 
+        //--TO CAREER CENTER EVENTS--//
         RelativeLayout employmentEvents = (RelativeLayout) findViewById(R.id.layoutEmploymentEvents);
         employmentEvents.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +66,7 @@ public class JobServicesActivity extends AppCompatActivity {
             }
         });
 
+        //--EMAIL FEEDBACK--//
         RelativeLayout employmentFeedback = (RelativeLayout) findViewById(R.id.layoutEmploymentFeedback);
         employmentFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +83,7 @@ public class JobServicesActivity extends AppCompatActivity {
             }
         });
 
+        //NAVIGATION DRAWER//
         NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigationDrawer);
         drawerFragment.setUp(R.id.navigationDrawer, (DrawerLayout) findViewById(R.id.drawerLayout), toolbar);

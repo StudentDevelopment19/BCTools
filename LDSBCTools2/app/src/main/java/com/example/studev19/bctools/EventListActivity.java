@@ -34,20 +34,20 @@ import java.util.List;
 
 public class EventListActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private static final int DIALOG_ALERT = 10;
-    private static final int NO_INTERNET_DIALOG = 5;
-    private static Toolbar toolbar;
-    private static RecyclerView recyclerView;
-    private static SwipeRefreshLayout eventSwipe;
-    private static eventViewAdapter adapter;
-    private static List<EventDetails> eventArray;
-    private static Context context;
+    private static final int DIALOG_ALERT = 10;                                                     //ID for About App Dialog
+    private static final int NO_INTERNET_DIALOG = 5;                                                //ID for No Internet Connection Dialog
+    private static Toolbar toolbar;                                                                 //Declared Toolbar
+    private static RecyclerView recyclerView;                                                       //RecyclerView for event list
+    private static SwipeRefreshLayout eventSwipe;                                                   //Refresh Layout
+    private static eventViewAdapter adapter;                                                        //RecyclerView Adapter
+    private static List<EventDetails> eventArray;                                                   //List with events
+    private static Context context;                                                                 //Context
     private static Date today;
-    private Spinner spinner;
+    private Spinner spinner;                                                                        //Drop-down spinner
 
     public static List<EventDetails> getData() {
         return eventArray;
-    }
+    }                                                //Set data from parseApplicationSetup
 
     public static void setData(List<EventDetails> array) {
         eventArray = array;
@@ -56,22 +56,26 @@ public class EventListActivity extends AppCompatActivity implements AdapterView.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_event_list);
+        setContentView(R.layout.activity_event_list);                                               //Layout and views come from activity_event_list.xml
         context = this;
 
-        Intent from = getIntent();
-        String stringFrom = from.getStringExtra("from");
+        //FROM PREVIOUS ACTIVITY: This is necessary to filter the list from career services
+        Intent from = getIntent();                                                                  //Get intent from last activity
+        String stringFrom = from.getStringExtra("from");                                            //Get name of last activity
 
-        toolbar = (Toolbar) findViewById(R.id.app_bar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        //Creating the Toolbar and setting it as the Toolbar for the Activity
+        toolbar = (Toolbar) findViewById(R.id.app_bar);                                             //Initialize toolbar as app_bar
+        setSupportActionBar(toolbar);                                                               //Enable Toolbar
+        getSupportActionBar().setDisplayShowTitleEnabled(false);                                    //Title disabled from Toolbar
 
-        ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(context, R.array.items, R.layout.layout_drop_title);
-        arrayAdapter.setDropDownViewResource(R.layout.layout_drop_list);
-        spinner = new Spinner(getSupportActionBar().getThemedContext());
-        spinner.setAdapter(arrayAdapter);
-        toolbar.addView(spinner);
-        spinner.setOnItemSelectedListener(this);
+        //DROP-DOWN SPINNER ADAPTER
+        ArrayAdapter<CharSequence> arrayAdapter =                                                   //Get values for spinner from array R.array.items
+                ArrayAdapter.createFromResource(context, R.array.items, R.layout.layout_drop_title);
+        arrayAdapter.setDropDownViewResource(R.layout.layout_drop_list);                            //Sets values from array to adapter
+        spinner = new Spinner(getSupportActionBar().getThemedContext());                            //Declare spinner
+        spinner.setAdapter(arrayAdapter);                                                           //Set adapter to spinner
+        toolbar.addView(spinner);                                                                   //Add spinner to toolbar
+        spinner.setOnItemSelectedListener(this);                                                    //Set itemSelected listener for Drop-down spinner
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         if (!stringFrom.equals(null)){
             int spinnerPosition = arrayAdapter.getPosition(stringFrom);
@@ -79,13 +83,14 @@ public class EventListActivity extends AppCompatActivity implements AdapterView.
         }
 
         //Create RecyclerView
-        recyclerView = (RecyclerView) findViewById(R.id.eventList);
-        eventSwipe = (SwipeRefreshLayout) findViewById(R.id.eventSwipeRefresh);
-        eventSwipe.setColorSchemeResources(R.color.primaryColor, R.color.accentColor);
-        adapter = new eventViewAdapter(context, getData());
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView = (RecyclerView) findViewById(R.id.eventList);                                 //Find view for RecyclerView
+        eventSwipe = (SwipeRefreshLayout) findViewById(R.id.eventSwipeRefresh);                     //Find view for RefreshSwipe
+        eventSwipe.setColorSchemeResources(R.color.primaryColor, R.color.accentColor);              //Set colors for swipeRefreshLayout
+        adapter = new eventViewAdapter(context, getData());                                         //Initialize Adapter for RecyclerView
+        recyclerView.setAdapter(adapter);                                                           //Set Adapter to RecyclerView
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));                               //Give layout for RecyclerView
 
+        //Refresh the view after 1 second to show information from the beginning
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -95,8 +100,8 @@ public class EventListActivity extends AppCompatActivity implements AdapterView.
 
         eventSwipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onRefresh() {
-                eventArray.clear();
+            public void onRefresh() {                                                     //Set Refresh Listener
+                eventArray.clear();                                                                 //Clear data set
                 spinner.setSelection(0);
 
 
@@ -185,6 +190,7 @@ public class EventListActivity extends AppCompatActivity implements AdapterView.
                     }
                 });
 
+                //Notify that data has changed and refresh
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -196,6 +202,7 @@ public class EventListActivity extends AppCompatActivity implements AdapterView.
             }
         });
 
+        //NAVIGATION SIDEBAR
         NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigationDrawer);
         drawerFragment.setUp(R.id.navigationDrawer, (DrawerLayout) findViewById(R.id.drawerLayout), toolbar);
@@ -251,10 +258,11 @@ public class EventListActivity extends AppCompatActivity implements AdapterView.
         return super.onCreateDialog(id);
     }
 
+    //OnItemSelected Listener for Drop-down spinner
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         final String spinnerSelected = parent.getItemAtPosition(position).toString();
-        eventArray.clear();
+        eventArray.clear();                                                                         //Clear data set
 
 
         //Set Date for current day (today)
@@ -264,6 +272,7 @@ public class EventListActivity extends AppCompatActivity implements AdapterView.
         c.set(Calendar.SECOND, 0);
         today = c.getTime();
 
+        //IF SPINNER ITEM SELECTED IS "ALL"
         if (spinnerSelected.equals("All Events")) {
             //PARSE QUERY FOR EVENTS FROM LOCAL DATA//
             ParseQuery<ParseObject> localEventQuery = new ParseQuery<ParseObject>("events");
@@ -323,7 +332,9 @@ public class EventListActivity extends AppCompatActivity implements AdapterView.
 
                 }
             });
-        } else {
+        }
+        //IF SPINNER ITEM SELECTED IS ANYTHING ELSE
+        else {
             //PARSE QUERY FOR EVENTS FROM LOCAL DATA//
             ParseQuery<ParseObject> localEventQuery = new ParseQuery<ParseObject>("events").whereContains("category", spinnerSelected);
             localEventQuery.addAscendingOrder("startDate");
@@ -384,6 +395,7 @@ public class EventListActivity extends AppCompatActivity implements AdapterView.
             });
         }
 
+        //Notify that data has changed and refresh
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

@@ -12,7 +12,6 @@
     <string name="drawer_close">Close</string>
     <string name="title_activity_deal_detailed">dealDetailedActivity</string>
 
-<!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_directory">DirectoryActivity</string>
     <string name="title_activity_directory_list">Directory</string>

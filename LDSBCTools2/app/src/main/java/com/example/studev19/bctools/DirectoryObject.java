@@ -9,7 +9,6 @@ public class DirectoryObject {
     private String description;
     private String location;
     private String email;
-    private String hours;
     private String webSite;
 
     public String getName() {
@@ -50,14 +49,6 @@ public class DirectoryObject {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getHours() {
-        return hours;
-    }
-
-    public void setHours(String hours) {
-        this.hours = hours;
     }
 
     public String getWebSite() {

@@ -27,18 +27,18 @@ import java.util.List;
 
 public class DirectoryListActivity extends AppCompatActivity {
 
-    private static final int DIALOG_ALERT = 10;
-    private static final int NO_INTERNET_DIALOG = 5;
-    private static Toolbar toolbar;
-    private static RecyclerView recyclerView;
-    private static SwipeRefreshLayout swipeRefreshLayout;
-    private static directoryViewAdapter adapter;
-    private static List<DirectoryObject> directory;
-    private static Context context;
+    private static final int DIALOG_ALERT = 10;                                                     //ID for About App Dialog
+    private static final int NO_INTERNET_DIALOG = 5;                                                //ID for No Internet Connection Dialog
+    private static Toolbar toolbar;                                                                 //Declared Toolbar
+    private static RecyclerView recyclerView;                                                       //RecyclerView for directory list
+    private static SwipeRefreshLayout swipeRefreshLayout;                                           //Refresh Layout
+    private static directoryViewAdapter adapter;                                                    //RecyclerView Adapter
+    private static List<DirectoryObject> directory;                                                 //List with DirectoryObjects
+    private static Context context;                                                                 //Context
 
     public static List<DirectoryObject> getData() {
         return directory;
-    }
+    }                                             //Set data from parseApplicationSetup
 
     public static void setData(List<DirectoryObject> array) {
         directory = array;
@@ -47,22 +47,24 @@ public class DirectoryListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_directory_list);
+        setContentView(R.layout.activity_directory_list);                                           //Layout and views come from activity_directory_list.xml
 
-        toolbar = (Toolbar) findViewById(R.id.app_bar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //Creating the Toolbar and setting it as the Toolbar for the Activity
+        toolbar = (Toolbar) findViewById(R.id.app_bar);                                             //Initialize toolbar as app_bar
+        setSupportActionBar(toolbar);                                                               //Enables toolbar
+        getSupportActionBar().setDisplayShowHomeEnabled(true);                                      //Displays home/back button on toolbar
         context = this;
 
-        //Creates RecyclerView
-        recyclerView = (RecyclerView) findViewById(R.id.directoryList);
-        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefresh);
-        swipeRefreshLayout.setColorSchemeResources(R.color.primaryColor, R.color.accentColor);
-        adapter = new directoryViewAdapter(context, getData());
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //RECYCLER VIEW
+        recyclerView = (RecyclerView) findViewById(R.id.directoryList);                             //Find view for RecyclerView
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefresh);                  //Find view for SwipeRefresh
+        swipeRefreshLayout.setColorSchemeResources(R.color.primaryColor, R.color.accentColor);      //Set colors for swipeRefreshLayout
+        adapter = new directoryViewAdapter(context, getData());                                     //Initialize Adapter for RecyclerView
+        recyclerView.setAdapter(adapter);                                                           //Set Adapter to RecyclerView
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));                               //Gives layout for RecyclerView
 
-        new Handler().postDelayed(new Runnable() {                                                  //Refresh the view after 1 second to show information from the beginning
+        //Refresh the view after 1 second to show information from the beginning
+        new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 adapter.notifyDataSetChanged();                                                     //Notify that the data has changed
@@ -143,9 +145,10 @@ public class DirectoryListActivity extends AppCompatActivity {
                     }
                 });
 
+                //Notify that data has changed and refresh
                 new Handler().postDelayed(new Runnable() {
                     @Override
-                    public void run() {                                                   //Notify that data has changed
+                    public void run() {
                         adapter.updatedData(directory);
                         adapter.notifyDataSetChanged();
                         swipeRefreshLayout.setRefreshing(false);
@@ -155,6 +158,7 @@ public class DirectoryListActivity extends AppCompatActivity {
             }
         });
 
+        //NAVIGATION SIDEBAR
         NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigationDrawer);
 

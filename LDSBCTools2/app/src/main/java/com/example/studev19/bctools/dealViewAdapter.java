@@ -23,32 +23,31 @@ import java.util.TimeZone;
  */
 public class dealViewAdapter extends RecyclerView.Adapter<dealViewAdapter.MyViewHolder> {
 
-    public static List<DealObject> dealArray;
-    private LayoutInflater inflater;
-    private Context context;
+    public static List<DealObject> dealArray;                                                       //List of Deal Objects
+    private LayoutInflater inflater;                                                                //Inflater
+    private Context context;                                                                        //Context
 
-    public dealViewAdapter(Context context, List<DealObject> dealList) {
+    public dealViewAdapter(Context context, List<DealObject> dealList) {                            //Initialized from DealListActivity.java
         this.context = context;
         inflater = LayoutInflater.from(context);
         dealArray = dealList;
-        Log.v("Deals Received", "dealViewAdapter " + dealArray.size());
     }
 
     public void updateDealData(List<DealObject> deals) {
         dealArray = deals;
-    }
+    }                                        //Updates data in dealArray
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = inflater.inflate(R.layout.deal_custom_row, parent, false);
+        View view = inflater.inflate(R.layout.deal_custom_row, parent, false);                      //Inflates the deal_custom_row.xml layout.
         MyViewHolder holder = new MyViewHolder(view);
         return holder;
 
     }
 
     @Override
-    public void onBindViewHolder(final dealViewAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(final dealViewAdapter.MyViewHolder holder, int position) {         //Inflate rows with data
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMM, dd");                              //Set date format
         dateFormat.setTimeZone(TimeZone.getTimeZone("MST"));                                        //Set time zone
@@ -71,8 +70,7 @@ public class dealViewAdapter extends RecyclerView.Adapter<dealViewAdapter.MyView
 
     @Override
     public int getItemCount() {
-        Log.v("Deals Counted", "dealViewAdapter " + dealArray.size());
-        return dealArray.size();
+        return dealArray.size();                                                                    //Return List Size
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

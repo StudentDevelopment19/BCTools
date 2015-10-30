@@ -22,33 +22,28 @@ import java.util.TimeZone;
 
 public class dealDetailedActivity extends ActionBarActivity {
 
-    private static final int DIALOG_ALERT = 10;
-    private static DealObject displayedInformation;
-    Toolbar toolbar;
+    private static final int DIALOG_ALERT = 10;                                                     //ID for About App Dialog
+    private static DealObject displayedInformation;                                                 //DealObject with info for Detailed View
+    Toolbar toolbar;                                                                                //Declared Toolbar
 
-    public static void setDealInfo(DealObject dealObject) {
+    public static void setDealInfo(DealObject dealObject) {                                         //Set Current Info for Detailed View
         displayedInformation = dealObject;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_deal_detailed);
+        setContentView(R.layout.activity_deal_detailed);                                            //Layout and views come from activity_deal_detailed.xml
 
         //Creating the Toolbar and setting it as the Toolbar for the Activity
-        toolbar = (Toolbar) findViewById(R.id.app_bar);
+        toolbar = (Toolbar) findViewById(R.id.app_bar);                                             //Initialize toolbar as app_bar
+        toolbar.setTitle("");                                                                       //Set Title of the AppBar
+        setSupportActionBar(toolbar);                                                               //Enables toolbar
+        getSupportActionBar().setHomeButtonEnabled(true);                                           //Displays home/back button on toolbar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);                                      //Home button will show as back button
 
-        //Set Title of the AppBar
-        toolbar.setTitle("");
+        //-----THE FOLLOWING SECTION FILLS THE INFORMATION OF THE DETAILED VIEW-----//
 
-        //Applies the AppBar
-        setSupportActionBar(toolbar);
-
-        //Set the Navigation Up button and enables it
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        //This section fills the information of the detailed view
         final ParseImageView dealImage = (ParseImageView) findViewById(R.id.imgDealImage);          //Find image view
         ParseFile imageFile = displayedInformation.getDealImage();                                  //Set ParseFile as image from parse
         dealImage.setParseFile(imageFile);                                                          //Set dealImage as Image from parse
@@ -72,7 +67,7 @@ public class dealDetailedActivity extends ActionBarActivity {
         TextView dealAddressText = (TextView) findViewById(R.id.txtDealAddress);                    //Find TextView for dealAddress
         dealAddressText.setText(displayedInformation.getDealAddress());                             //Set value for dealAddress
         TextView dealStDateText = (TextView) findViewById(R.id.txtDealDates);                       //Find TextView for dealDate
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd");                              //Set dateFormat
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd");                               //Set dateFormat
         dateFormat.setTimeZone(TimeZone.getTimeZone("MST"));                                        //Set time zone to MST
         dealStDateText.setText(dateFormat.format(displayedInformation.
                 getDealStartDateOnMST()) + " to " +
@@ -97,13 +92,11 @@ public class dealDetailedActivity extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             showDialog(DIALOG_ALERT);
-            //Toast.makeText(getApplicationContext(), "This option is not available for now", Toast.LENGTH_SHORT).show();
             return true;
         }
 
-        //Navigates up to MainActivity
+        //Navigates up to previous activity (Deal List Activity)
         if (id == android.R.id.home) {
-            //NavUtils.navigateUpFromSameTask(this);
             this.finish();
             return true;
         }
@@ -113,7 +106,7 @@ public class dealDetailedActivity extends ActionBarActivity {
     }
 
     @Override
-    protected Dialog onCreateDialog(int id) {
+    protected Dialog onCreateDialog(int id) {                                                       //Create About App Dialog
         switch (id) {
             case DIALOG_ALERT:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);

@@ -19,33 +19,37 @@ import android.widget.Toast;
 
 public class AppointmentActivity extends AppCompatActivity {
 
-    private static Toolbar toolbar;
-    private static final int DIALOG_ALERT = 10;
+    private static Toolbar toolbar;                                                                 //Declared Toolbar
+    private static final int DIALOG_ALERT = 10;                                                     //ID for About App Dialog
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_appointment);
+        setContentView(R.layout.activity_appointment);                                              //Layout and views come from activity_appointment.xml
 
-        toolbar = (Toolbar) findViewById(R.id.app_bar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //Creating the Toolbar and setting it as the Toolbar for the Activity
+        toolbar = (Toolbar) findViewById(R.id.app_bar);                                             //Initialize toolbar as app_bar
+        setSupportActionBar(toolbar);                                                               //Enables toolbar
+        getSupportActionBar().setHomeButtonEnabled(true);                                           //Displays home/back button on toolbar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);                                      //Home button will show as back button
 
-        TextView descriptionText = (TextView) findViewById(R.id.txtApptDescription);
-        descriptionText.setText("You can make an appointment with career services to get help about\n" +
+        //TextView containing activity description
+        TextView descriptionText = (TextView) findViewById(R.id.txtApptDescription);                //TextView descriptionText is created and given a value
+        descriptionText.setText                                                                     //Set text for descriptionText
+                ("You can make an appointment with career services to get help about\n" +
                 "Resume building\nMock interviews\nJob searching \nGet ice cream");
 
-        final String PHONE_NUMBER = "801-524-1925";
-        RelativeLayout btnCall = (RelativeLayout) findViewById(R.id.layoutCall);
-        btnCall.setOnClickListener(new View.OnClickListener() {
+        //CALL BUTTON
+        final String PHONE_NUMBER = "801-524-1925";                                                 //Declare/Initialize final PHONE_NUMBER
+        RelativeLayout btnCall = (RelativeLayout) findViewById(R.id.layoutCall);                    //Declare/Initialize RelativeLayout btnCall containing call button
+        btnCall.setOnClickListener(new View.OnClickListener() {                                     //OnClickListener for btnCall to make call
             @Override
             public void onClick(View v) {
-                try {                                                                           //Start Call Activity
+                try {                                                                               //Try Call Activity
                     Intent callIntent = new Intent(Intent.ACTION_CALL);
-                    callIntent.setData(Uri.parse("tel:" + PHONE_NUMBER));
-                    startActivity(callIntent);
-                } catch (ActivityNotFoundException activityException) {                         //Exception handler for call activity
+                    callIntent.setData(Uri.parse("tel:" + PHONE_NUMBER));                           //Set number to be called from PHONE_NUMBER
+                    startActivity(callIntent);                                                      //Start Call Activity Intent
+                } catch (ActivityNotFoundException activityException) {                             //Exception handler for call activity
                     Toast.makeText(getApplicationContext(),
                             "Application has stopped, failed to make a call to Career Services"
                                     , Toast.LENGTH_SHORT).show();
@@ -73,7 +77,7 @@ public class AppointmentActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            showDialog(DIALOG_ALERT);
+            showDialog(DIALOG_ALERT);                                                               //When menu is selected call the About App Dialog
             return true;
         }
 
@@ -81,7 +85,7 @@ public class AppointmentActivity extends AppCompatActivity {
     }
 
     @Override
-    protected Dialog onCreateDialog(int id){
+    protected Dialog onCreateDialog(int id){                                                        //Create About App Dialog
         switch (id){
             case DIALOG_ALERT:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);

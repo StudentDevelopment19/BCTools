@@ -39,9 +39,10 @@ public class parseApplicationSetup extends Application {
     public void onCreate() {
 
         super.onCreate();
-        Parse.enableLocalDatastore(this);
-        Parse.initialize(this, getString(R.string.parseAppID), getString(R.string.parseClientID));
-        PushService.setDefaultPushCallback(this, MainActivity.class);
+        Parse.enableLocalDatastore(this);                                                           //Enable local storage
+        Parse.initialize(this, getString(R.string.parseAppID),                          //Initialize Parse Connection
+                getString(R.string.parseClientID));
+        PushService.setDefaultPushCallback(this, MainActivity.class);                               //Initialize push notifications. When notification is clicked open the Main Activity
 
         //SET DATA TO ARRAYS
         setDirectoryData();
@@ -51,15 +52,12 @@ public class parseApplicationSetup extends Application {
 
         //SENDS INFORMATION TO DIRECTORY INFLATER
         DirectoryListActivity.setData(getDirectoryData());
-        Log.v("Directory Sent", "parseApplicationSetup " + directoryArray.size());
 
         //SENDS INFORMATION TO EVENT INFLATER
         EventListActivity.setData(getEventData());
-        Log.v("Events Sent", "parseApplicationSetup " + eventArray.size());
 
         //SENDS INFORMATION TO DEAL INFLATER
         DealListActivity.setData(getDealData());
-        Log.v("Deals Sent", "parseApplicationSetup " + dealArray.size());
 
         //SENDS INFORMATION TO JOB INFLATER
         JobListActivity.setData(getEmploymentData());

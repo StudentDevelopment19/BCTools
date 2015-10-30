@@ -49,10 +49,6 @@ public class DealObject {
         this.dealAddress = address;
     }
 
-    public Date getDealStartDate() {
-        return dealStartDate;
-    }
-
     public void setDealStartDate(Date startDate) {
         this.dealStartDate = startDate;
     }
@@ -63,10 +59,6 @@ public class DealObject {
         calendar.add(Calendar.HOUR, 7);
         this.dealStartDate = calendar.getTime();
         return dealStartDate;
-    }
-
-    public Date getDealEndDate() {
-        return dealEndDate;
     }
 
     public void setDealEndDate(Date endDate) {

@@ -24,54 +24,50 @@ import android.widget.Toast;
 
 
 public class directoryDetailedActivity extends ActionBarActivity {
-    private static final int DIALOG_ALERT = 10;
-    private static DirectoryObject displayedInformation;
-    private static String hyperlink;
-    Toolbar toolbar;
+    private static final int DIALOG_ALERT = 10;                                                     //ID for About App Dialog
+    private static DirectoryObject displayedInformation;                                            //DirectoryObject with info for Detailed View
+    private static String hyperlink;                                                                //Hyperlink to service website
+    Toolbar toolbar;                                                                                //Declared Toolbar
 
-    public static void setServiceInfo(DirectoryObject directoryObject) {
+    public static void setServiceInfo(DirectoryObject directoryObject) {                            //Set Current Info for Detailed View
         displayedInformation = directoryObject;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_directory_detailed);
+        setContentView(R.layout.activity_directory_detailed);                                       //Layout and views come from activity_directory_detailed.xml
 
         //Creating the Toolbar and setting it as the Toolbar for the Activity
-        toolbar = (Toolbar) findViewById(R.id.app_bar);
+        toolbar = (Toolbar) findViewById(R.id.app_bar);                                             //Initialize toolbar as app_bar
+        toolbar.setTitle(displayedInformation.getName());                                           //Set Title of the AppBar
+        setSupportActionBar(toolbar);                                                               //Enables the AppBar
+        getSupportActionBar().setHomeButtonEnabled(true);                                           //Displays home/back button on toolbar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);                                      //Home button will show as back button
 
-        //Set Title of the AppBar
-        toolbar.setTitle(displayedInformation.getName());
+        //-----THE FOLLOWING SECTION FILLS THE INFORMATION OF THE DETAILED VIEW-----//
 
-        //Applies the AppBar
-        setSupportActionBar(toolbar);
-
-        //Set the Navigation Up button and enables it
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        //This section fills the information of the detailed view
+        //DESCRIPTION SECTION
         TextView descText = (TextView) findViewById(R.id.txtDescription);                           //Find view for Description
-        descText.setText(displayedInformation.getDescription());                                    //Sets Value for description from array
+        descText.setText(displayedInformation.getDescription());                                    //Sets value for Description from array and displays it
 
         //LOCATION SECTION
-        TextView locationText = (TextView) findViewById(R.id.txtLocation);                          //Find view for Location
+        TextView locationText = (TextView) findViewById(R.id.txtLocation);                          //Find view for Location Text
         ImageView locationIcon = (ImageView) findViewById(R.id.icoLocation);                        //Finds view for Location Icon
         if (displayedInformation.getLocation() == "") {                                             //If Location value is empty dismiss the views
             locationIcon.setVisibility(View.GONE);
             locationText.setVisibility(View.GONE);
-        } else if (displayedInformation.getLocation() != "") {                                         //If Location value is not empty show Location
-            locationText.setText(displayedInformation.getLocation());                               //Sets value for Location from Array
+        } else if (displayedInformation.getLocation() != "") {                                      //If Location value is not empty show Location Text and Icon
+            locationText.setText(displayedInformation.getLocation());                               //Sets value for Location from Array and displays it
         }
 
         //PHONE SECTION
-        TextView phoneText = (TextView) findViewById(R.id.txtPhone);                                //Find view for Phone Number
+        TextView phoneText = (TextView) findViewById(R.id.txtPhone);                                //Find view for Phone Number Text
         ImageView phoneIcon = (ImageView) findViewById(R.id.icoPhone);                              //Finds view for Phone Icon
         if (displayedInformation.getPhone() == "") {                                                //If phone value is empty dismiss the views
             phoneIcon.setVisibility(View.GONE);
             phoneText.setVisibility(View.GONE);
-        } else if (displayedInformation.getPhone() != "") {                                            //If website value is not empty create hyperlink
+        } else if (displayedInformation.getPhone() != "") {                                         //If Phone value is not empty show Phone Text and Icon
             phoneText.setOnClickListener(new View.OnClickListener() {            //Sets onClick listener for Phone Call
                 @Override
                 public void onClick(View view) {
@@ -87,9 +83,9 @@ public class directoryDetailedActivity extends ActionBarActivity {
                     }
                 }
             });
-            phoneText.setText(displayedInformation.getPhone());                                     //Sets value for phone number from array
-            if (locationIcon.getVisibility() == View.GONE) {                                         //If info for location is not available, the location will not be displayed
-                ViewGroup.LayoutParams p = phoneIcon.getLayoutParams();                             //and the phone option will be moved up.
+            phoneText.setText(displayedInformation.getPhone());                                     //Sets value for phone number from array and displays it
+            if (locationIcon.getVisibility() == View.GONE) {                                        //If info for Location is not available, Location Text and Icon will not be displayed
+                ViewGroup.LayoutParams p = phoneIcon.getLayoutParams();                             //and the Phone Text and Icon will be moved up.
                 if (p instanceof RelativeLayout.LayoutParams) {
                     RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) p;
                     lp.addRule(RelativeLayout.BELOW, R.id.divider1);
@@ -99,18 +95,18 @@ public class directoryDetailedActivity extends ActionBarActivity {
         }
 
         //EMAIL SECTION
-        TextView emailText = (TextView) findViewById(R.id.txtEmail);                                //Find view for Email
+        TextView emailText = (TextView) findViewById(R.id.txtEmail);                                //Find view for Email Text
         ImageView emailIcon = (ImageView) findViewById(R.id.icoEmail);                              //Finds view for Email Icon
         if (displayedInformation.getEmail() == "") {                                                //If email value is empty dismiss the views
             emailIcon.setVisibility(View.GONE);
             emailText.setVisibility(View.GONE);
-        } else if (displayedInformation.getEmail() != "") {                                            //If website value is not show value
+        } else if (displayedInformation.getEmail() != "") {                                         //If website value is not empty show Email Text and Icon
             emailText.setOnClickListener(new View.OnClickListener() {                                   //Sets onClick listener for Email
                 @Override
                 public void onClick(View view) {
                     try {                                                                           //Start Email Activity
                         Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
-                        emailIntent.setData(Uri.parse("mailto:" + displayedInformation.getEmail()));
+                        emailIntent.setData(Uri.parse("mailto:" + displayedInformation.getEmail()));//Email destination
                         startActivity(emailIntent);
                     } catch (ActivityNotFoundException activityException) {                         //Exception handler for email activity
                         Toast.makeText(getApplicationContext(),
@@ -121,9 +117,9 @@ public class directoryDetailedActivity extends ActionBarActivity {
                 }
             });
 
-            emailText.setText(displayedInformation.getEmail());
-            if (phoneIcon.getVisibility() == View.GONE) {                                            //If info for phone is not available, the phone will not be displayed
-                ViewGroup.LayoutParams p = emailIcon.getLayoutParams();                             //and the email option will be moved up.
+            emailText.setText(displayedInformation.getEmail());                                     //Sets value for email address from array and displays it
+            if (phoneIcon.getVisibility() == View.GONE) {                                           //If info for Phone is not available, Phone Text and Icon will not be displayed
+                ViewGroup.LayoutParams p = emailIcon.getLayoutParams();                             //and the Email Text and Icon will be moved up.
                 if (p instanceof RelativeLayout.LayoutParams) {
                     RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) p;
                     lp.addRule(RelativeLayout.BELOW, R.id.icoLocation);
@@ -131,8 +127,8 @@ public class directoryDetailedActivity extends ActionBarActivity {
                 }
             }
             if (phoneIcon.getVisibility() == View.GONE &&
-                    locationIcon.getVisibility() == View.GONE) {                                     //If info for location and phone is not available, the location and phone
-                ViewGroup.LayoutParams p = emailIcon.getLayoutParams();                             //will not be displayed and the email option will be moved up.
+                    locationIcon.getVisibility() == View.GONE) {                                    //If info for Location and Phone is not available, the Location and Phone
+                ViewGroup.LayoutParams p = emailIcon.getLayoutParams();                             // Text and Icons will not be displayed and the Email Text and Icon will be moved up.
                 if (p instanceof RelativeLayout.LayoutParams) {
                     RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) p;
                     lp.addRule(RelativeLayout.BELOW, R.id.divider1);
@@ -141,20 +137,20 @@ public class directoryDetailedActivity extends ActionBarActivity {
             }
         }
         //WEBSITE SECTION
-        TextView webText = (TextView) findViewById(R.id.txtWeb);                                    //Finds view for Website
+        TextView webText = (TextView) findViewById(R.id.txtWeb);                                    //Finds view for Website Text
         ImageView webIcon = (ImageView) findViewById(R.id.icoWeb);                                  //Finds view for Website Icon
         Log.v(displayedInformation.getName(), webText.getText().toString());
         if (displayedInformation.getWebSite() == "") {                                              //If website value is empty dismiss the views
             webIcon.setVisibility(View.GONE);
             webText.setVisibility(View.GONE);
-        } else if (displayedInformation.getWebSite() != "") {                                          //If website value is not empty create hyperlink
-            hyperlink = "<a href='" + displayedInformation.getWebSite() + "'>" + "Website" + "</a>";  //Set hyperlink value
+        } else if (displayedInformation.getWebSite() != "") {                                       //If website value is not empty show Website Text and Icon
+            hyperlink = "<a href='" + displayedInformation.getWebSite() + "'>" + "Website" + "</a>";//Set hyperlink value
             webText.setClickable(true);                                                             //Sets Website text clickable
             webText.setMovementMethod(LinkMovementMethod.getInstance());                            //Enables hyperlink
-            webText.setText(Html.fromHtml(hyperlink));                                              //Sets value for Website));
+            webText.setText(Html.fromHtml(hyperlink));                                              //Sets value for Website
 
-            if (emailIcon.getVisibility() == View.GONE) {                                            //If info for phone is not available, the phone will not be displayed
-                ViewGroup.LayoutParams p = webIcon.getLayoutParams();                               //and the email option will be moved up.
+            if (emailIcon.getVisibility() == View.GONE) {                                           //If info for Email is not available, Email Text and Icon will not be displayed
+                ViewGroup.LayoutParams p = webIcon.getLayoutParams();                               //and the Website Text and Icon will be moved up.
                 if (p instanceof RelativeLayout.LayoutParams) {
                     RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) p;
                     lp.addRule(RelativeLayout.BELOW, R.id.icoPhone);
@@ -183,7 +179,6 @@ public class directoryDetailedActivity extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             showDialog(DIALOG_ALERT);
-            //Toast.makeText(getApplicationContext(), "This option is not available for now", Toast.LENGTH_SHORT).show();
             return true;
         }
 
@@ -196,7 +191,7 @@ public class directoryDetailedActivity extends ActionBarActivity {
     }
 
     @Override
-    protected Dialog onCreateDialog(int id) {
+    protected Dialog onCreateDialog(int id) {                                                       //Create About App Dialog
         switch (id) {
             case DIALOG_ALERT:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);

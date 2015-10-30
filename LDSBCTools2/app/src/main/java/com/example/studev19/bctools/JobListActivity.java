@@ -26,33 +26,35 @@ import java.util.List;
 
 public class JobListActivity extends AppCompatActivity {
 
-    private static final int DIALOG_ALERT = 10;
-    private static final int NO_INTERNET_DIALOG = 5;
-    private static Toolbar toolbar;
-    private static RecyclerView recyclerView;
-    private static SwipeRefreshLayout swipeRefreshLayout;
-    private static employmentViewAdapter adapter;
-    private static List<JobObject> employmentList;
-    private static Context context;
+    private static final int DIALOG_ALERT = 10;                                                     //ID for About App Dialog
+    private static final int NO_INTERNET_DIALOG = 5;                                                //ID for No Internet Connection Dialog
+    private static Toolbar toolbar;                                                                 //Declared Toolbar
+    private static RecyclerView recyclerView;                                                       //RecyclerView for job list
+    private static SwipeRefreshLayout swipeRefreshLayout;                                           //Refresh Layout
+    private static employmentViewAdapter adapter;                                                   //RecyclerView Adapter
+    private static List<JobObject> employmentList;                                                  //List with jobs
+    private static Context context;                                                                 //Declared Context
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_job_list);
+        setContentView(R.layout.activity_job_list);                                                 //Layout and views come from activity_job_list.xml
 
-        toolbar = (Toolbar) findViewById(R.id.app_bar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //Creating the Toolbar and setting it as the Toolbar for the Activity
+        toolbar = (Toolbar) findViewById(R.id.app_bar);                                             //Initialize toolbar as app_bar
+        setSupportActionBar(toolbar);                                                               //Enable toolbar
+        getSupportActionBar().setDisplayShowHomeEnabled(true);                                      //Displays home/back button on toolbar
         context = this;
 
-        //Creates RecyclerView
-        recyclerView = (RecyclerView) findViewById(R.id.employmentList);
-        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeJobRefresh);
-        swipeRefreshLayout.setColorSchemeResources(R.color.primaryColor, R.color.accentColor);
-        adapter = new employmentViewAdapter(context, getData());
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //RECYCLER VIEW
+        recyclerView = (RecyclerView) findViewById(R.id.employmentList);                            //Find view for RecyclerView
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeJobRefresh);               //Find view for RefreshSwipe
+        swipeRefreshLayout.setColorSchemeResources(R.color.primaryColor, R.color.accentColor);      //Set colors for swipeRefreshLayout
+        adapter = new employmentViewAdapter(context, getData());                                    //Initialize Adapter for RecyclerView
+        recyclerView.setAdapter(adapter);                                                           //Set Adapter to RecyclerView
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));                               //Give layout for RecyclerView
 
+        //Refresh the view after 1 second to show information from the beginning
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -60,11 +62,12 @@ public class JobListActivity extends AppCompatActivity {
             }
         }, 1000);
 
+        //SWIPE LISTENER
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
 
-                employmentList.clear();
+                employmentList.clear();                                                             //Clear data set
 
                 //PARSE QUERY DEALS FROM THE INTERNET//
                 ParseQuery<ParseObject> employmentQuery = new ParseQuery<ParseObject>("jobListing");
@@ -119,6 +122,7 @@ public class JobListActivity extends AppCompatActivity {
                     }
                 });
 
+                //Notify that data has changed and refresh
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -131,6 +135,7 @@ public class JobListActivity extends AppCompatActivity {
             }
         });
 
+        //NAVIGATION SIDEBAR
         NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigationDrawer);
 
@@ -194,7 +199,7 @@ public class JobListActivity extends AppCompatActivity {
 
     public static void setData(List<JobObject> array) {
         employmentList = array;
-    }
+    }                                         //Set data from parseApplicationSetup
 
     private final class OkOnClickListener implements DialogInterface.OnClickListener {
 

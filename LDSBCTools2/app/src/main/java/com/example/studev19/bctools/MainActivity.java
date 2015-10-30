@@ -20,48 +20,51 @@ import com.parse.ParseAnalytics;
 
 public class MainActivity extends ActionBarActivity {
 
-    private static final int DIALOG_ALERT = 10;
-    private static final int NO_INTERNET_DIALOG = 5;
-    private static SwipeRefreshLayout webSwipe;
-    private Toolbar toolbar;
-    private boolean connection;
+    private static final int DIALOG_ALERT = 10;                                                     //ID for About App Dialog
+    private static final int NO_INTERNET_DIALOG = 5;                                                //ID for No Internet Connection Dialog
+    private static SwipeRefreshLayout webSwipe;                                                     //Declare SwipeRefresh
+    private Toolbar toolbar;                                                                        //Declare Toolbar
+    private boolean connection;                                                                     //Boolean for internet connection
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        connection = internetConnection();
-        ParseAnalytics.trackAppOpenedInBackground(getIntent());
+        setContentView(R.layout.activity_main);                                                     //Layout and views come from activity_main.xml
+        connection = internetConnection();                                                          //Check internet connection
+        ParseAnalytics.trackAppOpenedInBackground(getIntent());                                     //Enable Parse Analytics (Sends statistics on times opened)
 
         //Creating the Toolbar and setting it as the Toolbar for the Activity
-        toolbar = (Toolbar) findViewById(R.id.app_bar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar = (Toolbar) findViewById(R.id.app_bar);                                             //Initialize toolbar as app_bar
+        setSupportActionBar(toolbar);                                                               //Enables toolbar
+        getSupportActionBar().setDisplayShowHomeEnabled(true);                                      //Displays home/back button on toolbar
 
+        //NAVIGATION DRAWER
         NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigationDrawer);
 
         drawerFragment.setUp(R.id.navigationDrawer, (DrawerLayout) findViewById(R.id.drawerLayout), toolbar);
 
-        webSwipe = (SwipeRefreshLayout) findViewById(R.id.swipeHome);
-        webSwipe.setColorSchemeColors(R.color.primaryColor, R.color.accentColor);
-        final WebView WEB_VIEW = (WebView) findViewById(R.id.webViewHome);
+        //----CONTENT----//
 
-        if (connection == false) {
+        webSwipe = (SwipeRefreshLayout) findViewById(R.id.swipeHome);                               //Find view for SwipeRefresh
+        webSwipe.setColorSchemeColors(R.color.primaryColor, R.color.accentColor);                   //Set colors for webSwipe
+        final WebView WEB_VIEW = (WebView) findViewById(R.id.webViewHome);                          //Find view for WebView
+
+        if (connection == false) {                                                                  //If there is not connection
             showDialog(NO_INTERNET_DIALOG);
             String html = "<html><body><p>You must be connected to the internet to display this tab correctly.</p></body></html>";
             String mime = "text/html";
             String encoding = "utf-8";
             WEB_VIEW.loadDataWithBaseURL(null, html, mime, encoding, null);
         }
-        else{
+        else{                                                                                       //If there is connection
             WEB_VIEW.loadUrl("https://www.ldsbc.edu/");
         }
 
         webSwipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onRefresh() {
+            public void onRefresh() {                                                       //Set Refresh Listener
                 webSwipe.setRefreshing(true);
                 (new Handler()).postDelayed(new Runnable() {
                     @Override

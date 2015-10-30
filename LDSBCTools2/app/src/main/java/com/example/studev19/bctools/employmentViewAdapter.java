@@ -16,11 +16,11 @@ import java.util.List;
  */
 public class employmentViewAdapter extends RecyclerView.Adapter<employmentViewAdapter.MyViewHolder> {
 
-    private static List<JobObject> employmentArray;
-    private LayoutInflater inflater;
-    private Context context;
+    private static List<JobObject> employmentArray;                                                 //List of Job Objects
+    private LayoutInflater inflater;                                                                //Inflater
+    private Context context;                                                                        //Context
 
-    public employmentViewAdapter(Context context, List<JobObject> list) {
+    public employmentViewAdapter(Context context, List<JobObject> list) {                           //Initialized from JobListActivity.java
         this.context = context;
         inflater = LayoutInflater.from(context);
         employmentArray = list;
@@ -29,27 +29,27 @@ public class employmentViewAdapter extends RecyclerView.Adapter<employmentViewAd
 
     public void updateData(List<JobObject> list) {
         employmentArray = list;
-    }
+    }                                              //Updates data in dealArray
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.employment_custom_row, parent, false);
+        View view = inflater.inflate(R.layout.employment_custom_row, parent, false);                //Inflates the deal_custom_row.xml layout.
         MyViewHolder holder = new MyViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, int position) {                               //Inflate rows with data
         JobObject currentInfo = employmentArray.get(position);
-        holder.position.setText(currentInfo.getJobPosition() + " @ ");
-        holder.company.setText(currentInfo.getJobCompany());
-        holder.location.setText(currentInfo.getJobLocation());
+        holder.position.setText(currentInfo.getJobPosition() + " @ ");                              //Set Job Position
+        holder.company.setText(currentInfo.getJobCompany());                                        //Set Job Company
+        holder.location.setText(currentInfo.getJobLocation());                                      //Set Job Location
     }
 
     @Override
     public int getItemCount() {
         return employmentArray.size();
-    }
+    }                                                                 //Return List Size
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView position;
@@ -59,13 +59,13 @@ public class employmentViewAdapter extends RecyclerView.Adapter<employmentViewAd
         public MyViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            position = (TextView) itemView.findViewById(R.id.txtJobPosition);
-            company = (TextView) itemView.findViewById(R.id.txtJobCompany);
-            location = (TextView) itemView.findViewById(R.id.txtJobLocation);
+            position = (TextView) itemView.findViewById(R.id.txtJobPosition);                       //Find TextView for Position
+            company = (TextView) itemView.findViewById(R.id.txtJobCompany);                         //Find TextView for Company
+            location = (TextView) itemView.findViewById(R.id.txtJobLocation);                       //Find TextView for Location
         }
 
         @Override
-        public void onClick(View v) {
+        public void onClick(View v) {                                                               //Set onClickListener
             jobDetailedActivity.setJobInfo(employmentArray.get(getPosition()));
             context.startActivity(new Intent(context, jobDetailedActivity.class));
         }

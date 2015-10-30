@@ -23,39 +23,38 @@ import java.util.TimeZone;
  */
 public class eventViewAdapter extends RecyclerView.Adapter<eventViewAdapter.MyViewHolder> {
 
-    public static List<EventDetails> eventArray;
-    private LayoutInflater inflater;
-    private Context context;
+    public static List<EventDetails> eventArray;                                                    //List of Events Objects
+    private LayoutInflater inflater;                                                                //Declared Inflater
+    private Context context;                                                                        //Declared Context
 
-    public eventViewAdapter(Context context, List<EventDetails> eventList) {
+    public eventViewAdapter(Context context, List<EventDetails> eventList) {                        //Initialized from EventListActivity.java
         this.context = context;
         inflater = LayoutInflater.from(context);
         eventArray = eventList;
-        Log.v("Events Received", "eventViewAdapter " + eventArray.size());
     }
 
     public void updatedEventData(List<EventDetails> events) {
         eventArray = events;
-    }
+    }                                   //Updates data in eventArray
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = inflater.inflate(R.layout.event_custom_row, parent, false);
+        View view = inflater.inflate(R.layout.event_custom_row, parent, false);                     //Inflates the event_custom_row.xml layout.
         MyViewHolder holder = new MyViewHolder(view);
         return holder;
 
     }
 
     @Override
-    public void onBindViewHolder(final eventViewAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(final eventViewAdapter.MyViewHolder holder, int position) {        //Inflate rows with data
         EventDetails currentInfo = eventArray.get(position);
         SimpleDateFormat df = new SimpleDateFormat("MMM dd, hh:mm a");                              //Set date format
         df.setTimeZone(TimeZone.getTimeZone("MST"));                                                //Set time zone on MST
         holder.eventName.setText(currentInfo.getName());                                            //Set value for Event Name
         holder.eventDate.setText(df.format(currentInfo.getStartDate()));                            //Set value for Event Time
-        ParseFile imageFile = currentInfo.getEventImage();
-        holder.eventParseImageView.setParseFile(imageFile);
+        ParseFile imageFile = currentInfo.getEventImage();                                          //Get ParseFile
+        holder.eventParseImageView.setParseFile(imageFile);                                         //Display ParseFile as image
         holder.eventParseImageView.loadInBackground(new GetDataCallback() {
             @Override
             public void done(byte[] bytes, ParseException e) {
@@ -83,12 +82,12 @@ public class eventViewAdapter extends RecyclerView.Adapter<eventViewAdapter.MyVi
             super(itemView);
             eventName = (TextView) itemView.findViewById(R.id.txtEventListName);                    //Find TextView for Event Name
             eventDate = (TextView) itemView.findViewById(R.id.txtEventListTime);                    //Find TextView for Event Time
-            eventParseImageView = (ParseImageView) itemView.findViewById(R.id.imgEventRowImage);
+            eventParseImageView = (ParseImageView) itemView.findViewById(R.id.imgEventRowImage);    //Find ParseImageView for Event Image
             itemView.setOnClickListener(this);
         }
 
         @Override
-        public void onClick(View v) {
+        public void onClick(View v) {                                                               //Set onClickListener
             eventDetailedActivity.setEventInfo(eventArray.get(getPosition()));
             context.startActivity(new Intent(context, eventDetailedActivity.class));
         }

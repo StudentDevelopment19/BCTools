@@ -19,28 +19,28 @@ import android.widget.TextView;
 
 public class BCSAActivity extends AppCompatActivity {
 
-    private static final int DIALOG_ALERT = 10;
-    private static final int NO_INTERNET_DIALOG = 5;
-    private Toolbar toolbar;
-    private String videoURL;
-    private TextView hyperlinkBCMessenger;
-    private TextView hyperlinkMentor;
-    private TextView hyperlinkBCSAFB;
-    private TextView hyperlinkClub;
-    private TextView hyperlinkActivity;
-    private TextView hyperlinkMarketing;
-    private TextView hyperlinkFeedback;
-    private ImageView hyperlinkVideo;
+    private static final int DIALOG_ALERT = 10;                                                     //ID for About App Dialog
+    private Toolbar toolbar;                                                                        //Declared Toolbar
+    private String videoURL;                                                                        //String with URL for BCSA Video
+    private TextView hyperlinkBCMessenger;                                                          //String with URL for BC Messenger
+    private TextView hyperlinkMentor;                                                               //String with URL for Mentor Form
+    private TextView hyperlinkBCSAFB;                                                               //String with URL for BCSA Facebook page
+    private TextView hyperlinkClub;                                                                 //String with URL for Club Application Form
+    private TextView hyperlinkActivity;                                                             //String with URL for Activity Application Form
+    private TextView hyperlinkMarketing;                                                            //String with URL for Marketing Request Form
+    private TextView hyperlinkFeedback;                                                             //String with URL for BCSA Feedback
+    private ImageView hyperlinkVideo;                                                               //ImageView for Video Thumbnail
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bcsa);
+        setContentView(R.layout.activity_bcsa);                                                     //Layout and views come from activity_bcsa.xml
 
         //Creating the Toolbar and setting it as the Toolbar for the Activity
-        toolbar = (Toolbar) findViewById(R.id.app_bar);
-        setSupportActionBar(toolbar);
+        toolbar = (Toolbar) findViewById(R.id.app_bar);                                             //Initialize toolbar as app_bar
+        setSupportActionBar(toolbar);                                                               //Enables toolbar
 
+        //Declare Value for URL for Video
         videoURL = "http://bcmessenger.com/wp-content/uploads/2014/09/Student_Involvement_condesnsed_02.mp4?_=1";
 
         //SET HYPERLINK TO VIDEO
@@ -107,6 +107,7 @@ public class BCSAActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        //NAVIGATION SIDEBAR
         NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigationDrawer);
 
@@ -130,7 +131,7 @@ public class BCSAActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            showDialog(DIALOG_ALERT);
+            showDialog(DIALOG_ALERT);                                                               //When menu is selected call the About App Dialog
             return true;
         }
 
@@ -138,7 +139,7 @@ public class BCSAActivity extends AppCompatActivity {
     }
 
     @Override
-    protected Dialog onCreateDialog(int id) {
+    protected Dialog onCreateDialog(int id) {                                                       //Create About App Dialog
         switch (id) {
             case DIALOG_ALERT:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -148,15 +149,6 @@ public class BCSAActivity extends AppCompatActivity {
                 builder.setPositiveButton("OK", new OkOnClickListener());
                 AlertDialog dialog = builder.create();
                 dialog.show();
-                break;
-            case NO_INTERNET_DIALOG:
-                AlertDialog.Builder internet = new AlertDialog.Builder(this);
-                internet.setTitle("You are not connected to the internet");
-                internet.setMessage("Some information cannot be displayed without internet connection");
-                internet.setCancelable(true);
-                internet.setPositiveButton("OK", new OkOnClickListener());
-                AlertDialog internetDialog = internet.create();
-                internetDialog.show();
                 break;
         }
 
