@@ -44,6 +44,7 @@ public class JobListActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.app_bar);                                             //Initialize toolbar as app_bar
         setSupportActionBar(toolbar);                                                               //Enable toolbar
         getSupportActionBar().setDisplayShowHomeEnabled(true);                                      //Displays home/back button on toolbar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);                                      //Home button will show as back button
         context = this;
 
         //RECYCLER VIEW
@@ -134,12 +135,6 @@ public class JobListActivity extends AppCompatActivity {
 
             }
         });
-
-        //NAVIGATION SIDEBAR
-        NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment)
-                getSupportFragmentManager().findFragmentById(R.id.navigationDrawer);
-
-        drawerFragment.setUp(R.id.navigationDrawer, (DrawerLayout) findViewById(R.id.drawerLayout), toolbar);
 
 
     }

@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--Primary Color and Accent-->
-    <!--<color name="primaryColor">#388E3C</color>-->          <!--Green 700-->
     <color name="primaryColor">#228B22</color>          <!--School Green 500-->
-    <!--<color name="primaryColorDark">#1B5E20</color>-->      <!--Green 900-->
     <color name="primaryColorDark">#165A16</color>      <!--School Green 700-->
-    <!--<color name="primaryColorLight">#81C784</color>-->     <!--Green 300-->
     <color name="primaryColorLight">#88E288</color>     <!--School Green 100-->
     <color name="accentColor">#FFAB40</color>           <!--Orange A200-->
     <!--<color name="accentColor">#FFD700</color>-->           <!--School Gold-->
@@ -17,12 +14,19 @@
     <color name="dividerColor">#B6B6B6</color>
     <color name="tabScroll">#FFFFFF</color>
 
-    <!--Accent colors for employment icons-->
-    <color name="redAccentColor">#FF5252</color>        <!--Red A200-->
-    <color name="blueAccentColor">#536DFE</color>       <!--Indigo A200-->
-    <color name="purpleAccentColor">#7C4DFF</color>     <!--Deep Purple A200-->
-    <color name="greenAccentColor">#B2FF59</color>      <!--Light Green A200-->
-    <color name="amberAccentColor">#FFD740</color>      <!--Amber A200-->
+    <!--ACCENT COLORS FOR EMPLOYMENT ICONS-->
+        <!--Material Colors-->
+    <color name="redAccentColor">#F44336</color>        <!--Red 500-->
+    <color name="indigoAccentColor">#3F51B5</color>     <!--Indigo 500-->
+    <color name="amberAccentColor">#FFC107</color>      <!--Amber 500-->
+    <color name="greenAccentColor">#4CAF50</color>      <!--Green 500-->
+    <color name="purpleAccentColor">#673AB7</color>     <!--Deep Purple 500-->
+    <color name="lightGreenAccentColor">#B2FF59</color> <!--Light Green A200-->
+        <!--Custom Colors-->
+    <color name="fireRedAccentColor">#CE2029</color>    <!--Fire Red-->
+    <color name="leafGreenAccentColor">#CBE32D</color>  <!--Leaf Green-->
+    <color name="emeraldAccentColor">#148564</color>    <!--Emerald-->
+        <!--F4S Colors-->
     <color name="blueF4S">#568ECB</color>               <!--F4S Blue-->
     <color name="greenF4S">#CADD46</color>              <!--F4S Green-->
 

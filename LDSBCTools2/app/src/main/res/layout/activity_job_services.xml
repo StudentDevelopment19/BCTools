@@ -51,7 +51,7 @@
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="8dp"
                             android:layout_marginRight="8dp"
-                            android:src="@drawable/ic_job_search_orange" />
+                            android:src="@drawable/ic_employment_list_green" />
 
                         <TextView
                             android:id="@+id/txtJobSearch"
@@ -74,7 +74,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="16dp"
                         android:layout_weight="0.5"
-                        android:background="@drawable/background_shape1"
+                        android:background="@drawable/background_shape2"
                         android:elevation="2dp">
 
                         <ImageView
@@ -85,7 +85,7 @@
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="8dp"
                             android:layout_marginRight="8dp"
-                            android:src="@drawable/ic_employment_appointment_orange" />
+                            android:src="@drawable/ic_employment_appointment_yellow" />
 
                         <TextView
                             android:id="@+id/txtAppointments"
@@ -116,7 +116,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginRight="16dp"
                         android:layout_weight="0.5"
-                        android:background="@drawable/background_shape1"
+                        android:background="@drawable/background_shape3"
                         android:elevation="2dp">
 
                         <ImageView
@@ -127,7 +127,7 @@
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="8dp"
                             android:layout_marginRight="8dp"
-                            android:src="@drawable/ic_employment_event_orange" />
+                            android:src="@drawable/ic_employment_event_red" />
 
                         <TextView
                             android:id="@+id/txtEmploymentEvents"
@@ -150,7 +150,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="16dp"
                         android:layout_weight="0.5"
-                        android:background="@drawable/background_shape1"
+                        android:background="@drawable/background_shape4"
                         android:elevation="2dp">
 
                         <ImageView
@@ -161,7 +161,7 @@
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="8dp"
                             android:layout_marginRight="8dp"
-                            android:src="@drawable/ic_employment_feedback_orange" />
+                            android:src="@drawable/ic_employment_feedback" />
 
                         <TextView
                             android:id="@+id/txtEmploymentFeedback"
