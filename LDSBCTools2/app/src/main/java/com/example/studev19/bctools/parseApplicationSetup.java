@@ -64,6 +64,7 @@ public class parseApplicationSetup extends Application {
 
         connection = internetConnection();
         FeedbackActivity.setConnectionStatus(connection);
+        EmploymentEventWeb.setConnectionStatus(connection);
 
 
         ParseUser.enableAutomaticUser();

@@ -4,11 +4,14 @@ import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,17 +35,30 @@ public class AppointmentActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);                                                               //Enables toolbar
         getSupportActionBar().setHomeButtonEnabled(true);                                           //Displays home/back button on toolbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);                                      //Home button will show as back button
+        final String PHONE_NUMBER = "801-524-1925";                                                 //Declare/Initialize final PHONE_NUMBER
 
         //TextView containing activity description
-        TextView descriptionText = (TextView) findViewById(R.id.txtApptDescription);                //TextView descriptionText is created and given a value
-        descriptionText.setText                                                                     //Set text for descriptionText
-                ("You can make an appointment with career services to get help about\n" +
-                "Resume building\nMock interviews\nJob searching \nGet ice cream");
+        TextView descriptionText = (TextView) findViewById(R.id.txtAptDescription);                //TextView descriptionText is created and given a value
+        String descText = "Call for help with any of the following:";
+        descriptionText.setText(descText);                                                          //Set text for descriptionText
 
-        //CALL BUTTON
-        final String PHONE_NUMBER = "801-524-1925";                                                 //Declare/Initialize final PHONE_NUMBER
-        RelativeLayout btnCall = (RelativeLayout) findViewById(R.id.layoutCall);                    //Declare/Initialize RelativeLayout btnCall containing call button
-        btnCall.setOnClickListener(new View.OnClickListener() {                                     //OnClickListener for btnCall to make call
+        TextView descriptionList = (TextView) findViewById(R.id.txtDescriptionList);
+        String descList = "&#160;&#160;&#8226;Career Assessment <br />" +
+                "&#160;&#160;&#8226;Internships <br />" +
+                "&#160;&#160;&#8226;Interviews <br />" +
+                "&#160;&#160;&#8226;Job Search <br />" +
+                "&#160;&#160;&#8226;LinkedIn <br />" +
+                "&#160;&#160;&#8226;Networking <br />" +
+                "&#160;&#160;&#8226;Resume / Cover Letter <br />" +
+                "&#160;&#160;&#8226;Strengths <br />" +
+                "&#160;&#160;&#8226;Other";
+
+        //Indentation &#160;&#160;
+        //Bullet &#8226;
+        descriptionList.setText(Html.fromHtml(descList));
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {                                                                               //Try Call Activity
@@ -52,7 +68,7 @@ public class AppointmentActivity extends AppCompatActivity {
                 } catch (ActivityNotFoundException activityException) {                             //Exception handler for call activity
                     Toast.makeText(getApplicationContext(),
                             "Application has stopped, failed to make a call to Career Services"
-                                    , Toast.LENGTH_SHORT).show();
+                            , Toast.LENGTH_SHORT).show();
                     Log.e("BC Tools", "Call failed", activityException);
                 }
             }

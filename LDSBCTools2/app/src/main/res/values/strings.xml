@@ -19,8 +19,10 @@
     <string name="title_activity_deal_list">Deals</string>
     <string name="title_activity_bcsa">BCSA</string>
     <string name="title_activity_feedback">Feedback</string>
-    <string name="title_activity_job_services">Employment Services</string>
+    <string name="title_activity_job_services">Career Services</string>
     <string name="title_activity_job_list">Job Opportunities</string>
     <string name="title_activity_job_details">JobDetails</string>
     <string name="title_activity_appointment">Appointments</string>
+    <string name="title_activity_employment_event_web">Workshops</string>
+    <string name="title_activity_test">TestActivity</string>
 </resources>

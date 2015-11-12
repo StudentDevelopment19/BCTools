@@ -18,169 +18,227 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingBottom="32dp"
-                android:paddingTop="32dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp">
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:paddingTop="16dp">
 
                 <TableRow
                     android:id="@+id/rowMenu1"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginBottom="8dp"
                     android:layout_weight="0.5">
 
-                    <RelativeLayout
-                        android:id="@+id/layoutJobSearch"
+                    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/jobCardView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginRight="16dp"
+                        card_view:cardCornerRadius="4dp"
+                        android:elevation="2dp"
                         android:layout_weight="0.5"
-                        android:background="@drawable/background_shape1"
-                        android:elevation="2dp">
+                        card_view:cardUseCompatPadding="true">
 
-                        <ImageView
-                            android:id="@+id/icoJobSearch"
+                        <RelativeLayout
+                            android:id="@+id/layoutJobSearch"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_centerHorizontal="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginRight="8dp"
-                            android:src="@drawable/ic_employment_list_green" />
+                            android:background="@drawable/background_shape1">
 
-                        <TextView
-                            android:id="@+id/txtJobSearch"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginBottom="8dp"
-                            android:fontFamily="sans-serif"
-                            android:text=" Job Search "
-                            android:textColor="@color/iconsColor"
-                            android:textSize="18sp"
-                            android:textStyle="bold"/>
+                            <ImageView
+                                android:id="@+id/icoJobSearch"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginRight="8dp"
+                                android:src="@drawable/ic_employment_list" />
 
-                    </RelativeLayout>
+                            <TextView
+                                android:id="@+id/txtJobSearch"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginBottom="8dp"
+                                android:fontFamily="sans-serif"
+                                android:text=" Job Search "
+                                android:textColor="@color/iconsColor"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
 
-                    <RelativeLayout
-                        android:id="@+id/layoutAppointments"
+                        </RelativeLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/appointmentCardView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        card_view:cardCornerRadius="4dp"
                         android:layout_marginLeft="16dp"
+                        android:elevation="2dp"
                         android:layout_weight="0.5"
-                        android:background="@drawable/background_shape2"
-                        android:elevation="2dp">
+                        card_view:cardUseCompatPadding="true">
 
-                        <ImageView
-                            android:id="@+id/icoAppointments"
+                        <RelativeLayout
+                            android:id="@+id/layoutAppointments"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_centerHorizontal="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginRight="8dp"
-                            android:src="@drawable/ic_employment_appointment_yellow" />
+                            android:background="@drawable/background_shape2"
+                            android:elevation="2dp">
 
-                        <TextView
-                            android:id="@+id/txtAppointments"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginBottom="8dp"
-                            android:fontFamily="sans-serif"
-                            android:text="Appointments"
-                            android:textColor="@color/iconsColor"
-                            android:textSize="18sp"
-                            android:textStyle="bold"/>
+                            <ImageView
+                                android:id="@+id/icoAppointments"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginRight="8dp"
+                                android:src="@drawable/ic_employment_appointment" />
 
-                    </RelativeLayout>
+                            <TextView
+                                android:id="@+id/txtAppointments"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginBottom="8dp"
+                                android:fontFamily="sans-serif"
+                                android:text="Appointments"
+                                android:textColor="@color/iconsColor"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                        </RelativeLayout>
+
+                    </android.support.v7.widget.CardView>
                 </TableRow>
 
                 <TableRow
                     android:id="@+id/rowMenu2"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     android:layout_weight="0.5">
 
-                    <RelativeLayout
-                        android:id="@+id/layoutEmploymentEvents"
+                    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/workshopCardView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginRight="16dp"
+                        card_view:cardCornerRadius="4dp"
+                        android:elevation="2dp"
                         android:layout_weight="0.5"
-                        android:background="@drawable/background_shape3"
-                        android:elevation="2dp">
+                        card_view:cardUseCompatPadding="true">
 
-                        <ImageView
-                            android:id="@+id/icoEmploymentEvents"
+                        <RelativeLayout
+                            android:id="@+id/layoutEmploymentEvents"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_centerHorizontal="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginRight="8dp"
-                            android:src="@drawable/ic_employment_event_red" />
+                            android:background="@drawable/background_shape3"
+                            android:elevation="2dp">
 
-                        <TextView
-                            android:id="@+id/txtEmploymentEvents"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginBottom="8dp"
-                            android:fontFamily="sans-serif"
-                            android:text="Events"
-                            android:textColor="@color/iconsColor"
-                            android:textSize="18sp"
-                            android:textStyle="bold"/>
+                            <ImageView
+                                android:id="@+id/icoEmploymentEvents"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginRight="8dp"
+                                android:src="@drawable/ic_employment_event" />
 
-                    </RelativeLayout>
+                            <TextView
+                                android:id="@+id/txtEmploymentEvents"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginBottom="8dp"
+                                android:fontFamily="sans-serif"
+                                android:text="Workshops"
+                                android:textColor="@color/iconsColor"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
 
-                    <RelativeLayout
-                        android:id="@+id/layoutEmploymentFeedback"
+                        </RelativeLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/feedbackCardView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        card_view:cardCornerRadius="4dp"
+                        android:elevation="2dp"
                         android:layout_marginLeft="16dp"
                         android:layout_weight="0.5"
-                        android:background="@drawable/background_shape4"
-                        android:elevation="2dp">
+                        card_view:cardUseCompatPadding="true">
 
-                        <ImageView
-                            android:id="@+id/icoEmploymentFeedback"
+                        <RelativeLayout
+                            android:id="@+id/layoutEmploymentFeedback"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_centerHorizontal="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginRight="8dp"
-                            android:src="@drawable/ic_employment_feedback" />
+                            android:background="@drawable/background_shape4"
+                            android:elevation="2dp">
 
-                        <TextView
-                            android:id="@+id/txtEmploymentFeedback"
-                            android:layout_width="wrap_content"
+                            <ImageView
+                                android:id="@+id/icoEmploymentFeedback"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginRight="8dp"
+                                android:src="@drawable/ic_employment_feedback" />
+
+                            <TextView
+                                android:id="@+id/txtEmploymentFeedback"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginBottom="8dp"
+                                android:fontFamily="sans-serif"
+                                android:text="Feedback"
+                                android:textColor="@color/iconsColor"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                        </RelativeLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/rowMenu3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp">
+
+                    <LinearLayout
+                        android:id="@+id/facebookButton"
+                        android:layout_span="2"
+                        android:layout_weight="0.5"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp">
+                        <ImageView
+                            android:id="@+id/imgFacebook"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginBottom="8dp"
-                            android:fontFamily="sans-serif"
-                            android:text="Feedback"
-                            android:textColor="@color/iconsColor"
-                            android:textSize="18sp"
-                            android:textStyle="bold"/>
-
-                    </RelativeLayout>
+                            android:src="@drawable/fb_banner" />
+                    </LinearLayout>
 
                 </TableRow>
 
             </TableLayout>
+
 
         </FrameLayout>
 

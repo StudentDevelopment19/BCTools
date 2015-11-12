@@ -83,7 +83,9 @@ public class navigationViewAdapter extends RecyclerView.Adapter<navigationViewAd
                     context.startActivity(new Intent(context, JobServicesActivity.class));          //Open JobServicesActivity "Career Services"
                     break;
                 case 6:
-                    context.startActivity(new Intent(context, FeedbackActivity.class));             //Open FeedbackActivity "Feedback"
+                    Intent feedback = new Intent(context, FeedbackActivity.class);
+                    feedback.putExtra("feedback", "https://docs.google.com/a/ldsbc.edu/forms/d/1PGgxSl2w9vsp4cq5jxii5Y6AOgCfCJ75o527xOrXD4U/viewform");
+                    context.startActivity(feedback);                                                //Open FeedbackActivity "Feedback"
                     break;
             }
         }

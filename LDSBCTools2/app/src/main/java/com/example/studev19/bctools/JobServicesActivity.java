@@ -15,6 +15,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -60,25 +62,41 @@ public class JobServicesActivity extends AppCompatActivity {
         employmentEvents.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent startEvents = new Intent(context, EventListActivity.class);
-                startEvents.putExtra("from", "Career");
+                Intent startEvents = new Intent(context, EmploymentEventWeb.class);
                 context.startActivity(startEvents);
             }
         });
 
-        //--EMAIL FEEDBACK--//
+        //--TO FEEDBACK FORM--//
         RelativeLayout employmentFeedback = (RelativeLayout) findViewById(R.id.layoutEmploymentFeedback);
         employmentFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try{
-                    Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
-                    emailIntent.setData(Uri.parse("mailto:adrian.lovi.39@gmail.com"));
-                    emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Feedback");
-                    startActivity(emailIntent);
+                    Intent feedbackIntent = new Intent(context, FeedbackActivity.class);
+                    feedbackIntent.putExtra("feedback", "https://docs.google.com/a/ldsbc.edu/forms/d/1IjiLH7JQJXGcZPM3ZE2rw9dAN0NjC5SaZ-9uWXjIjbs/viewform");
+                    startActivity(feedbackIntent);
                 }
                 catch (ActivityNotFoundException activityException){
                     Toast.makeText(context, "Application has stopped, failed to send email to the Career Center", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        //TO FACEBOOK PAGE//
+        LinearLayout facebookBanner = (LinearLayout) findViewById(R.id.facebookButton);
+        facebookBanner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try{
+                    final String fbURL = "fb://page/424097204331940";
+                    Intent facebookAppIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(fbURL));
+                    facebookAppIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+                    startActivity(facebookAppIntent);
+                }
+                catch (Exception e){
+                    Intent facebookFromBrowser = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/424097204331940"));
+                    startActivity(facebookFromBrowser);
                 }
             }
         });

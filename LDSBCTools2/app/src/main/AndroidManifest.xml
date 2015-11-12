@@ -169,6 +169,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studev19.bctools.JobServicesActivity" />
         </activity>
+        <activity
+            android:name=".EmploymentEventWeb"
+            android:label="@string/title_activity_employment_event_web"
+            android:parentActivityName=".JobServicesActivity"
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.studev19.bctools.JobServicesActivity" />
+        </activity>
     </application>
 
 </manifest>
