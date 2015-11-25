@@ -3,6 +3,8 @@ package com.example.studev19.bctools;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
@@ -14,6 +16,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
 import android.widget.Toast;
 
 import com.parse.DeleteCallback;
@@ -29,10 +32,9 @@ public class JobListActivity extends AppCompatActivity {
     private static final int DIALOG_ALERT = 10;                                                     //ID for About App Dialog
     private static final int NO_INTERNET_DIALOG = 5;                                                //ID for No Internet Connection Dialog
     private static Toolbar toolbar;                                                                 //Declared Toolbar
-    private static RecyclerView recyclerView;                                                       //RecyclerView for job list
     private static SwipeRefreshLayout swipeRefreshLayout;                                           //Refresh Layout
-    private static employmentViewAdapter adapter;                                                   //RecyclerView Adapter
-    private static List<JobObject> employmentList;                                                  //List with jobs
+    private static WebView webJobList;
+    private static Boolean connection;
     private static Context context;                                                                 //Declared Context
 
     @Override
@@ -47,92 +49,37 @@ public class JobListActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);                                      //Home button will show as back button
         context = this;
 
-        //RECYCLER VIEW
-        recyclerView = (RecyclerView) findViewById(R.id.employmentList);                            //Find view for RecyclerView
-        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeJobRefresh);               //Find view for RefreshSwipe
-        swipeRefreshLayout.setColorSchemeResources(R.color.primaryColor, R.color.accentColor);      //Set colors for swipeRefreshLayout
-        adapter = new employmentViewAdapter(context, getData());                                    //Initialize Adapter for RecyclerView
-        recyclerView.setAdapter(adapter);                                                           //Set Adapter to RecyclerView
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));                               //Give layout for RecyclerView
+        webJobList = (WebView) findViewById(R.id.wbJobList);
+        webJobList.getSettings().setJavaScriptEnabled(true);
+        webJobList.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
 
-        //Refresh the view after 1 second to show information from the beginning
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                adapter.notifyDataSetChanged();
-            }
-        }, 1000);
+        //CONTENT//\
+        connection = internetConnection();
+        if (connection == false){
+            showDialog(NO_INTERNET_DIALOG);
+            String html = "<html><body><p>You must be connected to the internet to display this tab correctly.</p></body></html>";
+            String mime = "text/html";
+            String encoding = "utf-8";
+            webJobList.loadDataWithBaseURL(null, html, mime, encoding, null);
+        }
+        else {
+            webJobList.loadUrl("https://app.smartsheet.com/b/mpublish?EQBCT=fbae046f0612479eadfdbebc2a77517e#sheet");
+        }
 
         //SWIPE LISTENER
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeJobRefresh);
+        swipeRefreshLayout.setColorSchemeResources(R.color.primaryColor, R.color.accentColor);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
-                employmentList.clear();                                                             //Clear data set
-
-                //PARSE QUERY DEALS FROM THE INTERNET//
-                ParseQuery<ParseObject> employmentQuery = new ParseQuery<ParseObject>("jobListing");
-                employmentQuery.addAscendingOrder("createdAt");
-                employmentQuery.findInBackground(new FindCallback<ParseObject>() {
-                    @Override
-                    public void done(final List<ParseObject> list, ParseException e) {
-                        if (e != null) {
-
-                        } else {
-                            ParseObject.unpinAllInBackground("jobs", new DeleteCallback() {
-                                @Override
-                                public void done(ParseException e) {
-                                    ParseObject.pinAllInBackground("jobs", list);
-                                }
-                            });
-                        }
-                    }
-                });
-
-                //PARSE QUERY FOR DEALS FROM LOCAL DATA//
-                ParseQuery<ParseObject> localEmploymentQuery = new ParseQuery<ParseObject>("jobListing");
-                localEmploymentQuery.addAscendingOrder("createdAt");
-                localEmploymentQuery.fromLocalDatastore();
-                localEmploymentQuery.findInBackground(new FindCallback<ParseObject>() {
-                    @Override
-                    public void done(List<ParseObject> list, ParseException e) {
-                        if (e != null) {
-                            Toast.makeText(context, "An error has occurred. \n" +
-                                    "Please connect to the Internet and refresh this view", Toast.LENGTH_LONG).show();
-                        } else for (ParseObject objects : list) {
-                            //Get data from Parse.com table
-                            String jobPosition = objects.getString("position");
-                            String jobCompany = objects.getString("company");
-                            String jobLocation = objects.getString("location");
-                            String jobDesc = objects.getString("description");
-
-                            //ADD ONLY THE UPCOMING EVENTS
-
-                            //Assign data to a DealObject
-                            JobObject newObject = new JobObject();
-                            newObject.setJobPosition(jobPosition);
-                            newObject.setJobCompany(jobCompany);
-                            newObject.setJobLocation(jobLocation);
-                            newObject.setJobDescription(jobDesc);
-
-                            //Add object to eventArray
-                            employmentList.add(newObject);
-
-
-                        }
-                    }
-                });
-
-                //Notify that data has changed and refresh
-                new Handler().postDelayed(new Runnable() {
+                swipeRefreshLayout.setRefreshing(true);
+                (new Handler()).postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        adapter.updateData(employmentList);
-                        adapter.notifyDataSetChanged();
                         swipeRefreshLayout.setRefreshing(false);
+                        webJobList.loadUrl("https://app.smartsheet.com/b/mpublish?EQBCT=fbae046f0612479eadfdbebc2a77517e#sheet");
                     }
-                }, 1000);
-
+                }, 4000);
             }
         });
 
@@ -188,13 +135,11 @@ public class JobListActivity extends AppCompatActivity {
         return super.onCreateDialog(id);
     }
 
-    public List<JobObject> getData() {
-        return employmentList;
+    public boolean internetConnection(){
+        ConnectivityManager cm  = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+        return networkInfo != null && networkInfo.isConnectedOrConnecting();
     }
-
-    public static void setData(List<JobObject> array) {
-        employmentList = array;
-    }                                         //Set data from parseApplicationSetup
 
     private final class OkOnClickListener implements DialogInterface.OnClickListener {
 

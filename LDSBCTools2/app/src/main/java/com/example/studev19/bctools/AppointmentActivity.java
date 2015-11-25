@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -16,7 +15,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,23 +33,24 @@ public class AppointmentActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);                                                               //Enables toolbar
         getSupportActionBar().setHomeButtonEnabled(true);                                           //Displays home/back button on toolbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);                                      //Home button will show as back button
+
         final String PHONE_NUMBER = "801-524-1925";                                                 //Declare/Initialize final PHONE_NUMBER
 
         //TextView containing activity description
-        TextView descriptionText = (TextView) findViewById(R.id.txtAptDescription);                //TextView descriptionText is created and given a value
+        TextView descriptionText = (TextView) findViewById(R.id.txtAptDescription);                 //TextView descriptionText is created and given a value
         String descText = "Call for help with any of the following:";
         descriptionText.setText(descText);                                                          //Set text for descriptionText
 
         TextView descriptionList = (TextView) findViewById(R.id.txtDescriptionList);
-        String descList = "&#160;&#160;&#8226;Career Assessment <br />" +
-                "&#160;&#160;&#8226;Internships <br />" +
-                "&#160;&#160;&#8226;Interviews <br />" +
-                "&#160;&#160;&#8226;Job Search <br />" +
-                "&#160;&#160;&#8226;LinkedIn <br />" +
-                "&#160;&#160;&#8226;Networking <br />" +
-                "&#160;&#160;&#8226;Resume / Cover Letter <br />" +
-                "&#160;&#160;&#8226;Strengths <br />" +
-                "&#160;&#160;&#8226;Other";
+        String descList = "&#160;&#160;&#160;&#8226; Career Assessment <br />" +
+                "&#160;&#160;&#160;&#8226; Internships <br />" +
+                "&#160;&#160;&#160;&#8226; Interviews <br />" +
+                "&#160;&#160;&#160;&#8226; Job Search <br />" +
+                "&#160;&#160;&#160;&#8226; LinkedIn <br />" +
+                "&#160;&#160;&#160;&#8226; Networking <br />" +
+                "&#160;&#160;&#160;&#8226; Resume / Cover Letter <br />" +
+                "&#160;&#160;&#160;&#8226; Strengths <br />" +
+                "&#160;&#160;&#160;&#8226; Other";
 
         //Indentation &#160;&#160;
         //Bullet &#8226;
@@ -101,8 +100,8 @@ public class AppointmentActivity extends AppCompatActivity {
     }
 
     @Override
-    protected Dialog onCreateDialog(int id){                                                        //Create About App Dialog
-        switch (id){
+    protected Dialog onCreateDialog(int id) {                                                        //Create About App Dialog
+        switch (id) {
             case DIALOG_ALERT:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("About this App");
@@ -115,7 +114,7 @@ public class AppointmentActivity extends AppCompatActivity {
         return super.onCreateDialog(id);
     }
 
-    private final class OkOnClickListener implements DialogInterface.OnClickListener{
+    private final class OkOnClickListener implements DialogInterface.OnClickListener {
 
         @Override
         public void onClick(DialogInterface dialog, int which) {

@@ -30,7 +30,6 @@ public class parseApplicationSetup extends Application {
     private static List<EventDetails> eventArray = new ArrayList<EventDetails>();
     private static List<DealObject> dealArray = new ArrayList<DealObject>();
     private static List<DirectoryObject> directoryArray = new ArrayList<DirectoryObject>();
-    private static List<JobObject> employmentArray = new ArrayList<JobObject>();
     private static Date today;
     private static boolean connection;
     Context context;
@@ -48,7 +47,6 @@ public class parseApplicationSetup extends Application {
         setDirectoryData();
         setEventData();
         setDealData();
-        setEmploymentData();
 
         //SENDS INFORMATION TO DIRECTORY INFLATER
         DirectoryListActivity.setData(getDirectoryData());
@@ -58,9 +56,6 @@ public class parseApplicationSetup extends Application {
 
         //SENDS INFORMATION TO DEAL INFLATER
         DealListActivity.setData(getDealData());
-
-        //SENDS INFORMATION TO JOB INFLATER
-        JobListActivity.setData(getEmploymentData());
 
         connection = internetConnection();
         FeedbackActivity.setConnectionStatus(connection);
@@ -307,64 +302,6 @@ public class parseApplicationSetup extends Application {
 
     public List<DealObject> getDealData() {
         return dealArray;
-    }
-
-    public void setEmploymentData() {
-
-        context = getApplicationContext();
-
-        //PARSE QUERY DEALS FROM THE INTERNET//
-        ParseQuery<ParseObject> employmentQuery = new ParseQuery<ParseObject>("jobListing");
-        employmentQuery.addAscendingOrder("createdAt");
-        employmentQuery.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> list, ParseException e) {
-                if (e != null) {
-
-                } else {
-                    ParseObject.pinAllInBackground("jobs", list);
-                }
-            }
-        });
-
-        //PARSE QUERY FOR DEALS FROM LOCAL DATA//
-        ParseQuery<ParseObject> localEmploymentQuery = new ParseQuery<ParseObject>("jobListing");
-        localEmploymentQuery.addAscendingOrder("createdAt");
-        localEmploymentQuery.fromLocalDatastore();
-        localEmploymentQuery.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> list, ParseException e) {
-                if (e != null) {
-                    Toast.makeText(context, "An error has occurred. \n" +
-                            "Please connect to the Internet and refresh this view", Toast.LENGTH_LONG).show();
-                } else for (ParseObject objects : list) {
-                    //Get data from Parse.com table
-                    String jobPosition = objects.getString("position");
-                    String jobCompany = objects.getString("company");
-                    String jobLocation = objects.getString("location");
-                    String jobDesc = objects.getString("description");
-
-                    //ADD ONLY THE UPCOMING EVENTS
-
-                    //Assign data to a DealObject
-                    JobObject newObject = new JobObject();
-                    newObject.setJobPosition(jobPosition);
-                    newObject.setJobCompany(jobCompany);
-                    newObject.setJobLocation(jobLocation);
-                    newObject.setJobDescription(jobDesc);
-
-                    //Add object to eventArray
-                    employmentArray.add(newObject);
-
-
-                }
-            }
-        });
-
-    }
-
-    public List<JobObject> getEmploymentData() {
-        return employmentArray;
     }
 
     public boolean internetConnection() {

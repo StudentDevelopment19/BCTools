@@ -49,6 +49,8 @@ public class MainActivity extends ActionBarActivity {
         webSwipe = (SwipeRefreshLayout) findViewById(R.id.swipeHome);                               //Find view for SwipeRefresh
         webSwipe.setColorSchemeColors(R.color.primaryColor, R.color.accentColor);                   //Set colors for webSwipe
         final WebView WEB_VIEW = (WebView) findViewById(R.id.webViewHome);                          //Find view for WebView
+        WEB_VIEW.getSettings().setJavaScriptEnabled(true);                                          //Enable Javascript
+        WEB_VIEW.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
 
         if (connection == false) {                                                                  //If there is not connection
             showDialog(NO_INTERNET_DIALOG);
@@ -58,7 +60,7 @@ public class MainActivity extends ActionBarActivity {
             WEB_VIEW.loadDataWithBaseURL(null, html, mime, encoding, null);
         }
         else{                                                                                       //If there is connection
-            WEB_VIEW.loadUrl("https://www.ldsbc.edu/");
+            WEB_VIEW.loadUrl("https://www.ldsbc.edu/index.php?option=com_content&view=article&id=1074&Itemid=1062");
         }
 
         webSwipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -69,7 +71,7 @@ public class MainActivity extends ActionBarActivity {
                     @Override
                     public void run() {
                         webSwipe.setRefreshing(false);
-                        WEB_VIEW.loadUrl("https://www.ldsbc.edu/");
+                        WEB_VIEW.loadUrl("https://www.ldsbc.edu/index.php?option=com_content&view=article&id=1074&Itemid=1062");
                     }
                 }, 4000);
             }

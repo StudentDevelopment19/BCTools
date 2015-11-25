@@ -30,10 +30,10 @@
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_main" >
+            android:label="@string/title_activity_main"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -41,7 +41,8 @@
         <activity
             android:name=".DirectoryListActivity"
             android:label="@string/title_activity_directory_list"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studev19.bctools.MainActivity" />
@@ -50,7 +51,8 @@
         <activity
             android:name=".directoryDetailedActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_directory_detailed" >
+            android:label="@string/title_activity_directory_detailed"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studev19.bctools.DirectoryListActivity" />
@@ -59,7 +61,8 @@
         <activity
             android:name=".EventListActivity"
             android:label="@string/title_activity_event_list"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studev19.bctools.MainActivity" />
@@ -68,7 +71,8 @@
         <activity
             android:name=".eventDetailedActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_event_detailed" >
+            android:label="@string/title_activity_event_detailed"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studev19.bctools.EventListActivity" />
@@ -77,7 +81,8 @@
         <activity
             android:name=".DealListActivity"
             android:label="@string/title_activity_deal_list"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studev19.bctools.MainActivity" />
@@ -86,7 +91,8 @@
         <activity
             android:name=".dealDetailedActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_deal_detailed" >
+            android:label="@string/title_activity_deal_detailed"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studev19.bctools.DealListActivity" />
@@ -95,7 +101,8 @@
         <activity
             android:name=".BCSAActivity"
             android:label="@string/title_activity_bcsa"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studev19.bctools.MainActivity" />
@@ -104,16 +111,18 @@
         <activity
             android:name=".FeedbackActivity"
             android:label="@string/title_activity_feedback"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studev19.bctools.MainActivity" />
         </activity>
-        <!-- Employment Services -->
+        <!-- EMPLOYMENT SERVICES -->
         <activity
             android:name=".JobServicesActivity"
             android:label="@string/title_activity_job_services"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studev19.bctools.MainActivity" />
@@ -145,35 +154,37 @@
             android:name="com.parse.push.notification_icon"
             android:resource="@drawable/ic_event_notification" />
 
+        <!-- JOB LIST -->
         <activity
             android:name=".JobListActivity"
             android:label="@string/title_activity_job_list"
-            android:parentActivityName=".JobServicesActivity" >
+            android:parentActivityName=".JobServicesActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studev19.bctools.JobServicesActivity" />
         </activity>
-        <activity
-            android:name=".jobDetailedActivity"
-            android:label="@string/title_activity_job_details"
-            android:parentActivityName=".JobListActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.studev19.bctools.JobListActivity" />
-        </activity>
+
+        <!-- JOB DETAILS -->
+
+        <!-- CAREER CENTER APPOINTMENT -->
         <activity
             android:name=".AppointmentActivity"
             android:label="@string/title_activity_appointment"
-            android:parentActivityName=".JobServicesActivity" >
+            android:parentActivityName=".JobServicesActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studev19.bctools.JobServicesActivity" />
         </activity>
+
+        <!-- CAREER CENTER WORKSHOPS -->
         <activity
             android:name=".EmploymentEventWeb"
             android:label="@string/title_activity_employment_event_web"
             android:parentActivityName=".JobServicesActivity"
-            android:theme="@style/AppTheme" >
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studev19.bctools.JobServicesActivity" />
