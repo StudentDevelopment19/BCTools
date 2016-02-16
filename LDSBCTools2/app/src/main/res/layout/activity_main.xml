@@ -1,5 +1,4 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -19,18 +18,100 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <android.support.v4.widget.SwipeRefreshLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/swipeHome"
+            <ImageView
+                android:id="@+id/imageView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|top"
+                android:src="@drawable/ldsbc_home" />
 
-                <WebView
-                    android:id="@+id/webViewHome"
+            <ScrollView
+                android:id="@+id/scrollView"
+                android:foregroundGravity="bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fillViewport="false">
+
+                <LinearLayout
+                    android:layout_marginTop="40dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-            </android.support.v4.widget.SwipeRefreshLayout>
+
+                    <TextView
+                        android:layout_marginTop="50dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/why_ldsbc_title"
+                        android:textSize="14sp"
+                        android:text="Why LDSBC?"
+                        android:gravity="center"
+                        />
+
+                    <TextView
+                        android:paddingTop="5dp"
+                        android:id="@+id/text_body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:text="LDS Business College is designed for students who are looking for a skills-based education and the quickest, most economical path to their first career. We teach the skills employers have asked us to teach. That’s why they are lined up waiting to hire our graduates as soon as they graduate. If just two years to your first career sounds appealing, LDS Business College is for you."
+                        android:textSize="12sp" />
+                    <TextView
+                        android:paddingTop="10dp"
+                        android:id="@+id/mision_statement_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:text="MISSION STATEMENT"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:paddingTop="5dp"
+                        android:id="@+id/mision_statement"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:text="LDS Business College provides a distinctive educational experience rooted in the restored gospel of Jesus Christ. We work together to cultivate a nurturing environment, teach practical skills and develop confident and skillful learners. We enlighten minds, elevate hope and ennoble souls to strengthen individuals, families, communities and the Lord's Church."
+                        android:textSize="12sp" />
+                    <TextView
+                        android:paddingTop="10dp"
+                        android:id="@+id/core_themes_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:text="CORE THEMES"
+                        android:textSize="14sp" />
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="20dp"
+                       android:id="@+id/core_theme_list1"
+                       android:drawableLeft="@drawable/bullet_gr"
+                       android:text="Strengthen Discipleship"
+                       android:textSize="12dp"
+
+                    />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:id="@+id/core_theme_list2"
+                        android:drawableLeft="@drawable/bullet_gr"
+                        android:text="Teach Practical Skills "
+                        android:textSize="12dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:id="@+id/core_theme_list3"
+                        android:drawableLeft="@drawable/bullet_gr"
+                        android:text="Cultivate a Nurturing Environment"
+                        android:textSize="12dp"
+                        />
+                </LinearLayout>
+
+            </ScrollView>
 
         </FrameLayout>
 

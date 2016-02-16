@@ -44,38 +44,6 @@ public class MainActivity extends ActionBarActivity {
 
         drawerFragment.setUp(R.id.navigationDrawer, (DrawerLayout) findViewById(R.id.drawerLayout), toolbar);
 
-        //----CONTENT----//
-
-        webSwipe = (SwipeRefreshLayout) findViewById(R.id.swipeHome);                               //Find view for SwipeRefresh
-        webSwipe.setColorSchemeColors(R.color.primaryColor, R.color.accentColor);                   //Set colors for webSwipe
-        final WebView WEB_VIEW = (WebView) findViewById(R.id.webViewHome);                          //Find view for WebView
-        WEB_VIEW.getSettings().setJavaScriptEnabled(true);                                          //Enable Javascript
-        WEB_VIEW.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-
-        if (connection == false) {                                                                  //If there is not connection
-            showDialog(NO_INTERNET_DIALOG);
-            String html = "<html><body><p>You must be connected to the internet to display this tab correctly.</p></body></html>";
-            String mime = "text/html";
-            String encoding = "utf-8";
-            WEB_VIEW.loadDataWithBaseURL(null, html, mime, encoding, null);
-        }
-        else{                                                                                       //If there is connection
-            WEB_VIEW.loadUrl("https://www.ldsbc.edu/index.php?option=com_content&view=article&id=1074&Itemid=1062");
-        }
-
-        webSwipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {                                                       //Set Refresh Listener
-                webSwipe.setRefreshing(true);
-                (new Handler()).postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        webSwipe.setRefreshing(false);
-                        WEB_VIEW.loadUrl("https://www.ldsbc.edu/index.php?option=com_content&view=article&id=1074&Itemid=1062");
-                    }
-                }, 4000);
-            }
-        });
 
     }
 

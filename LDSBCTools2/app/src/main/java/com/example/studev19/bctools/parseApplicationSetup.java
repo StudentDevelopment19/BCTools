@@ -30,6 +30,7 @@ public class parseApplicationSetup extends Application {
     private static List<EventDetails> eventArray = new ArrayList<EventDetails>();
     private static List<DealObject> dealArray = new ArrayList<DealObject>();
     private static List<DirectoryObject> directoryArray = new ArrayList<DirectoryObject>();
+    private static List<NewsFeedObject> newsFeedArray = new ArrayList<NewsFeedObject>();
     private static Date today;
     private static boolean connection;
     Context context;
@@ -47,6 +48,10 @@ public class parseApplicationSetup extends Application {
         setDirectoryData();
         setEventData();
         setDealData();
+        setNewsData();
+
+        //SEND INFORMATION TO NEWS INFLATER
+        NewsListActivity.setData(getNewsFeedData());
 
         //SENDS INFORMATION TO DIRECTORY INFLATER
         DirectoryListActivity.setData(getDirectoryData());
@@ -308,6 +313,84 @@ public class parseApplicationSetup extends Application {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = cm.getActiveNetworkInfo();
         return networkInfo != null && networkInfo.isConnectedOrConnecting();
+    }
+
+    public void setNewsData(){
+
+        //Set Date for current day (today)
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.HOUR, 0);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+        today = c.getTime();
+
+        context = getApplicationContext();
+        //PARSE QUERY FOR NEWS FROM THE INTERNET
+        ParseQuery<ParseObject> newsQuery = new ParseQuery<ParseObject>("newsFeed");
+        newsQuery.addAscendingOrder("postAt");
+        newsQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e != null) {
+                    Toast.makeText(context, "An error has occurred. \n" +
+                            "Data could not be downloaded from server", Toast.LENGTH_LONG).show();
+                } else {
+                    ParseObject.pinAllInBackground("newsFeed", list);
+                }
+            }
+        });
+
+        //PARSE QUERY FOR NEWS FROM LOCAL DATA//
+        ParseQuery<ParseObject> localNewsQuery = new ParseQuery<ParseObject>("newsFeed");
+        localNewsQuery.addAscendingOrder("postAt");
+        localNewsQuery.fromLocalDatastore();
+        localNewsQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e != null) {
+                    Toast.makeText(context, "An error has occurred. \n" +
+                            "Please connect to the Internet and refresh this view", Toast.LENGTH_LONG).show();
+                } else for (ParseObject objects : list) {
+                    //Get data from Parse.com table
+                    String newsTitle = objects.getString("title");
+                    if (objects.getString("title").isEmpty()) {
+                        newsTitle = "";
+                    }
+                    String newsDesc = objects.getString("description");
+                    if (objects.getString("description").isEmpty()) {
+                        newsDesc = "";
+                    }
+                    String newsWebPage = objects.getString("website");
+                    if (objects.getString("website").isEmpty()) {
+                        newsWebPage = "";
+                    }
+                    Date newsPostAt = objects.getDate("postAt");
+                    ParseFile eventImage = objects.getParseFile("image");
+
+                    //Assign data to an EventDetails object
+                    NewsFeedObject newObject = new NewsFeedObject();
+                    newObject.setTitle(newsTitle);
+                    newObject.setDescription(newsDesc);
+                    newObject.setWebsite(newsWebPage);
+                    newObject.setPostAt(newsPostAt);
+                    newObject.setImage(eventImage);
+
+
+                    //Add object to eventArray
+                    newsFeedArray.add(newObject);
+
+
+                }
+
+            }
+        });
+
+
+
+    }
+
+    public List<NewsFeedObject> getNewsFeedData() {
+        return newsFeedArray;
     }
 
 }

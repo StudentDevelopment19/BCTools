@@ -5,10 +5,10 @@ android {
     buildToolsVersion "22.0.1"
 
     defaultConfig {
-        applicationId "ldsbc.com.studev19.bctools"
+        applicationId "ldsbc.com.studev19.bctoolsapp"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 6
+        versionCode 7
         versionName "2.0"
     }
     buildTypes {

@@ -25,4 +25,7 @@
     <string name="title_activity_appointment">Appointments</string>
     <string name="title_activity_employment_event_web">Workshops</string>
     <string name="title_activity_test">TestActivity</string>
+    <string name="title_activity_news_feed">NewsFeedActivity</string>
+    <string name="title_activity_news_list">NewsListActivity</string>
+    <string name="title_activity_news_feed_detail">NewsFeedDetailActivity</string>
 </resources>

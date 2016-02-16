@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.studev19.bctools" >
+    package="com.example.studev19.bctools">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -24,7 +24,7 @@
         android:icon="@mipmap/ic_launcher_no_background"
         android:label="@string/app_name"
         android:largeHeap="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
 
         <!-- MAIN ACTIVITY - HOME -->
         <activity
@@ -34,6 +34,7 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -132,7 +133,7 @@
 
         <receiver
             android:name="com.parse.ParsePushBroadcastReceiver"
-            android:exported="false" >
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.parse.push.intent.RECEIVE" />
                 <action android:name="com.parse.push.intent.DELETE" />
@@ -141,7 +142,7 @@
         </receiver>
         <receiver
             android:name="com.parse.GcmBroadcastReceiver"
-            android:permission="com.google.android.c2dm.permission.SEND" >
+            android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
@@ -167,6 +168,7 @@
 
         <!-- JOB DETAILS -->
 
+
         <!-- CAREER CENTER APPOINTMENT -->
         <activity
             android:name=".AppointmentActivity"
@@ -183,11 +185,29 @@
             android:name=".EmploymentEventWeb"
             android:label="@string/title_activity_employment_event_web"
             android:parentActivityName=".JobServicesActivity"
-            android:theme="@style/AppTheme"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studev19.bctools.JobServicesActivity" />
+        </activity>
+        <activity
+            android:name=".NewsListActivity"
+            android:label="@string/title_activity_news_list"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.studev19.bctools.MainActivity" />
+        </activity>
+        <activity
+            android:name=".NewsFeedDetailActivity"
+            android:label="@string/title_activity_news_feed_detail"
+            android:parentActivityName=".NewsListActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.studev19.bctools.NewsListActivity" />
         </activity>
     </application>
 
