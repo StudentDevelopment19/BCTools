@@ -42,10 +42,10 @@ public class NavigationDrawerFragment extends Fragment {
     public static List<NavigationObject> getData() {
         List<NavigationObject> data = new ArrayList<>();
         String[] titles = {"Home", "Directory",                                                     //Array of Item Titles on Navigation menu
-                "Events","News Feed", "BCSA", "Deals",
+                "Events","News Feed", "BCSA",
                 "Career Services", "Feedback"};
         int[] images = {R.drawable.ic_home_gray, R.drawable.ic_phone_gray,                          //Array of Item Icons on Navigation menu
-                R.drawable.ic_event_gray, R.drawable.ic_news , R.drawable.ic_explore_gray, R.drawable.ic_shopping_gray,
+                R.drawable.ic_event_gray, R.drawable.ic_news_gray , R.drawable.ic_explore_gray,
                 R.drawable.ic_company_gray, R.drawable.ic_feedback_gray};
         for (int i = 0; i < titles.length; i++) {                                                   //Add Titles and Icons to a NavigationObject array
             NavigationObject current = new NavigationObject();
