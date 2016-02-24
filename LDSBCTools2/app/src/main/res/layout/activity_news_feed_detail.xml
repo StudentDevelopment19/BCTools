@@ -1,0 +1,101 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context="com.example.studev19.bctools.eventDetailedActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.parse.ParseImageView
+            android:id="@+id/imgNews"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:adjustViewBounds="true"
+            android:elevation="3dp"
+            android:scaleType="centerCrop" />
+
+        <include
+            android:id="@+id/app_bar"
+            layout="@layout/app_bar_transparent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            android:id="@+id/NewsInfoBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imgNews"
+            android:background="@color/primaryColor"
+            android:elevation="3dp">
+
+            <TextView
+                android:id="@+id/txtNewsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="Roboto Regular"
+                android:hint="News Title"
+                android:paddingBottom="16dp"
+                android:paddingTop="16dp"
+                android:textColor="@color/iconsColor"
+                android:textSize="24sp" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/txtNewsDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/NewsInfoBox"
+            android:fontFamily="Roboto Regular"
+            android:hint="Event Description"
+            android:paddingBottom="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="16dp"
+            android:textColor="@color/secondaryTextColor"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/txtNewsDescription"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@color/dividerColor" />
+
+        <ImageView
+            android:id="@+id/icoNewsWeb"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/divider"
+            android:layout_marginLeft="16dp"
+            android:src="@drawable/ic_web" />
+
+        <TextView
+            android:id="@+id/txtNewsWeb"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_alignBottom="@+id/icoNewsWeb"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="72dp"
+            android:layout_marginRight="16dp"
+            android:clickable="true"
+            android:fontFamily="Roboto Regular"
+            android:hint="Web Site"
+            android:paddingTop="12dp"
+            android:textColorLink="@color/accentColor"
+            android:textSize="16sp" />
+
+
+    </RelativeLayout>
+
+</ScrollView>
