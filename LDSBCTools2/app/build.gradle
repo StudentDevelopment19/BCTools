@@ -8,8 +8,8 @@ android {
         applicationId "ldsbc.com.studev19.bctoolsapp"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 7
-        versionName "2.0"
+        versionCode 8
+        versionName "2.1"
     }
     buildTypes {
         release {
