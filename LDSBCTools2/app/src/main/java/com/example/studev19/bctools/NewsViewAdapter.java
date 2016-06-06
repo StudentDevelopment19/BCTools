@@ -37,20 +37,19 @@ public class NewsViewAdapter extends RecyclerView.Adapter<NewsViewAdapter.MyView
 
 
     @Override
-    public NewsViewAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.news_feed_row,parent, false);
         MyViewHolder holder = new MyViewHolder(view);
-        return holder ;
+        return holder;
 
     }
 
     @Override
     public void onBindViewHolder(final NewsViewAdapter.MyViewHolder holder, int position) {
-
         NewsFeedObject currentInfo = newsArray.get(position);
         holder.newsTitle.setText(currentInfo.getTitle());
         ParseFile imageFile = currentInfo.getImage();
-        holder.newsImage.setParseFile(imageFile);                                         //Display ParseFile as image
+        holder.newsImage.setParseFile(imageFile);                                                   //Display ParseFile as image
         holder.newsImage.loadInBackground(new GetDataCallback() {
             @Override
             public void done(byte[] bytes, ParseException e) {
@@ -83,9 +82,7 @@ public class NewsViewAdapter extends RecyclerView.Adapter<NewsViewAdapter.MyView
 
         @Override
         public void onClick(View v) {
-        NewsFeedDetailActivity.setNewsInfo(newsArray.get(getPosition()));
-
-
+            NewsFeedDetailActivity.setNewsInfo(newsArray.get(getPosition()));
             context.startActivity(new Intent(context, NewsFeedDetailActivity.class));
 
 

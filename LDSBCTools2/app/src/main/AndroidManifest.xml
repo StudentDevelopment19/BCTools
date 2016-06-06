@@ -78,26 +78,26 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studev19.bctools.EventListActivity" />
         </activity>
-        <!-- DEALS DIRECTORY -->
-        <activity
-            android:name=".DealListActivity"
-            android:label="@string/title_activity_deal_list"
-            android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.studev19.bctools.MainActivity" />
-        </activity>
-        <!-- DEALS DETAILED VIEW -->
-        <activity
-            android:name=".dealDetailedActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_deal_detailed"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.studev19.bctools.DealListActivity" />
-        </activity>
+        <!--&lt;!&ndash; DEALS DIRECTORY &ndash;&gt;-->
+        <!--<activity-->
+            <!--android:name=".DealListActivity"-->
+            <!--android:label="@string/title_activity_deal_list"-->
+            <!--android:parentActivityName=".MainActivity"-->
+            <!--android:screenOrientation="portrait">-->
+            <!--<meta-data-->
+                <!--android:name="android.support.PARENT_ACTIVITY"-->
+                <!--android:value="com.example.studev19.bctools.MainActivity" />-->
+        <!--</activity>-->
+        <!--&lt;!&ndash; DEALS DETAILED VIEW &ndash;&gt;-->
+        <!--<activity-->
+            <!--android:name=".dealDetailedActivity"-->
+            <!--android:configChanges="orientation|keyboardHidden|screenSize"-->
+            <!--android:label="@string/title_activity_deal_detailed"-->
+            <!--android:screenOrientation="portrait">-->
+            <!--<meta-data-->
+                <!--android:name="android.support.PARENT_ACTIVITY"-->
+                <!--android:value="com.example.studev19.bctools.DealListActivity" />-->
+        <!--</activity>-->
         <!-- BCSA -->
         <activity
             android:name=".BCSAActivity"
@@ -112,6 +112,26 @@
         <activity
             android:name=".FeedbackActivity"
             android:label="@string/title_activity_feedback"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.studev19.bctools.MainActivity" />
+        </activity>
+        <!-- BRIGHTSPACE -->
+        <activity
+            android:name=".BrightspaceActivity"
+            android:label="@string/title_activity_brightspace"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.studev19.bctools.MainActivity" />
+        </activity>
+        <!-- BCCAFE -->
+        <activity
+            android:name=".BCCafeActivity"
+            android:label="@string/title_activity_bccafe"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait">
             <meta-data
@@ -153,7 +173,8 @@
 
         <meta-data
             android:name="com.parse.push.notification_icon"
-            android:resource="@drawable/ic_event_notification" />
+            android:resource="@drawable/ic_event_notification"/>
+
 
         <!-- JOB LIST -->
         <activity
@@ -191,6 +212,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studev19.bctools.JobServicesActivity" />
         </activity>
+        <!-- NEWSFEED DETAILED VIEW -->
         <activity
             android:name=".NewsListActivity"
             android:label="@string/title_activity_news_list"
@@ -200,6 +222,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.studev19.bctools.MainActivity" />
         </activity>
+        <!-- NEWSFEED DETAILED VIEW -->
         <activity
             android:name=".NewsFeedDetailActivity"
             android:label="@string/title_activity_news_feed_detail"

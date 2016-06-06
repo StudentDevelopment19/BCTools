@@ -94,12 +94,18 @@ public class NewsListActivity extends AppCompatActivity {
                 newsQuery.addAscendingOrder("postAt");
                 newsQuery.findInBackground(new FindCallback<ParseObject>() {
                     @Override
-                    public void done(List<ParseObject> list, ParseException e) {
+                    public void done(final List<ParseObject> list, ParseException e) {
                         if (e != null) {
                             Toast.makeText(context, "An error has occurred. \n" +
                                     "Data could not be downloaded from server", Toast.LENGTH_LONG).show();
                         } else {
-                            ParseObject.pinAllInBackground("newsFeed", list);
+                            ParseObject.unpinAllInBackground("newsFeed", new DeleteCallback() {
+                                        @Override
+                                        public void done(ParseException e) {
+                                            ParseObject.pinAllInBackground("newsFeed", list);
+                                        }
+                                    });
+
                         }
                     }
                 });

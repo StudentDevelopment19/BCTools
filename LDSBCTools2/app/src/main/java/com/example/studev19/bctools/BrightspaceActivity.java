@@ -1,49 +1,44 @@
 package com.example.studev19.bctools;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.webkit.WebView;
-import android.os.Handler;
-import android.widget.TextView;
 
-import com.parse.ParseAnalytics;
-
-import static java.lang.Math.random;
-
-public class MainActivity extends ActionBarActivity {
+public class BrightspaceActivity extends AppCompatActivity {
 
     private static final int DIALOG_ALERT = 10;                                                     //ID for About App Dialog
     private static final int NO_INTERNET_DIALOG = 5;                                                //ID for No Internet Connection Dialog
+    private static boolean connectionStatus;                                                        //Boolean for internet connection
     private static SwipeRefreshLayout webSwipe;                                                     //Declare SwipeRefresh
     private Toolbar toolbar;                                                                        //Declare Toolbar
-    private boolean connection;                                                                     //Boolean for internet connection
 
-
-
+    public static void setConnectionStatus(boolean status) {
+        connectionStatus = status;
+    }                                    //Check internet connection from parseApplicationSetup and set value for connectionStatus
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);                                                     //Layout and views come from activity_main.xml
-        connection = internetConnection();                                                          //Check internet connection
-        ParseAnalytics.trackAppOpenedInBackground(getIntent());                                     //Enable Parse Analytics (Sends statistics on times opened)
+        setContentView(R.layout.activity_brightspace);                                                 //Layout and views come from activity_brightspace.xml
 
         //Creating the Toolbar and setting it as the Toolbar for the Activity
         toolbar = (Toolbar) findViewById(R.id.app_bar);                                             //Initialize toolbar as app_bar
         setSupportActionBar(toolbar);                                                               //Enables toolbar
         getSupportActionBar().setDisplayShowHomeEnabled(true);                                      //Displays home/back button on toolbar
+
+        //URL TO FORM FROM PREVIOUS ACTIVITY
+        Intent previousActivity = getIntent();
+        final String brightspaceURL = previousActivity.getStringExtra("brightspace");
 
         //NAVIGATION DRAWER
         NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment)
@@ -52,12 +47,41 @@ public class MainActivity extends ActionBarActivity {
         drawerFragment.setUp(R.id.navigationDrawer, (DrawerLayout) findViewById(R.id.drawerLayout), toolbar);
 
 
+        webSwipe = (SwipeRefreshLayout) findViewById(R.id.swipeWeb);                                //Find view for SwipeRefresh
+        webSwipe.setColorSchemeResources(R.color.primaryColor, R.color.accentColor);                //Set colors for webSwipe
+        final WebView WEB_VIEW = (WebView) findViewById(R.id.webView);                              //Find view for WebView
+
+        if (connectionStatus == false) {                                                            //If there is not connection
+            String html = "<html><body><p>You must be connected to the internet to display this tab correctly.</p></body></html>";
+            String mime = "text/html";
+            String encoding = "utf-8";
+
+            WEB_VIEW.loadDataWithBaseURL(null, html, mime, encoding, null);
+        } else {
+            //If there is connection
+            WEB_VIEW.loadUrl(brightspaceURL);
+        }
+
+        webSwipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {                                                               //Set Refresh Listener
+                webSwipe.setRefreshing(true);
+                (new Handler()).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        webSwipe.setRefreshing(false);
+                        WEB_VIEW.loadUrl(brightspaceURL);
+                    }
+                }, 4000);
+            }
+        });
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_brightspace, menu);
         return true;
     }
 
@@ -71,7 +95,6 @@ public class MainActivity extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             showDialog(DIALOG_ALERT);
-            //Toast.makeText(getApplicationContext(), "This option is not available for now", Toast.LENGTH_SHORT).show();
             return true;
         }
 
@@ -103,12 +126,6 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onCreateDialog(id);
 
-    }
-
-    public boolean internetConnection() {
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
-        return networkInfo != null && networkInfo.isConnectedOrConnecting();
     }
 
     private final class OkOnClickListener implements DialogInterface.OnClickListener {

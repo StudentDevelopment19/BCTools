@@ -95,7 +95,7 @@ public class BCSAActivity extends AppCompatActivity {
         hyperlinkMarketing = (TextView) findViewById(R.id.txtMarketingLink);
         hyperlinkMarketing.setClickable(true);
         hyperlinkMarketing.setMovementMethod(LinkMovementMethod.getInstance());
-        String marketingText = "<a href='https://app.smartsheet.com/b/form?EQBCT=673583d1ff9b41babe313d9a2f73d341'>Marketing Request Form</a>";
+        String marketingText = "<a href='https://app.smartsheet.com/b/form?EQBCT=673583d1ff9b41babe313d9a2f73d341'>Communication Request Form</a>";
         hyperlinkMarketing.setText(Html.fromHtml(marketingText));
 
         //SET HYPERLINK TO FEEDBACK APPLICATION

@@ -6,7 +6,7 @@
     <string name="action_settings">About</string>
     <string name="title_activity_directory_detailed">directoryDetailedActivity</string>
     <string name="title_activity_event_detailed">eventDetailedActivity</string>
-    <string name="current_version">Version 2.1</string>
+    <string name="current_version">Version 2.2.1</string>
     <string name="hello_world">Hello world!</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
@@ -18,6 +18,8 @@
     <string name="title_activity_event_list">Events</string>
     <string name="title_activity_deal_list">Deals</string>
     <string name="title_activity_bcsa">BCSA</string>
+    <string name="title_activity_brightspace">Brightspace</string>
+    <string name="title_activity_bccafe">BCCafe</string>
     <string name="title_activity_feedback">Feedback</string>
     <string name="title_activity_job_services">Career Services</string>
     <string name="title_activity_job_list">Job Opportunities</string>
@@ -28,4 +30,43 @@
     <string name="title_activity_news_feed">NewsFeedActivity</string>
     <string name="title_activity_news_list">NewsListActivity</string>
     <string name="title_activity_news_feed_detail">NewsFeedDetailActivity</string>
+
+    <string name = "q0">“God won’t give you all the answers at once, but He will never forsake you.” -President Richards- </string>
+     <string name = "q1">“Sometimes God steps aside just enough to let you learn what He wants you to in this life.” -President Richards- </string> 
+    <string name = "q2">“When God speaks, you move your feet.” -President Richards- </string> 
+    <string name = "q3">"You might not totally understand where to go after this; but Trust God . His dealings are prepared" -President Richards- </string>
+     <string name = "q4">"It is what we do with our challenges that really matter" -Kathy Skene- </string> 
+    <string name = "q5">"Reach out to your Father in Heaven so He can show you what to learn" -Kathy Skene- </string> 
+    <string name = "q6">"Fail your way to success" -Kathy Skene- </string> 
+    <string name = "q7">“If you hold on, the Light will come.” -Justin Jones- </string> 
+    <string name = "q8">“The Prophets and Apostles are not out of touch, but in tune!” -Paul Cardall-</string> 
+    <string name = "q9">"The talents in which we hold have the ability to build bridges between people, nations, faiths, and shed the Gospel throughout the world." -Paul Cardall- </string> 
+    <string name = "q10">"You cannot escape or run from God's love. The Savior Will find you." -Paul Cardall-</string> 
+    <string name = "q11">" You accepted to be on the Lord's Staff" -Paul Cardall-</string>
+     <string name = "q12">"When you realize what He did for you, it changes what you think and feel for the Savior." - Paul Cardall- </string>
+     <string name = "q13">" Never let a day go by, that you do not call upon the Lord" -Camille Fronk Olson-</string>
+     <string name = "q14">"What ever level of faith you have now, won't be sufficient for what lies ahead, keep building daily" (Kim Clark) -Camille Fronk Olson-</string> 
+    <string name = "q15">"As much as you have inquired, you have been directed, and that is why you are where you are right now" -Camille Fronk Olson- </string> 
+    <string name = "q16">“Determine to be not weary!” -Matthew Eyring- </string> 
+    <string name = "q17">"The commandment to “be not weary” is exceptional to your spiritual growth." -Matthew Eyring- </string>
+     <string name = "q18">"Don't get frustrated sometimes all we can see is one step at a time" -Matthew Eyring- </string> 
+    <string name = "q19">"Train your minds and hands to be instruments” -Matthew Eyring- </string>
+     <string name = "q20">"You've merely forgotten what you already know" -Sister Wixom- </string>
+     <string name = "q21">"After much soul searching you'll understand your true desires and what you want to be" -Sister Wixom- </string> 
+    <string name = "q22">"You become what your daily priorities give you time for" -Sister Wixom- </string>
+     <string name = "q23">“Be Salty!” -Sharon Eubank- </string> 
+    <string name = "q24">“No matter what circumstance you are in; good, bad, a slave or a pharaoh, find opportunities to serve and be salty!” -Sharon Eubank- </string> 
+    <string name = "q25">"Ye are the salt of the earth. Salt brings out the flavor. Salty people bring out the Good in all aspects" -Sharon Eubank- </string> 
+    <string name = "q26">“If there is one way to describe the Spirit, it is: Alive!” -Janine Green- </string>
+     <string name = "q27">“I have learned of myself that we are never out of His reach!” -Janine Green- </string>
+     <string name = "q28">“Everything, including our trials, points us to the Savior” -Janine Green- </string> 
+    <string name = "q29">"The Stories of Jesus are really true stories. What are your stories of Jesus" -Janine Green- </string>
+     <string name = "q30">“When we change our behavior to meet our goals, that is accomplishment. However, when we change our goals to accept our behavior, that is called rationalization.” -Chuck Coonradt- </string> 
+    <string name = "q31">"In the absence of clearly defined goals, we are forced to concentrate on activity and ultimately become enslaved by it” -Chuck Coonradt- </string> 
+    <string name = "q32">“Don’t take wooden nickels from anyone.” -Elder Clark- </string> 
+    <string name = "q33">“Our Heavenly Parents are as close to us as they can be." -President Richards- </string> 
+    <string name = "q34">"There is nothing you can do to yourself that destroys your worth” -President Richards- </string>   
+
+
+
 </resources>

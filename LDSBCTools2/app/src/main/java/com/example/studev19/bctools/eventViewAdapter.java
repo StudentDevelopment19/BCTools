@@ -33,9 +33,9 @@ public class eventViewAdapter extends RecyclerView.Adapter<eventViewAdapter.MyVi
         eventArray = eventList;
     }
 
-    public void updatedEventData(List<EventDetails> events) {
+    public void updatedEventData(List<EventDetails> events) {                                       //Updates data in eventArray
         eventArray = events;
-    }                                   //Updates data in eventArray
+    }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

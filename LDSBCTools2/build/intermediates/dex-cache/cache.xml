@@ -2,102 +2,74 @@
 <items version="2" >
 
     <item
-        jar="/Users/alejandrolopez/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-applinks/1.4.0/8ad21bf21784dacce5f2043afb97218cc377e835/bolts-applinks-1.4.0.jar"
+        jar="/Users/alejandrolopez/AndroidStudioProjects/BCTools/LDSBCTools2/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="8ad21bf21784dacce5f2043afb97218cc377e835">
-        <dex dex="/Users/alejandrolopez/AndroidStudioProjects/BCTools/LDSBCTools2/app/build/intermediates/pre-dexed/debug/bolts-applinks-1.4.0-02c86311f8968e93313162c02bbe78b414e869c7.jar" />
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="/Users/alejandrolopez/AndroidStudioProjects/BCTools/LDSBCTools2/app/build/intermediates/pre-dexed/release/com.android.support-support-v4-22.2.0_aff15392686e2795baa4ee1fb7b298f611314ac4.jar" />
     </item>
     <item
         jar="/Users/alejandrolopez/AndroidStudioProjects/BCTools/LDSBCTools2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
-        <dex dex="/Users/alejandrolopez/AndroidStudioProjects/BCTools/LDSBCTools2/app/build/intermediates/pre-dexed/release/classes-a6ddc72bd3b6d74a68e1f1200fed0aff0158c799.jar" />
-    </item>
-    <item
-        jar="/Users/alejandrolopez/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.4.0/cc174c559b5177982887bf6e1b76003aebad9516/bolts-android-1.4.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="cc174c559b5177982887bf6e1b76003aebad9516">
-        <dex dex="/Users/alejandrolopez/AndroidStudioProjects/BCTools/LDSBCTools2/app/build/intermediates/pre-dexed/debug/bolts-android-1.4.0-d5ca490f84d1ee74074d0fd547d9cccc2d9fe71d.jar" />
-    </item>
-    <item
-        jar="/Users/alejandrolopez/AndroidStudioProjects/BCTools/LDSBCTools2/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
-        <dex dex="/Users/alejandrolopez/AndroidStudioProjects/BCTools/LDSBCTools2/app/build/intermediates/pre-dexed/release/internal_impl-22.2.0-37626115ab1d90865fff354dd684459d5e6e251a.jar" />
+        <dex dex="/Users/alejandrolopez/AndroidStudioProjects/BCTools/LDSBCTools2/app/build/intermediates/pre-dexed/release/com.android.support-appcompat-v7-22.2.0_a6ddc72bd3b6d74a68e1f1200fed0aff0158c799.jar" />
     </item>
     <item
         jar="/Users/alejandrolopez/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
-        <dex dex="/Users/alejandrolopez/AndroidStudioProjects/BCTools/LDSBCTools2/app/build/intermediates/pre-dexed/debug/bolts-tasks-1.4.0-5ac18df3a31a3726b7d09e3e89ca9ec45bb3384c.jar" />
-    </item>
-    <item
-        jar="/Users/alejandrolopez/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.3.0/8a62fd16fcc1c06f284fc98e6cbded2a5af1dd4c/bolts-tasks-1.3.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="8a62fd16fcc1c06f284fc98e6cbded2a5af1dd4c">
-        <dex dex="/Users/alejandrolopez/AndroidStudioProjects/BCTools/LDSBCTools2/app/build/intermediates/pre-dexed/release/bolts-tasks-1.3.0-e6b87124f4275c515fc7db76813738053b9bdb55.jar" />
+        <dex dex="/Users/alejandrolopez/AndroidStudioProjects/BCTools/LDSBCTools2/app/build/intermediates/pre-dexed/release/bolts-tasks-1.4.0_5ac18df3a31a3726b7d09e3e89ca9ec45bb3384c.jar" />
     </item>
     <item
         jar="/Users/alejandrolopez/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
-        <dex dex="/Users/alejandrolopez/AndroidStudioProjects/BCTools/LDSBCTools2/app/build/intermediates/pre-dexed/release/support-annotations-22.2.0-801f12f128eddd2590da827cd4b500592c185edd.jar" />
+        <dex dex="/Users/alejandrolopez/AndroidStudioProjects/BCTools/LDSBCTools2/app/build/intermediates/pre-dexed/release/support-annotations-22.2.0_801f12f128eddd2590da827cd4b500592c185edd.jar" />
+    </item>
+    <item
+        jar="/Users/alejandrolopez/AndroidStudioProjects/BCTools/LDSBCTools2/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="/Users/alejandrolopez/AndroidStudioProjects/BCTools/LDSBCTools2/app/build/intermediates/pre-dexed/release/internal_impl-22.2.0_37626115ab1d90865fff354dd684459d5e6e251a.jar" />
     </item>
     <item
         jar="/Users/alejandrolopez/AndroidStudioProjects/BCTools/LDSBCTools2/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/22.1.1/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="e0b0c35d02308b270015a74cada4887e2e49b889">
-        <dex dex="/Users/alejandrolopez/AndroidStudioProjects/BCTools/LDSBCTools2/app/build/intermediates/pre-dexed/release/classes-450607b605bd779f7e8c90f9639da2d911ce92e6.jar" />
+        <dex dex="/Users/alejandrolopez/AndroidStudioProjects/BCTools/LDSBCTools2/app/build/intermediates/pre-dexed/release/com.android.support-recyclerview-v7-22.1.1_450607b605bd779f7e8c90f9639da2d911ce92e6.jar" />
     </item>
     <item
-        jar="/Users/alejandrolopez/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-applinks/1.3.0/bc535105332645408ef5f1380215cc954b842178/bolts-applinks-1.3.0.jar"
+        jar="/Users/alejandrolopez/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-applinks/1.4.0/8ad21bf21784dacce5f2043afb97218cc377e835/bolts-applinks-1.4.0.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="bc535105332645408ef5f1380215cc954b842178">
-        <dex dex="/Users/alejandrolopez/AndroidStudioProjects/BCTools/LDSBCTools2/app/build/intermediates/pre-dexed/release/bolts-applinks-1.3.0-cf5f29eb8750da701dca2fc7d6d75f429766e40c.jar" />
+        sha1="8ad21bf21784dacce5f2043afb97218cc377e835">
+        <dex dex="/Users/alejandrolopez/AndroidStudioProjects/BCTools/LDSBCTools2/app/build/intermediates/pre-dexed/release/bolts-applinks-1.4.0_02c86311f8968e93313162c02bbe78b414e869c7.jar" />
     </item>
     <item
         jar="/Users/alejandrolopez/AndroidStudioProjects/BCTools/LDSBCTools2/app/build/intermediates/exploded-aar/com.android.support/design/22.2.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="fc63b820d54c8a27a3a614bdd93920e0076581c2">
-        <dex dex="/Users/alejandrolopez/AndroidStudioProjects/BCTools/LDSBCTools2/app/build/intermediates/pre-dexed/release/classes-2774cee8da2b533834a7cdbc60601eb9a854b031.jar" />
+        <dex dex="/Users/alejandrolopez/AndroidStudioProjects/BCTools/LDSBCTools2/app/build/intermediates/pre-dexed/release/com.android.support-design-22.2.0_2774cee8da2b533834a7cdbc60601eb9a854b031.jar" />
     </item>
     <item
         jar="/Users/alejandrolopez/AndroidStudioProjects/BCTools/LDSBCTools2/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/22.0.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="11842de6a309c447b3a3d60d73ad637a87c58994">
-        <dex dex="/Users/alejandrolopez/AndroidStudioProjects/BCTools/LDSBCTools2/app/build/intermediates/pre-dexed/release/classes-2e8d10c72750e5ca240f50d7422629c95e1d327b.jar" />
-    </item>
-    <item
-        jar="/Users/alejandrolopez/AndroidStudioProjects/BCTools/LDSBCTools2/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
-        <dex dex="/Users/alejandrolopez/AndroidStudioProjects/BCTools/LDSBCTools2/app/build/intermediates/pre-dexed/release/classes-aff15392686e2795baa4ee1fb7b298f611314ac4.jar" />
-    </item>
-    <item
-        jar="/Users/alejandrolopez/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.3.0/27cabf3558be23a89f054334dd92512645ad34d9/bolts-android-1.3.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="27cabf3558be23a89f054334dd92512645ad34d9">
-        <dex dex="/Users/alejandrolopez/AndroidStudioProjects/BCTools/LDSBCTools2/app/build/intermediates/pre-dexed/release/bolts-android-1.3.0-93c84c739f3dc1305d5cd7cae5c30d4053c5beb3.jar" />
+        <dex dex="/Users/alejandrolopez/AndroidStudioProjects/BCTools/LDSBCTools2/app/build/intermediates/pre-dexed/release/com.android.support-cardview-v7-22.0.0_2e8d10c72750e5ca240f50d7422629c95e1d327b.jar" />
     </item>
     <item
         jar="/Users/alejandrolopez/AndroidStudioProjects/BCTools/LDSBCTools2/app/libs/Parse-1.9.2.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="fe739334780fe321141e62720822c2d456061899">
-        <dex dex="/Users/alejandrolopez/AndroidStudioProjects/BCTools/LDSBCTools2/app/build/intermediates/pre-dexed/release/Parse-1.9.2-2e85b7480f8230997955667d86b9f1b2332d1ed2.jar" />
+        <dex dex="/Users/alejandrolopez/AndroidStudioProjects/BCTools/LDSBCTools2/app/build/intermediates/pre-dexed/release/Parse-1.9.2_2e85b7480f8230997955667d86b9f1b2332d1ed2.jar" />
     </item>
 
 </items>

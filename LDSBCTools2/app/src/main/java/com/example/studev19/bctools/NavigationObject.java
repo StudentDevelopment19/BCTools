@@ -1,5 +1,7 @@
 package com.example.studev19.bctools;
 
+
+
 /**
  * Created by studev19 on 9/14/2015.
  */
@@ -24,5 +26,6 @@ public class NavigationObject {
     public void setIcon(int image) {
         this.itemIcon = image;
     }
+
 
 }

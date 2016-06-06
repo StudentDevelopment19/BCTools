@@ -59,12 +59,14 @@ public class parseApplicationSetup extends Application {
         //SENDS INFORMATION TO EVENT INFLATER
         EventListActivity.setData(getEventData());
 
-        //SENDS INFORMATION TO DEAL INFLATER
-        DealListActivity.setData(getDealData());
+//        //SENDS INFORMATION TO DEAL INFLATER
+//        DealListActivity.setData(getDealData());
 
         connection = internetConnection();
         FeedbackActivity.setConnectionStatus(connection);
         EmploymentEventWeb.setConnectionStatus(connection);
+        BCCafeActivity.setConnectionStatus(connection);
+        BrightspaceActivity.setConnectionStatus(connection);
 
 
         ParseUser.enableAutomaticUser();

@@ -40,6 +40,7 @@ public class navigationViewAdapter extends RecyclerView.Adapter<navigationViewAd
         NavigationObject currentData = navList.get(position);
         holder.title.setText(currentData.getName());                                                //Set value for Item Name
         holder.icon.setImageResource(currentData.getIcon());                                        //Set value for Item Icon
+
     }
 
     @Override
@@ -51,10 +52,12 @@ public class navigationViewAdapter extends RecyclerView.Adapter<navigationViewAd
         TextView title;
         ImageView icon;
 
+
         public MyViewHolder(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.txtNavItem);                                  //Find TextView for Name
             icon = (ImageView) view.findViewById(R.id.icoNavItem);                                  //Find ImageView for Icon
+
             view.setOnClickListener(this);
         }
 
@@ -90,7 +93,18 @@ public class navigationViewAdapter extends RecyclerView.Adapter<navigationViewAd
                     feedback.putExtra("feedback", "https://docs.google.com/a/ldsbc.edu/forms/d/1PGgxSl2w9vsp4cq5jxii5Y6AOgCfCJ75o527xOrXD4U/viewform");
                     context.startActivity(feedback);                                                //Open FeedbackActivity "Feedback"
                     break;
+                case 7:
+                    Intent brightspace = new Intent(context,BrightspaceActivity.class);
+                    brightspace.putExtra("brightspace", "https://ldsbc.brightspace.com");
+                    context.startActivity(brightspace);                                             //Open BrightspaceActivity "Brightspace"
+                    break;
+                case 8:
+                    Intent bccafe = new Intent(context,BCCafeActivity.class);
+                    bccafe.putExtra("bccafe", "http://www.toasttab.com/bc-cafe/");
+                    context.startActivity(bccafe);                                                  //Open BCCafeActivity
+                    break;
             }
+
         }
     }
 

@@ -49,7 +49,7 @@ public class NewsFeedDetailActivity extends ActionBarActivity {
 
         //----THE FOLLOWING SECTION FILLS THE INFORMATION OF THE DETAILED VIEW-----//
 
-        //Setting Image from Parse
+        //Settin∑g Image from Parse
 
         final ParseImageView newsImage = (ParseImageView) findViewById(R.id.imgNews);
         image = currentInfo.getImage();
